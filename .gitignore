@@ -1,0 +1,28 @@
+#Executables
+*.out
+fillit
+
+#Libraries
+/libft/libft.a
+
+#Folders
+/coldstorage
+/samples/
+/rebuild
+/includes/*
+/tests
+a.out.dSYM/
+libft/.gitignore
+
+#Object Files
+*.o
+/objects
+
+#Misc files
+.DS_Store
+*.py
+*.swp
+*.txt
+*.sh
+.nfs*
+*.gch
