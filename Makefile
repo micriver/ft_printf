@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/06/05 15:12:50 by mirivera         ###   ########.fr        #
+#    Updated: 2019/06/05 15:52:34 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,12 +94,12 @@ $(NAME):
 
 clean:
 	@rm -rf $(OBJECTS)
-	@rm -rf a.out*
 
 fclean:	clean
 	@rm -rf $(NAME)
+	@rm -rf a.out*
 
 re:	fclean all
 
 debug:
-	$(CC) $(CFLAGS) $(SRCS) -g
+	$(CC) $(CFLAGS) $(addprefix SRCS/,$(SRCS)) -g
