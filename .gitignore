@@ -4,6 +4,7 @@ fillit
 
 #Libraries
 /libft/libft.a
+libftprintf.a
 
 #Folders
 /coldstorage
