@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/06/05 18:17:41 by mirivera         ###   ########.fr        #
+#    Updated: 2019/06/07 13:39:12 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,4 +102,4 @@ fclean:	clean
 re:	fclean all
 
 debug:
-	$(CC) $(CFLAGS) $(addprefix SRCS/,$(SRCS)) -g
+	$(CC) $(CFLAGS) $(addprefix SRCS/,$(SRCS)) ./libft/libft.a -g

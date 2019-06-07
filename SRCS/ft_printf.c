@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 09:01:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/07 10:39:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/07 14:15:08 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,42 @@
 
 void	ft_printf(const char *fmt, ...)
 {
-	va_list vl;
+	va_list args;
 	char *buf;
 	int i;
 	int j;
 
-	i = 0;
-	buf = (char *)malloc(sizeof(char) * (ft_strlen(fmt)));
-	va_start(vl, fmt);
-	i = 0;
+	buf = (ft_strnew((ft_strlen(fmt))));
+	va_start(args, fmt);
+	i = -1;
 	j = 0;
-	while (fmt[i] != '\0')
+	while (buf && fmt[++i])
 	{
 		if (fmt[i] == '%')
 		{
-			break ;
+			i++;
+			switch (fmt[i])
+			{
+				case 'c': 
+				{
+					buf[j++] = (char)va_arg(args, int);
+					break;
+				}
+				// default:
+					// break;
+			}
 		}
 		else
-			ft_strcpy(buf, fmt);
-		i++;
+			buf[j++] = fmt[i];
+			// ft_strcpy(buf, fmt);
 	}
 	ft_putstr(buf);
-	va_end(vl);
+	va_end(args);
 }
 
 int		main(void)
 {
-	ft_printf("whatup\n");
+	char a = 'A';
+	ft_printf("char = %c\n", a);
 	return (0);
 }
