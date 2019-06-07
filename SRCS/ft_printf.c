@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 09:01:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/07 14:15:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/07 14:37:10 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,24 @@ void	ft_printf(const char *fmt, ...)
 			i++;
 			switch (fmt[i])
 			{
-				case 'c': 
+				case 'c': //chars
 				{
+					//placing the character given as an arg in the main into the buf that will 
 					buf[j++] = (char)va_arg(args, int);
 					break;
 				}
+				// case 'd': //integers
+				// {
+				// 	buf[j++] = (char)va_arg(args, int);
+				// 	break;
+				// }
 				// default:
 					// break;
 			}
 		}
 		else
+			//copy's fmt string into buffer until we get to '%', building the string to print!
+			//case 's' to copy the string from the fmt to our buffer to be printed
 			buf[j++] = fmt[i];
 			// ft_strcpy(buf, fmt);
 	}
@@ -50,6 +58,6 @@ void	ft_printf(const char *fmt, ...)
 int		main(void)
 {
 	char a = 'A';
-	ft_printf("char = %c\n", a);
+	ft_printf("This is the test for a char: %c\n", a);
 	return (0);
 }
