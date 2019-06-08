@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 09:01:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/08 14:11:21 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/08 14:45:42 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	ft_printf(const char *fmt, ...)
 				{
 					//itoa returns string
  	 				temp = ft_itoa(va_arg(args, int));
-					//copying the string
+					//copying the string to buf
  					ft_strcpy(&buf[j], temp);
+					//setting the index  value to the length of temp
  					j += ft_strlen(temp);
 					break;
 				}
@@ -59,9 +60,10 @@ void	ft_printf(const char *fmt, ...)
 
 int		main(void)
 {
-	// char a = 'A';
+	void *a;
 	int b = 10;
 	// ft_printf("This is the test for a char: %c\n", a);
+	ft_putstr(a);
 	ft_printf("%d\n", b);
 	return (0);
 }
