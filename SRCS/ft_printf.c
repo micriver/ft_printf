@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 09:01:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/07 14:37:10 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/08 14:11:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_printf(const char *fmt, ...)
 {
 	va_list args;
 	char *buf;
+	char *temp;
 	int i;
 	int j;
 
@@ -32,24 +33,25 @@ void	ft_printf(const char *fmt, ...)
 			{
 				case 'c': //chars
 				{
-					//placing the character given as an arg in the main into the buf that will 
+					//placing the character given as an arg into the buf that will be printed out
 					buf[j++] = (char)va_arg(args, int);
 					break;
 				}
-				// case 'd': //integers
-				// {
-				// 	buf[j++] = (char)va_arg(args, int);
-				// 	break;
-				// }
-				// default:
-					// break;
+				case 'd': 
+				{
+					//itoa returns string
+ 	 				temp = ft_itoa(va_arg(args, int));
+					//copying the string
+ 					ft_strcpy(&buf[j], temp);
+ 					j += ft_strlen(temp);
+					break;
+				}
 			}
 		}
 		else
-			//copy's fmt string into buffer until we get to '%', building the string to print!
-			//case 's' to copy the string from the fmt to our buffer to be printed
+			//iterates through and copy's fmt string into buffer string until we get to '%', building the string to print!
+			//ALSO the case 's' to copy the string from the fmt to our buffer to be printed
 			buf[j++] = fmt[i];
-			// ft_strcpy(buf, fmt);
 	}
 	ft_putstr(buf);
 	va_end(args);
@@ -57,7 +59,9 @@ void	ft_printf(const char *fmt, ...)
 
 int		main(void)
 {
-	char a = 'A';
-	ft_printf("This is the test for a char: %c\n", a);
+	// char a = 'A';
+	int b = 10;
+	// ft_printf("This is the test for a char: %c\n", a);
+	ft_printf("%d\n", b);
 	return (0);
 }
