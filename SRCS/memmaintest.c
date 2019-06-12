@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   memmaintest.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 10:10:53 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/11 18:39:48 by mirivera         ###   ########.fr       */
+/*   Created: 2019/06/11 19:23:55 by mirivera          #+#    #+#             */
+/*   Updated: 2019/06/11 19:42:07 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
+#include <stdio.h>
+#include "../libft/libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int 	main()
 {
-	size_t i;
+	char s[] = "bo"; 
+	int width = 3;
 
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char*)b)[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
+	printf("%s\n", s);
+	ft_memset(s, ' ', width);
+	//printf("%s\n", ft_memset(s, 0, width));
+	printf("%s\n", s);
+	return(0);
 }
