@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 09:01:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/13 20:10:27 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/17 10:29:51 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_printf(const char *fmt, ...)
 
 	buf = ft_strnew(ft_strlen(fmt));
 	va_start(args, fmt);
-	i = -1;
+	i = 0;
 	j = 0;
-	while (buf && fmt[++i])
+	while (buf && fmt[i])
 	{
-		if (fmt[i] == '%')
+	if (fmt[i] == '%')
 		{
 			i++;
 			//print percent signs
@@ -43,16 +43,17 @@ void	ft_printf(const char *fmt, ...)
 				temp = ft_strjoin(temp2, ft_itoa(va_arg(args, int)));
 				ft_strcpy(&buf[j], temp);
 				i += 2;
-				j += (width + 2);
+				j += (width);
+				//j += (width + 2);
 				//i += (width - 1);
 			}
-			if (fmt[i] == 'c')
+			else if (fmt[i] == 'c')
 			{
 				//placing the character given as an arg into the buf that will be printed out
 				buf[j++] = (char)va_arg(args, int);
 				i += 1;
 			}
-			//if (fmt[i] == 'd')
+			else if (fmt[i] == 'd')
 			{
 				//itoa returns string
 				temp = ft_itoa(va_arg(args, int));
@@ -65,7 +66,9 @@ void	ft_printf(const char *fmt, ...)
 		}
 		//iterates through and copy's fmt string into buffer string until we get to '%', building the string to print!
 		//ALSO the case 's' to copy the string from the fmt to our buffer to be printed
-		buf[j++] = fmt[i];
+		buf[j] = fmt[i];
+		i++;
+		j++;
 	}
 	ft_putstr(buf);
 	va_end(args);
@@ -85,4 +88,4 @@ int		main(void)
 //	void *a;
 // ft_printf("This is the test for a char: %c\n", a);
 //	ft_putstr(a);
-	*/
+*/
