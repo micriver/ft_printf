@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:21:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/21 14:24:54 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/22 16:35:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,21 @@ char	*rj_strncpy(char *src, size_t n)
 		dest[i++] = '0';
 	while (src[x])
 		dest[i++] = src[x++];
-	printf("The width given is: %zu\n", n);
-	printf("%zu\n", ft_strlen(dest));
+	//printf("The width given is: %zu\n", n);
+	//printf("%zu\n", ft_strlen(dest));
 	return (dest);
 }
 
 int		main()
 {
 	char src[] = "-7";
+	int x = -7;
 	//char dest[] = "";
-	printf("argument is: %s\n", src);
+	//printf("argument is: %s\n", src);
 //	printf("printed string is: %s\n", dest);
-	printf("%s\n", rj_strncpy(src, 5));
+	//printf("%s\n", rj_strncpy(src, 5));
+	printf("ft_printf:%s\n", rj_strncpy(src, 5));
+	printf("printf   :%05d\n", x);
 	//printf("argument is now: %s\n", src);
 	//printf("printed string is now: %s\n", dest);
 	return (0);
