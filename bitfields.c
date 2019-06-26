@@ -62,7 +62,7 @@ int		main()
 	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 5));
 	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 6));
 	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 7));
-	if (CHECK_BIT(d1.member2, 7) == 1)
+	if (CHECK_BIT(d1.member2, 7) == 0)
 		printf("\nSCIENCE BITCH!\n");
 
 	printf("Checking bit state...\n");
