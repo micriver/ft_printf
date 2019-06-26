@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:45 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/22 15:49:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/25 09:11:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int		main()
 	//char dest[] = "";
 //	printf("argument is: %s\n", src);
 //	printf("printed string is: %s\n", dest);
-	printf("ft_printf:%s\n", lj_strncpy(src, 5));
+	printf("ft_printf:%s\n", lj_strncpy(src, 10));
 	//printf("argument is now: %s\n", src);
 	//printf("printed string is now: %s\n", dest);
-	printf("printf   :%-5s\n", src);
+	printf("printf   :%-10s\n", src);
 	return (0);
 }
