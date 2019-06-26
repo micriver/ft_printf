@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#define CHECK_BIT(var,pos) ((var >> pos) & 1) 
 
 struct 
 {
@@ -53,6 +54,16 @@ int		main()
 	printf("\n");
 	print_bits(d1.member2);
 	printf("\n\n");
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 0));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 1));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 2));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 3));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 4));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 5));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 6));
+	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 7));
+	if (CHECK_BIT(d1.member2, 7) == 1)
+		printf("\nSCIENCE BITCH!\n");
 
 	printf("Checking bit state...\n");
 	bit = (d1.member2 >> 4) & 1;
@@ -75,6 +86,7 @@ int		main()
 
 
 
+
 	printf("Toggle (0)th bit:\n");
 	printf("BEFORE:\n");
 	printf("\n");
@@ -86,9 +98,11 @@ int		main()
 	d1.member2 ^= (1 << 0);
 	print_bits(d1.member2);
 	printf("\n");
+	printf("\n");
 
-
+	//printf("%-+04d\n", bit);
 
 //	&= ~
 	return (0);
+	
 }
