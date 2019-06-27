@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy_right_justified.c                       :+:      :+:    :+:   */
+/*   rj_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/21 12:21:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/26 20:37:59 by mirivera         ###   ########.fr       */
+/*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
+/*   Updated: 2019/06/27 13:33:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ char	*rj_strncpy(char *src, size_t n)
 		i = 0;
 	x = 0;
 	while (i < (n - arg_size))
-	{
-		(CHECK_BIT(args.arg1, ZERO_F) == 1) ? dest[i] = '1' : dest[i]; 
-		i++;
-	}
+		(CHECK_BIT(args.arg1, ZERO_F)) ? (dest[i++] = '0') : (dest[i++] = ' '); 
 	while (src[x])
 		dest[i++] = src[x++];
 	return (dest);
@@ -64,9 +61,9 @@ char	*rj_strncpy(char *src, size_t n)
 
 int		main()
 {
-	SET_BIT(args.arg1, PLUS_F);
-	char src[] = "-7";
-	int x = -7;
+	SET_BIT(args.arg1, ZERO_F);
+	char src[] = "777";
+	int x = 777;
 	//char dest[] = "";
 	//printf("argument is: %s\n", src);
 //	printf("printed string is: %s\n", dest);
