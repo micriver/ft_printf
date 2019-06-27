@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/06/07 13:39:12 by mirivera         ###   ########.fr        #
+#    Updated: 2019/06/26 19:56:00 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,8 @@ LIBFT_SRCS = ft_atoi.c \
 	ft_tolower.c \
 	ft_toupper.c \
 	get_next_line.c \
+	prefixchar.c \
+	prependstr.c \
 
 OBJECTS = $(patsubst %.c,%.o,$(SRCS))
 OBJECTS += $(patsubst %.c,%.o,$(LIBFT_SRCS))
