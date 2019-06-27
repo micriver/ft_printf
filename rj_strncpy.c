@@ -6,15 +6,35 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:21:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/22 16:35:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/26 20:37:59 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+#define CHECK_BIT(var,pos) ((var >> pos) & 1) 
+#define SET_BIT(var,pos) (var |= 1 << pos) 
+#define TOGGLE_BIT(var,pos) (var ^= (1 << pos)) 
+
+#define ZERO_F (0)
+#define MINUS_F (1)
+#define PLUS_F (2)
+#define SHARP_F (3)
+#define INVP_F (4)
+#define SPACE (' ')
+
+struct arguments
+{
+	int arg1 : 16; //make sure that you set the bit depth to only the amount of bits you actually need!!! eg, the # of flags/modifiers you'll be using
+	int arg2 : 16;
+} args;
 
 char	*rj_strncpy(char *src, size_t n)
 {
+	printf("size of structure with bit field = %lu\n", sizeof(args));
 	char *dest;
 	size_t i;
 	size_t x;
@@ -23,7 +43,6 @@ char	*rj_strncpy(char *src, size_t n)
 	arg_size = ft_strlen(src);
 	dest = ft_strnew(n + arg_size);
 	i = 0;
-	x = 0;
 	if (src[0] == '-')
 	{
 		dest[i] = '-';
@@ -31,21 +50,21 @@ char	*rj_strncpy(char *src, size_t n)
 		i++;
 	}
 	else
-	{
 		i = 0;
-		x = 0;
-	}
+	x = 0;
 	while (i < (n - arg_size))
-		dest[i++] = '0';
+	{
+		(CHECK_BIT(args.arg1, ZERO_F) == 1) ? dest[i] = '1' : dest[i]; 
+		i++;
+	}
 	while (src[x])
 		dest[i++] = src[x++];
-	//printf("The width given is: %zu\n", n);
-	//printf("%zu\n", ft_strlen(dest));
 	return (dest);
 }
 
 int		main()
 {
+	SET_BIT(args.arg1, PLUS_F);
 	char src[] = "-7";
 	int x = -7;
 	//char dest[] = "";
