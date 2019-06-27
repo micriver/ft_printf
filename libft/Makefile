@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 09:12:29 by mirivera          #+#    #+#              #
-#    Updated: 2019/04/12 12:43:35 by mirivera         ###   ########.fr        #
+#    Updated: 2019/06/26 19:48:16 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC = 	ft_atoi.c ft_lstdelone.c ft_memset.c ft_strclr.c ft_strmap.c ft_strsub.c 
 		ft_itoa.c ft_memcpy.c ft_putstr_fd.c ft_strjoin.c ft_strrchr.c \
 		ft_lstadd.c ft_memdel.c ft_strcat.c ft_strlcat.c ft_strsplit.c \
 		ft_lstdel.c ft_memmove.c ft_strchr.c ft_strlen.c ft_strstr.c ft_strndup.c \
-		get_next_line.c
+		get_next_line.c prefixchar.c prependstr.c \
 
 OBJECTS =	ft_atoi.o ft_lstdelone.o ft_memset.o ft_strclr.o ft_strmap.o ft_strsub.o \
 			ft_bzero.o ft_lstiter.o ft_putchar.o ft_strcmp.o ft_strmapi.o ft_strtrim.o \
@@ -42,7 +42,7 @@ OBJECTS =	ft_atoi.o ft_lstdelone.o ft_memset.o ft_strclr.o ft_strmap.o ft_strsub
 			ft_itoa.o ft_memcpy.o ft_putstr_fd.o ft_strjoin.o ft_strrchr.o \
 			ft_lstadd.o ft_memdel.o ft_strcat.o ft_strlcat.o ft_strsplit.o \
 			ft_lstdel.o ft_memmove.o ft_strchr.o ft_strlen.o ft_strstr.o ft_strndup.o \
-			get_next_line.o
+			get_next_line.o prefixchar.o prependstr.o \
 
 all: $(NAME)
 

@@ -15,7 +15,7 @@
 #define MINUS_F (1)
 #define PLUS_F (2)
 #define SHARP_F (3)
-#define INV+_F (4)
+#define INVP_F (4)
 
 //#define ZERO_F (5)
 //#define ZERO_F (6)
@@ -62,9 +62,9 @@ int		main()
 //	printf("d1.member2 |= 1 << 4\n");
 //	printf("d1.member2 |= 1 << 0");
 //	printf("\n\n");
-	SET_BIT(d1.member2, INV+_F);
+	SET_BIT(d1.member2, INVP_F);
 	//SET_BIT(d1.member2, PLUS_F);
-	SET_BIT(d1.member2, ZERO_F);
+	SET_BIT(d1.member2, PLUS_F);
 	//SET_BIT(d1.member2, 2);
 	//SET_BIT(d1.member2, 3);
 	//d1.member2 |= 1 << 4;
@@ -77,12 +77,12 @@ int		main()
 	if (CHECK_BIT(d1.member2, ZERO_F) == 1 && CHECK_BIT(d1.member2, MINUS_F) == 1)
 	{
 		TOGGLE_BIT(d1.member2, MINUS_F);
-		printf("\nSCIENCE BITCH!\n");
+		printf("zero flag always overrides (-) flag");
 	}
 	//if there is a sapce and a (+) sign, the plus sign overrides the space
-	if (CHECK_BIT(d1.member2, INV+_F) == 1 && CHECK_BIT(d1.member2, PLUS_F) == 1)
+	if (CHECK_BIT(d1.member2, INVP_F) == 1 && CHECK_BIT(d1.member2, PLUS_F) == 1)
 	{
-		TOGGLE_BIT(d1.member2, INV+_F);
+		TOGGLE_BIT(d1.member2, INVP_F);
 		printf("the plus sign overrides the space\n");
 	}
 	printf("check bit is: %d\n", CHECK_BIT(d1.member2, 0));
