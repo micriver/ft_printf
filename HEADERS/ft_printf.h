@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/07 08:59:28 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/27 13:54:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "libft.h"
 # include "get_next_line.h"
 
-void     ft_printf(const char *fmt, ...);
+void	ft_printf(const char *fmt, ...);
+char	*prefixchar(char prefix, const char *str);
+char	*prependstr(char *pstr, const char *str);
 
 #endif

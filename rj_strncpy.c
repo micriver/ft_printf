@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/27 13:33:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/06/27 13:49:33 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,38 @@ char	*rj_strncpy(char *src, size_t n)
 	arg_size = ft_strlen(src);
 	dest = ft_strnew(n + arg_size);
 	i = 0;
-	if (src[0] == '-')
-	{
-		dest[i] = '-';
-		src[0] = '0';
-		i++;
-	}
-	else
-		i = 0;
+	//if the 'd' is negative, and there are leading zeroes
+	//{
+	//	dest[i] = '-';
+	//	src[0] = '0';
+	//	i++;
+	//}
+	//else
+	//	i = 0;
 	x = 0;
 	while (i < (n - arg_size))
-		(CHECK_BIT(args.arg1, ZERO_F)) ? (dest[i++] = '0') : (dest[i++] = ' '); 
+	{
+		dest[i] = ' ';
+		(CHECK_BIT(args.arg1, ZERO_F)) ? (dest[i++] = '0') : (dest[i++]);
+	}
 	while (src[x])
 		dest[i++] = src[x++];
+	if (src[0] == '-' && (CHECK_BIT(args.arg1, ZERO_F)))
+		prefixchar('-', dest);
 	return (dest);
 }
 
 int		main()
 {
-	SET_BIT(args.arg1, ZERO_F);
-	char src[] = "777";
-	int x = 777;
+	//SET_BIT(args.arg1, ZERO_F);
+	char src[] = "-7";
+	int x = -7;
 	//char dest[] = "";
 	//printf("argument is: %s\n", src);
 //	printf("printed string is: %s\n", dest);
 	//printf("%s\n", rj_strncpy(src, 5));
 	printf("ft_printf:%s\n", rj_strncpy(src, 5));
-	printf("printf   :%05d\n", x);
+	printf("printf   :%5d\n", x);
 	//printf("argument is now: %s\n", src);
 	//printf("printed string is now: %s\n", dest);
 	return (0);
