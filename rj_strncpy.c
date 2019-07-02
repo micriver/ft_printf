@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/01 19:41:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/01 20:01:20 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +108,10 @@ int		main(int ac, char **av)
 		//(void)av;
 		//(void)ac;
 		int width = ft_atoi(av[2]);
-		SET_BIT(args.arg1, ZERO_F);
-		SET_BIT(args.arg1, PLUS_F);
+		//SET_BIT(args.arg1, ZERO_F);
+		//SET_BIT(args.arg1, PLUS_F);
 		//char src[] = "42";
 		int x = ft_atoi(av[1]);
-		//int x = 42;
-		//char dest[] = "";
-		//printf("argument is: %s\n", src);
-		//	printf("printed string is: %s\n", dest);
-		//printf("%s\n", rj_strncpy(src, 5));
 		printf("ft_printf:%s\n", rj_strncpy(av[1], width));
 		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
 			printf("printf   :%+0*d\n", width, x);
@@ -126,8 +121,6 @@ int		main(int ac, char **av)
 			printf("printf   :%+*d\n", width, x);
 		else
 			printf("printf   :%*d\n", width, x);
-		//printf("argument is now: %s\n", src);
-		//printf("printed string is now: %s\n", dest);
 	}
 	return (0);
 }
