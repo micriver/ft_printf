@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/01 20:01:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/02 13:21:12 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int		main(int ac, char **av)
 		else if (CHECK_BIT(args.arg1, PLUS_F))
 			printf("printf   :%+*d\n", width, x);
 		else
-			printf("printf   :%*d\n", width, x);
+			printf("printf   :%*s\n", width, aplha);
 	}
 	return (0);
 }
