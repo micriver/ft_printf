@@ -6,12 +6,13 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/01 15:46:09 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/01 19:41:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./HEADERS/ft_printf.h"
 #include <stdio.h>
+#include <time.h>
 
 char	*prependchar(char c, const char *str)
 {
@@ -29,24 +30,40 @@ char	*prependchar(char c, const char *str)
 	return (pstr);
 }
 
+char	*insertplussign(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == '0')
+		i++;	
+	str[i - 1] = '+';
+	return (str);
+}
+
 char	*lead_zero_negsign(char *dest, char *src, int size)
 {
 	int y;
-	int j;
 
 	y = 0;
-	j = 0;
 	while (src[y])
 	{
-		if (src[0] == '-' && (CHECK_BIT(args.arg1, ZERO_F)))
+		if (ft_atoi(src) >= 0 && CHECK_BIT(args.arg1, PLUS_F) && dest[0] != '-')
+		{
+			if (CHECK_BIT(args.arg1, ZERO_F))
+				dest = prefixchar('+', dest);
+		}
+		else if (src[0] == '-' && (CHECK_BIT(args.arg1, ZERO_F)))
 		{
 			dest = prefixchar('-', dest);
 			src[0] = '0';
 		}
-		else if (ft_atoi(src) >= 0 && CHECK_BIT(args.arg1, PLUS_F))
-			dest = prefixchar('+', dest);
 		dest[size++] = src[y++];
 	}
+	if (!CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F) \
+			&& src[0] != '-')
+		dest = insertplussign(dest);
+	dest[size] = '\0';
 	return (dest);
 }
 
@@ -83,27 +100,54 @@ char	*rj_strncpy(char *src, int width)
 	return (dest);
 }
 
-int		main()
+int		main(int ac, char **av)
 {
-	int width = 5;
-	SET_BIT(args.arg1, ZERO_F);
-	SET_BIT(args.arg1, PLUS_F);
-	char src[] = "7777";
-	int x = 7777;
-	//char dest[] = "";
-	//printf("argument is: %s\n", src);
-//	printf("printed string is: %s\n", dest);
-	//printf("%s\n", rj_strncpy(src, 5));
-	printf("ft_printf:%s\n", rj_strncpy(src, width));
-	if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
-		printf("printf   :%+0*d\n", width, x);
-	else if (CHECK_BIT(args.arg1, ZERO_F))
-		printf("printf   :%0*d\n", width, x);
-	else if (CHECK_BIT(args.arg1, PLUS_F))
-		printf("printf   :%+*d\n", width, x);
-	else
-		printf("printf   :%*d\n", width, x);
-	//printf("argument is now: %s\n", src);
-	//printf("printed string is now: %s\n", dest);
+	//clock_t t;
+	if(ac == 3)
+	{
+		//(void)av;
+		//(void)ac;
+		int width = ft_atoi(av[2]);
+		SET_BIT(args.arg1, ZERO_F);
+		SET_BIT(args.arg1, PLUS_F);
+		//char src[] = "42";
+		int x = ft_atoi(av[1]);
+		//int x = 42;
+		//char dest[] = "";
+		//printf("argument is: %s\n", src);
+		//	printf("printed string is: %s\n", dest);
+		//printf("%s\n", rj_strncpy(src, 5));
+		printf("ft_printf:%s\n", rj_strncpy(av[1], width));
+		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
+			printf("printf   :%+0*d\n", width, x);
+		else if (CHECK_BIT(args.arg1, ZERO_F))
+			printf("printf   :%0*d\n", width, x);
+		else if (CHECK_BIT(args.arg1, PLUS_F))
+			printf("printf   :%+*d\n", width, x);
+		else
+			printf("printf   :%*d\n", width, x);
+		//printf("argument is now: %s\n", src);
+		//printf("printed string is now: %s\n", dest);
+	}
 	return (0);
 }
+
+
+
+		//t = clock();
+		//printf("ft_printf:%s\n", rj_strncpy(av[1], width));
+		//t = clock() - t;
+		//double time_taken = ((double)t)/CLOCKS_PER_SEC;
+		//printf("ft_printf() took %f seconds to execute \n\n", time_taken);
+		//t = clock();
+		//if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
+		//	printf("printf   :%+0*d\n", width, x);
+		//else if (CHECK_BIT(args.arg1, ZERO_F))
+		//	printf("printf   :%0*d\n", width, x);
+		//else if (CHECK_BIT(args.arg1, PLUS_F))
+		//	printf("printf   :%+*d\n", width, x);
+		//else
+		//	printf("printf   :%*d\n", width, x);
+		//t = clock() - t;
+		//double time_taken2 = ((double)t)/CLOCKS_PER_SEC;
+		//printf("libary printf() took %f seconds to execute \n", time_taken2);
