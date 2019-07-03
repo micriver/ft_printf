@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/02 14:44:29 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/02 18:49:33 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,15 @@ struct arguments
 	int arg1 : 16; //make sure that you set the bit width to only the amount of bits you actually need!!! eg, the # of flags/modifiers you'll be using
 } args;
 
-void	ft_printf(const char *fmt, ...);
-char	*prefixchar(char prefix, const char *str);
-char	*prependstr(char *pstr, const char *str);
+
+int		ft_printf(char *fmt, ...);
+char	*conversion(char *str, int *i);
+char	*prependchar(char c, char *str);
+char	*insertplussign(char *str);
+char	*lead_zero_negsign(char *dest, char *src, int size);
+char	*leading_zeros_spaces(char *dest, char *src, int width, int arg_size);
+char	*rj_strncpy(char *src, int width);
+char	*prefixchar(char prefix, char *str);
+char	*prependstr(char *pstr, char *str);
 
 #endif

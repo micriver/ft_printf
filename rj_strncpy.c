@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/02 13:21:12 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/02 19:51:18 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <time.h>
 
-char	*prependchar(char c, const char *str)
+char	*prependchar(char c, char *str)
 {
 	unsigned int i;
 	unsigned int j;
@@ -100,30 +100,30 @@ char	*rj_strncpy(char *src, int width)
 	return (dest);
 }
 
-int		main(int ac, char **av)
-{
-	//clock_t t;
-	if(ac == 3)
-	{
-		//(void)av;
-		//(void)ac;
-		int width = ft_atoi(av[2]);
-		//SET_BIT(args.arg1, ZERO_F);
-		//SET_BIT(args.arg1, PLUS_F);
-		//char src[] = "42";
-		int x = ft_atoi(av[1]);
-		printf("ft_printf:%s\n", rj_strncpy(av[1], width));
-		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
-			printf("printf   :%+0*d\n", width, x);
-		else if (CHECK_BIT(args.arg1, ZERO_F))
-			printf("printf   :%0*d\n", width, x);
-		else if (CHECK_BIT(args.arg1, PLUS_F))
-			printf("printf   :%+*d\n", width, x);
-		else
-			printf("printf   :%*s\n", width, aplha);
-	}
-	return (0);
-}
+//int		main(int ac, char **av)
+//{
+//	//clock_t t;
+//	if(ac == 3)
+//	{
+//		//(void)av;
+//		//(void)ac;
+//		int width = ft_atoi(av[2]);
+//		//SET_BIT(args.arg1, ZERO_F);
+//		//SET_BIT(args.arg1, PLUS_F);
+//		//char src[] = "42";
+//		int x = ft_atoi(av[1]);
+//		printf("ft_printf:%s\n", rj_strncpy(av[1], width));
+//		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
+//			printf("printf   :%+0*d\n", width, x);
+//		else if (CHECK_BIT(args.arg1, ZERO_F))
+//			printf("printf   :%0*d\n", width, x);
+//		else if (CHECK_BIT(args.arg1, PLUS_F))
+//			printf("printf   :%+*d\n", width, x);
+//		else
+//			printf("printf   :%*s\n", width, aplha);
+//	}
+//	return (0);
+//}
 
 
 
