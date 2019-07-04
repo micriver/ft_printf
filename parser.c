@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/03 20:03:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/04 09:23:19 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,8 @@ void	flag_parse(char *str, int i)
 		(str[x] == ' ') ? SET_BIT(args.arg1, INVP_F) : str[x];
 		(str[x] == '0') ? SET_BIT(args.arg1, ZERO_F) : str[x];
 		x++;
-		//if (str[x] == '#')
-		//{
-		//	SET_BIT(args.arg1, SHARP_F);
-		//	x++;
-		//}
-		//if (str[x] == '-')
-		//{
-		//	SET_BIT(args.arg1, MINUS_F);
-		//	x++;
-		//}
-		//if (str[x] == '-')
-		//{
-		//	SET_BIT(args.arg1, MINUS_F);
-		//	x++;
-		//}
-		//if (str[*i] == '0')
-		//{
-		//	SET_BIT(args.arg1, ZERO_F);
-		//	i++;
-		//}
 	}
 }
-
 
 // width modifier
 // precision modifier
@@ -87,7 +66,7 @@ void	flag_parse(char *str, int i)
 int		main()
 {
 	char str1[] = "%-+0d";
-	int a = 1; //to skip over % sign
+	int a = 1; //start at one to skip over % sign at the (0)th index
 	flag_parse(str1, a);
 	//print out the bit states of my bitfield in the struct
 	printf("SHARP flag state is: %d\n", CHECK_BIT(args.arg1, SHARP_F));
