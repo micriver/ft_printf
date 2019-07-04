@@ -1,91 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/07 09:01:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/02 13:32:31 by mirivera         ###   ########.fr       */
+/*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
+/*   Updated: 2019/07/03 18:46:08 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../HEADERS/ft_printf.h"
+#include "./HEADERS/ft_printf.h"
+#include <stdarg.h>
 #include <stdio.h>
+#include <time.h>
 
-void	ft_printf(const char *fmt, ...)
+int	ft_printf(char *fmt, ...)
 {
 	va_list args;
-	char *buf;
-	char *temp;
-	//void *s = NULL;
 	int i;
-	int j;
-	size_t width = 0;
-
-	buf = ft_strnew(ft_strlen(fmt));
+	char *argstring = NULL;
 	va_start(args, fmt);
 	i = 0;
-	j = 0;
-	while (buf && fmt[i])
+	while (fmt[i])
 	{
-	if (fmt[i] == '%')
+		if (fmt[i] == '%')
 		{
-			i++;
-			//print percent signs
-			if (fmt[i] == '%')
-				ft_putchar('%');
-			if (ft_isdigit(fmt[i]))
-			{
-				width = ft_atoi(&fmt[i]);
-				char *temp2 = NULL;
-				ft_memset(temp2 = ft_strnew(width), ' ', (width - 1));
-				temp = ft_strjoin(temp2, ft_itoa(va_arg(args, int)));
-				ft_strcpy(&buf[j], temp);
-				i += 2;
-				j += (width);
-				//j += (width + 2);
-				//i += (width - 1);
-			}
-			else if (fmt[i] == 'c')
-			{
-				//placing the character given as an arg into the buf that will be printed out
-				buf[j++] = (char)va_arg(args, int);
-				i += 1;
-			}
-			else if (fmt[i] == 'd')
-			{
-				//itoa returns string
-				temp = ft_itoa(va_arg(args, int));
-				//copying the string to buf AT (j)'s current index
-				ft_strcpy(&buf[j], temp);
-				//setting the index  value to the length of temp to continue printing the rest of the fmt string after the value has been placed
-				j += ft_strlen(temp);
-				break;
-			}
+			//***create an argument member in the struct!!!!***
+			//OR CREATE A CLEAR BIT FUNCTION AND USE SAME STRUCTURE MEMBER FOR EACH FLAG EVERYTIME IT LOOPS
+			i++; //iterate to the first flag
+			argstring = conversion(fmt, &i);
+			i += ft_strlen(argstring);
 		}
-		//iterates through and copy's fmt string into buffer string until we get to '%', building the string to print!
-		//ALSO the case 's' to copy the string from the fmt to our buffer to be printed
-		buf[j] = fmt[i];
+		ft_putchar(fmt[i]);
 		i++;
-		j++;
 	}
-	ft_putstr(buf);
 	va_end(args);
-}
-
-int		main(void)
-{
-	int b = 7;
-   	//char c = 'a';
-	//ft_printf("ft_printf:%c\nEat some fuckin shit you stupid bitch heheheh im just kiddin\n", c);
-	ft_printf("ft_printf:%5d\n", b);
-	printf("lb_printf:%5d\n", b);
 	return (0);
 }
 
-/*
-//	void *a;
-// ft_printf("This is the test for a char: %c\n", a);
-//	ft_putstr(a);
-*/
+// flag parser
+// width modifier
+// precision modifier
+// length modifier parser
+// conversion specifier parser
+
+
+
+
+
+int		main(int ac, char **av)
+{
+	//clock_t t;
+	if(ac == 3)
+	//if(ac == 2)
+	{
+		//(void)av;
+		//(void)ac;
+		int width = 10;
+		//SET_BIT(args.arg1, ZERO_F);
+		//SET_BIT(args.arg1, PLUS_F);
+		//char src[] = "42";
+		int x = 42;
+		//int x = ft_atoi(av[1]);
+		ft_printf("%0d", x);
+		//printf("ft_printf:%s\n", rj_strncpy(av[1], width));
+		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
+			printf("printf   :%+0*d\n", width, x);
+		else if (CHECK_BIT(args.arg1, ZERO_F))
+			printf("printf   :%0*d\n", width, x);
+		else if (CHECK_BIT(args.arg1, PLUS_F))
+			printf("printf   :%+*d\n", width, x);
+		//else
+			//printf("printf   :%*s\n", width, aplha);
+	}
+	return (0);
+}
