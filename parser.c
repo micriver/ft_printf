@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/08 10:52:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/08 14:07:53 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	width_parser(char *str, int *i)
 	j = (*i);
 	y = 0;
 	x = i;
-	while (!ft_isalpha(str[j]))
+	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
 		(j)++;
 	result = ft_strnew(j);
-	while (!ft_isalpha(str[*x])) //we parse the parameters until we get to a conversion specifier
+	while (!(ft_isalpha(str[*x])) && str[*x] != '.') //we parse the parameters until we get to a conversion specifier
 	{
 		result[y] = str[*x];
 		y++;
@@ -82,13 +82,35 @@ void	width_parser(char *str, int *i)
 }
 
 // precision modifier
-// length modifier parser
+void	precision_parser(char *str, int *i)
+{
+	int y;
+	int j;
+	char *result;
+	int *x;
+
+	j = (*i);
+	y = 0;
+	x = i;
+	while (!ft_isalpha(str[j]))
+		(j)++;
+	result = ft_strnew(j);
+	while (!ft_isalpha(str[*x])) //we parse the parameters until we get to a conversion specifier
+	{
+		result[y] = str[*x];
+		y++;
+		(*x)++;
+	}
+	args.precision = ft_atoi(result);
+}
+// length modifier parser (hh), (h), (l), (ll), (L) with diouxX and f with (l), (L) 
 // conversion specifier parser
 
 int		main()
 {
-	char str1[] = "%-+0100d";
+	char str1[] = "%10.5f";
 	int a = 1; //start at one to skip over % sign at the (0)th index
+	float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
 	printf("(a), our index in the string, = %d\n", a);
 	flag_parse(str1, &a);
 	printf("(a), now = %d\n", a);
@@ -102,7 +124,7 @@ int		main()
 	printf("PLUS flag state is: %d\n", CHECK_BIT(args.arg1, PLUS_F));
 	printf("INVP flag state is: %d\n", CHECK_BIT(args.arg1, INVP_F));
 	printf("ZERO flag state is: %d\n", CHECK_BIT(args.arg1, ZERO_F));
-	printf("%+100d\n", a);
+	printf("%010.5f\n", b);
 /*
 	//clock_t t;
 	if(ac == 3)
