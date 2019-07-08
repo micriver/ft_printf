@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/08 14:07:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/08 14:47:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ int	ft_printf(char *fmt, ...)
 */
 
 // flag parser
-void	flag_parse(char *str, int *i)
+int		flag_parse(char *str, int *i)
 {
 	int *x;
 
 	x = i;
+	if (str[*x] == '.')
+		return (0);
 	while (!ft_isalnum(str[*x]) || str[*x] == '0') //we parse the parameters until we get to a conversion specifier
 	{
 		(str[*x] == '#') ? SET_BIT(args.arg1, SHARP_F) : str[*x];
@@ -56,10 +58,11 @@ void	flag_parse(char *str, int *i)
 		(str[*x] == '0') ? SET_BIT(args.arg1, ZERO_F) : str[*x];
 		(*x)++;
 	}
+	return (1);
 }
 
 // width modifier parser
-void	width_parser(char *str, int *i)
+int		width_parser(char *str, int *i)
 {
 	int y;
 	int j;
@@ -69,20 +72,23 @@ void	width_parser(char *str, int *i)
 	j = (*i);
 	y = 0;
 	x = i;
+	if (str[*x] == '.')
+		return (0);
 	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
 		(j)++;
 	result = ft_strnew(j);
-	while (!(ft_isalpha(str[*x])) && str[*x] != '.') //we parse the parameters until we get to a conversion specifier
+	while (!(ft_isalpha(str[*x])) && str[*x] != '.') //we parse the parameters until we get to a '.' or conv specifier
 	{
 		result[y] = str[*x];
 		y++;
 		(*x)++;
 	}
 	args.width = ft_atoi(result);
+	return (1);
 }
 
 // precision modifier
-void	precision_parser(char *str, int *i)
+int		precision_parser(char *str, int *i)
 {
 	int y;
 	int j;
@@ -92,8 +98,10 @@ void	precision_parser(char *str, int *i)
 	j = (*i);
 	y = 0;
 	x = i;
-	while (!ft_isalpha(str[j]))
-		(j)++;
+	if (str[*x] != '.')
+		return (0);
+	else
+		(*x) += 1;
 	result = ft_strnew(j);
 	while (!ft_isalpha(str[*x])) //we parse the parameters until we get to a conversion specifier
 	{
@@ -102,20 +110,24 @@ void	precision_parser(char *str, int *i)
 		(*x)++;
 	}
 	args.precision = ft_atoi(result);
+	return (1);
 }
+
 // length modifier parser (hh), (h), (l), (ll), (L) with diouxX and f with (l), (L) 
 // conversion specifier parser
 
 int		main()
 {
-	char str1[] = "%10.5f";
+	char str1[] = "%.5f\n";
 	int a = 1; //start at one to skip over % sign at the (0)th index
 	float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
 	printf("(a), our index in the string, = %d\n", a);
 	flag_parse(str1, &a);
 	printf("(a), now = %d\n", a);
 	width_parser(str1, &a);
-	printf("The width value in our struct is: %d\n", args.width);
+	precision_parser(str1, &a);
+	(printf("The width value in our struct is: %d\n", args.width));
+	(printf("The precision value in our struct is: %d\n", args.precision));
 	printf("(a), our index after finding the width, = %d\n", a);
 	//printf("(a), now = %d\n", a);
 	//print out the bit states of my bitfield in the struct
@@ -124,31 +136,6 @@ int		main()
 	printf("PLUS flag state is: %d\n", CHECK_BIT(args.arg1, PLUS_F));
 	printf("INVP flag state is: %d\n", CHECK_BIT(args.arg1, INVP_F));
 	printf("ZERO flag state is: %d\n", CHECK_BIT(args.arg1, ZERO_F));
-	printf("%010.5f\n", b);
-/*
-	//clock_t t;
-	if(ac == 3)
-	//if(ac == 2)
-	{
-		//(void)av;
-		//(void)ac;
-		int width = 10;
-		//SET_BIT(args.arg1, ZERO_F);
-		//SET_BIT(args.arg1, PLUS_F);
-		//char src[] = "42";
-		int x = 42;
-		//int x = ft_atoi(av[1]);
-		ft_printf("%0d", x);
-		//printf("ft_printf:%s\n", rj_strncpy(av[1], width));
-		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
-			printf("printf   :%+0*d\n", width, x);
-		else if (CHECK_BIT(args.arg1, ZERO_F))
-			printf("printf   :%0*d\n", width, x);
-		else if (CHECK_BIT(args.arg1, PLUS_F))
-			printf("printf   :%+*d\n", width, x);
-		//else
-			//printf("printf   :%*s\n", width, aplha);
-	}
-*/
+	printf("%.5f\n", b);
 	return (0);
 }
