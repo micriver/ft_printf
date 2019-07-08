@@ -24,6 +24,7 @@ tests.c
 .DS_Store
 *.py
 *.swp
+*.swo
 *.txt
 *.sh
 .nfs*
