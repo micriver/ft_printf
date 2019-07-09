@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/08 19:52:02 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:33:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,13 @@ int		lengthmod_pars(char *str, int *i)
 	printf("%c\n", str[*x]);
 	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L' )
 		return (0);
-	while (str[*x] == 'h' || str[*x] == 'l' || str[*x] == 'L') //we parse the parameters until we get to a conversion specifier
+	if (str[*x] == 'h' || str[*x] == 'l' || str[*x] == 'L') //we parse the modifiers until we get to a conversion specifier
 	{
 		(str[*x] == 'h' && str[(*x) + 1] == 'h') ? SET_BIT(args.flgmods, SGNDCHR) : str[*x];
 		(str[*x] == 'h' && str[(*x) + 1] != 'h') ? SET_BIT(args.flgmods, SHOINT) : str[*x];
 		(str[*x] == 'l' && str[(*x) + 1] != 'l') ? SET_BIT(args.flgmods, LONGINT) : str[*x];
 		(str[*x] == 'l' && str[(*x) + 1] == 'l') ? SET_BIT(args.flgmods, LNGLNG) : str[*x];
 		(str[*x] == 'L') ? SET_BIT(args.flgmods, LNG_D) : str[*x];
-		(*x)++;
 	}
 	return (1);
 }
@@ -139,7 +138,7 @@ int		lengthmod_pars(char *str, int *i)
 
 int		main()
 {
-	char str1[] = "%+05lld\n";
+	char str1[] = "%+05ld\n";
 	int a = 1; //start at one to skip over % sign at the (0)th index
 	long long int c = 1; //start at one to skip over % sign at the (0)th index
 	//float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
