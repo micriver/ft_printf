@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/08 14:47:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:52:02 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int		flag_parse(char *str, int *i)
 		return (0);
 	while (!ft_isalnum(str[*x]) || str[*x] == '0') //we parse the parameters until we get to a conversion specifier
 	{
-		(str[*x] == '#') ? SET_BIT(args.arg1, SHARP_F) : str[*x];
-		(str[*x] == '-') ? SET_BIT(args.arg1, MINUS_F) : str[*x];
-		(str[*x] == '+') ? SET_BIT(args.arg1, PLUS_F) : str[*x];
-		(str[*x] == ' ') ? SET_BIT(args.arg1, INVP_F) : str[*x];
-		(str[*x] == '0') ? SET_BIT(args.arg1, ZERO_F) : str[*x];
+		(str[*x] == '#') ? SET_BIT(args.flgmods, SHARP_F) : str[*x];
+		(str[*x] == '-') ? SET_BIT(args.flgmods, MINUS_F) : str[*x];
+		(str[*x] == '+') ? SET_BIT(args.flgmods, PLUS_F) : str[*x];
+		(str[*x] == ' ') ? SET_BIT(args.flgmods, INVP_F) : str[*x];
+		(str[*x] == '0') ? SET_BIT(args.flgmods, ZERO_F) : str[*x];
 		(*x)++;
 	}
 	return (1);
@@ -113,29 +113,59 @@ int		precision_parser(char *str, int *i)
 	return (1);
 }
 
-// length modifier parser (hh), (h), (l), (ll), (L) with diouxX and f with (l), (L) 
+// length modifier parser (hh), (h), (l), (ll), with diouxX and f with (l), (L) 
+// all you have to do is populate the struct right now, nothing else
+int		lengthmod_pars(char *str, int *i)
+{
+	int *x;
+
+	x = i;
+	printf("%c\n", str[*x]);
+	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L' )
+		return (0);
+	while (str[*x] == 'h' || str[*x] == 'l' || str[*x] == 'L') //we parse the parameters until we get to a conversion specifier
+	{
+		(str[*x] == 'h' && str[(*x) + 1] == 'h') ? SET_BIT(args.flgmods, SGNDCHR) : str[*x];
+		(str[*x] == 'h' && str[(*x) + 1] != 'h') ? SET_BIT(args.flgmods, SHOINT) : str[*x];
+		(str[*x] == 'l' && str[(*x) + 1] != 'l') ? SET_BIT(args.flgmods, LONGINT) : str[*x];
+		(str[*x] == 'l' && str[(*x) + 1] == 'l') ? SET_BIT(args.flgmods, LNGLNG) : str[*x];
+		(str[*x] == 'L') ? SET_BIT(args.flgmods, LNG_D) : str[*x];
+		(*x)++;
+	}
+	return (1);
+}
+
 // conversion specifier parser
 
 int		main()
 {
-	char str1[] = "%.5f\n";
+	char str1[] = "%+05lld\n";
 	int a = 1; //start at one to skip over % sign at the (0)th index
-	float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
+	long long int c = 1; //start at one to skip over % sign at the (0)th index
+	//float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
 	printf("(a), our index in the string, = %d\n", a);
 	flag_parse(str1, &a);
 	printf("(a), now = %d\n", a);
 	width_parser(str1, &a);
 	precision_parser(str1, &a);
+	lengthmod_pars(str1, &a);
 	(printf("The width value in our struct is: %d\n", args.width));
 	(printf("The precision value in our struct is: %d\n", args.precision));
 	printf("(a), our index after finding the width, = %d\n", a);
 	//printf("(a), now = %d\n", a);
 	//print out the bit states of my bitfield in the struct
-	printf("SHARP flag state is: %d\n", CHECK_BIT(args.arg1, SHARP_F));
-	printf("MINUS flag state is: %d\n", CHECK_BIT(args.arg1, MINUS_F));
-	printf("PLUS flag state is: %d\n", CHECK_BIT(args.arg1, PLUS_F));
-	printf("INVP flag state is: %d\n", CHECK_BIT(args.arg1, INVP_F));
-	printf("ZERO flag state is: %d\n", CHECK_BIT(args.arg1, ZERO_F));
-	printf("%.5f\n", b);
+	printf("\nsize of regular structure = %lu\n", sizeof(args));
+	//printf("size of structure with bit field = %lu\n", sizeof(d2));
+	printf("SHARP flag state is: %d\n", CHECK_BIT(args.flgmods, SHARP_F));
+	printf("MINUS flag state is: %d\n", CHECK_BIT(args.flgmods, MINUS_F));
+	printf("PLUS flag state is: %d\n", CHECK_BIT(args.flgmods, PLUS_F));
+	printf("INVP flag state is: %d\n", CHECK_BIT(args.flgmods, INVP_F));
+	printf("ZERO flag state is: %d\n", CHECK_BIT(args.flgmods, ZERO_F));
+	printf("SGNDCHR flag state is: %d\n", CHECK_BIT(args.flgmods, SGNDCHR));
+	printf("SHOINT flag state is: %d\n", CHECK_BIT(args.flgmods, SHOINT));
+	printf("LONGINT flag state is: %d\n", CHECK_BIT(args.flgmods, LONGINT));
+	printf("LNGLNG flag state is: %d\n", CHECK_BIT(args.flgmods, LNGLNG));
+	printf("LNG_D flag state is: %d\n", CHECK_BIT(args.flgmods, LNG_D));
+	printf("%+05lld\n", c);
 	return (0);
 }

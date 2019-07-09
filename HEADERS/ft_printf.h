@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/08 13:46:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:41:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@
 #define PLUS_F (2)
 #define SHARP_F (3)
 #define INVP_F (4)
+#define SGNDCHR (5)
+#define SHOINT (6)
+#define LONGINT (7)
+#define LNGLNG (8)
+#define LNG_D (9)
 
 struct arguments
 {
-	int arg1 : 16; //make sure that you set the bit width to only the amount of bits you actually need!!! eg, the # of flags/modifiers you'll be using
+	int flgmods : 16; //make sure that you set the bit width to only the amount of bits you actually need!!! eg, the # of flags/modifiers you'll be using
 	int width;
 	int precision;
 } args;
