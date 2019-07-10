@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/09 17:41:03 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:13:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ int		lengthmod_pars(char *str, int *i)
 	int *x;
 
 	x = i;
-	printf("%c\n", str[*x]);
 	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L' )
 		return (0);
 	else
@@ -160,20 +159,27 @@ int		lengthmod_pars(char *str, int *i)
 	return (1);
 }
 
-// conversion specifier parser
+//master parser
+void	master_pars(char *fmt, int *i)
+{
+	flag_parse(fmt, i);
+	width_parser(fmt, i);
+	precision_parser(fmt, i);
+	lengthmod_pars(fmt, i);
+}
 
 int		main()
 {
-	char str1[] = "%+05hd\n";
+	char str1[] = "%-10hd\n";
 	int a = 1; //start at one to skip over % sign at the (0)th index
 	long long int c = 1; //start at one to skip over % sign at the (0)th index
 	//float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
 	printf("(a), our index in the string, = %d\n", a);
-	flag_parse(str1, &a);
-	printf("(a), now = %d\n", a);
-	width_parser(str1, &a);
-	precision_parser(str1, &a);
-	lengthmod_pars(str1, &a);
+	master_pars(str1, &a);
+	//flag_parse(str1, &a);
+	//width_parser(str1, &a);
+	//precision_parser(str1, &a);
+	//lengthmod_pars(str1, &a);
 	(printf("The width value in our struct is: %d\n", args.width));
 	(printf("The precision value in our struct is: %d\n", args.precision));
 	printf("(a), our index after finding the width, = %d\n", a);
