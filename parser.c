@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/09 14:13:19 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:41:03 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,36 @@ int	ft_printf(char *fmt, ...)
 	{
 		if (fmt[i] == '%')
 		{
-			//create an argument member in the struct!!!!
-			//OR CREATE A CLEAR BIT FUNCTION AND USE SAME STRUCTURE MEMBER FOR EACH FLAG EVERYTIME IT LOOPS
 			i++; //iterate to the first element to be parsed
-			argstring = conversion(&i, va_list(fmt, args));
+			argstring = conversion(&i, fmt, args);
+			ft_putstr(argstring)
 			i += ft_strlen(argstring);
 		}
 		ft_putchar(fmt[i]);
 		i++;
 	}
+	fmt[i] = '\0';
 	va_end(args);
 	return (0);
+}
+*/
+
+/*
+void print_ints(int num, ...)
+{
+	va_list args;
+
+	//takes two arguments, the va list and the last required argument <---- this might be what i have to feed into my conversion function
+	va_start(args, num); //pull off the arguments one by one, in the order they live on the stack
+
+	//wow this is what I've been trying to confirm this whole time
+	for (int i = 0; i < num; i++)
+	{
+		int value = va_arg(args, int); //treat "va_arg(x, x)" as a variable that has parameters, it can be passed into functions and it represents each argument respectively
+		printf("%d: %d\n", i, value);
+	}
+
+	va_end(args);
 }
 */
 
@@ -122,11 +141,19 @@ int		lengthmod_pars(char *str, int *i)
 	printf("%c\n", str[*x]);
 	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L' )
 		return (0);
-	if (str[*x] == 'h' || str[*x] == 'l' || str[*x] == 'L') //we parse the modifiers until we get to a conversion specifier
+	else
 	{
 		(str[*x] == 'h' && str[(*x) + 1] == 'h') ? SET_BIT(args.flgmods, SGNDCHR) : str[*x];
-		(str[*x] == 'h' && str[(*x) + 1] != 'h') ? SET_BIT(args.flgmods, SHOINT), (*x)++ : str[*x];
-		(str[*x] == 'l' && str[(*x) + 1] != 'l') ? SET_BIT(args.flgmods, LONGINT), (*x)++ : str[*x];
+		if (str[*x] == 'h' && str[(*x) + 1] != 'h')
+		{
+			SET_BIT(args.flgmods, SHOINT);
+			x++;
+		}
+		if (str[*x] == 'l' && str[(*x) + 1] != 'l')
+		{
+			SET_BIT(args.flgmods, LONGINT);
+			x++;
+		}
 		(str[*x] == 'l' && str[(*x) + 1] == 'l') ? SET_BIT(args.flgmods, LNGLNG) : str[*x];
 		(str[*x] == 'L') ? SET_BIT(args.flgmods, LNG_D) : str[*x];
 	}
