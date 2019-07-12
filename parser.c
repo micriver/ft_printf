@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/09 19:13:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 13:41:17 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,59 @@
 #include <stdio.h>
 #include <time.h>
 
-/*
+char	*conversion(int *i, char *str, va_list args)
+{
+	char *result;
+
+	if (str[*i] == 'd')
+		result = ft_itoa(va_arg(args, int));
+	else
+		result = NULL; 
+	return (result);
+}
+
 int	ft_printf(char *fmt, ...)
 {
 	va_list args;
 	int i;
-	char *argstring = NULL;
 	va_start(args, fmt);
 	i = 0;
 	while (fmt[i])
 	{
 		if (fmt[i] == '%')
 		{
-			i++; //iterate to the first element to be parsed
+			i++;
+			char *argstring;
 			argstring = conversion(&i, fmt, args);
-			ft_putstr(argstring)
-			i += ft_strlen(argstring);
+			ft_putstr(argstring);
+			free(argstring);
+		//	if (fmt[i] == 'd')
+		//	{
+		//		argstring = ft_itoa(va_arg(args, int));
+		//		//argstring = ft_strnew(ft_strlen(ft_itoa(va_arg(args, int))));
+		//		ft_putstr(argstring);
+		//		free(argstring);
+		//	}
+			i += 1;
 		}
 		ft_putchar(fmt[i]);
 		i++;
 	}
-	fmt[i] = '\0';
 	va_end(args);
 	return (0);
 }
-*/
+
+
+int		main()
+{
+	int x = 3;
+	int y = 42;
+	int z = 5;
+	//char s1[] = "Here is where % through your arguments...\n";
+
+	ft_printf("1, 2, %d, %d, %d\n", x, y, z);
+	return (0);
+}
 
 /*
 void print_ints(int num, ...)
@@ -58,7 +86,6 @@ void print_ints(int num, ...)
 
 	va_end(args);
 }
-*/
 
 // flag parser
 int		flag_parse(char *str, int *i)
@@ -174,7 +201,8 @@ int		main()
 	int a = 1; //start at one to skip over % sign at the (0)th index
 	long long int c = 1; //start at one to skip over % sign at the (0)th index
 	//float b = 1.18927928739182749827987; //start at one to skip over % sign at the (0)th index
-	printf("(a), our index in the string, = %d\n", a);
+	printf("String to parsed: %%-10hd\n");
+	printf("(a), our starting index in the string, = %d\n", a);
 	master_pars(str1, &a);
 	//flag_parse(str1, &a);
 	//width_parser(str1, &a);
@@ -200,3 +228,4 @@ int		main()
 	printf("%+05lld\n", c);
 	return (0);
 }
+*/

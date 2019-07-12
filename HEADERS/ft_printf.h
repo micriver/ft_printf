@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/09 14:35:45 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 13:42:07 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ struct arguments
 
 
 int		ft_printf(char *fmt, ...);
-char	*conversion(char *str, int *i);
+char	*conversion(int *i, char *str, va_list args);
 char	*prependchar(char c, char *str);
 char	*insertplussign(char *str);
 char	*lead_zero_negsign(char *dest, char *src, int size);
