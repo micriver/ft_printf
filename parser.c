@@ -6,86 +6,13 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 13:41:17 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 15:16:04 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./HEADERS/ft_printf.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include <time.h>
-
-char	*conversion(int *i, char *str, va_list args)
-{
-	char *result;
-
-	if (str[*i] == 'd')
-		result = ft_itoa(va_arg(args, int));
-	else
-		result = NULL; 
-	return (result);
-}
-
-int	ft_printf(char *fmt, ...)
-{
-	va_list args;
-	int i;
-	va_start(args, fmt);
-	i = 0;
-	while (fmt[i])
-	{
-		if (fmt[i] == '%')
-		{
-			i++;
-			char *argstring;
-			argstring = conversion(&i, fmt, args);
-			ft_putstr(argstring);
-			free(argstring);
-		//	if (fmt[i] == 'd')
-		//	{
-		//		argstring = ft_itoa(va_arg(args, int));
-		//		//argstring = ft_strnew(ft_strlen(ft_itoa(va_arg(args, int))));
-		//		ft_putstr(argstring);
-		//		free(argstring);
-		//	}
-			i += 1;
-		}
-		ft_putchar(fmt[i]);
-		i++;
-	}
-	va_end(args);
-	return (0);
-}
-
-
-int		main()
-{
-	int x = 3;
-	int y = 42;
-	int z = 5;
-	//char s1[] = "Here is where % through your arguments...\n";
-
-	ft_printf("1, 2, %d, %d, %d\n", x, y, z);
-	return (0);
-}
-
-/*
-void print_ints(int num, ...)
-{
-	va_list args;
-
-	//takes two arguments, the va list and the last required argument <---- this might be what i have to feed into my conversion function
-	va_start(args, num); //pull off the arguments one by one, in the order they live on the stack
-
-	//wow this is what I've been trying to confirm this whole time
-	for (int i = 0; i < num; i++)
-	{
-		int value = va_arg(args, int); //treat "va_arg(x, x)" as a variable that has parameters, it can be passed into functions and it represents each argument respectively
-		printf("%d: %d\n", i, value);
-	}
-
-	va_end(args);
-}
 
 // flag parser
 int		flag_parse(char *str, int *i)
@@ -195,6 +122,71 @@ void	master_pars(char *fmt, int *i)
 	lengthmod_pars(fmt, i);
 }
 
+char	*conversion(int *i, char *str, va_list args)
+{
+	char *result;
+	
+	master_pars(str, i);
+	//majority of the work has to happen below here now
+	if (str[*i] == 'd')
+	{
+		result = ft_itoa(va_arg(args, int));
+		//rj_strncpy goes here
+		result = rj_strncpy(result);
+	}
+	else
+		result = NULL; 
+	return (result);
+}
+
+int	ft_printf(char *fmt, ...)
+{
+	va_list args;
+	int i;
+	va_start(args, fmt);
+	i = 0;
+	while (fmt[i])
+	{
+		if (fmt[i] == '%')
+		{
+			i++;
+			char *argstring;
+			argstring = conversion(&i, fmt, args);
+			ft_putstr(argstring);
+			i += 1;
+		}
+		ft_putchar(fmt[i]);
+		i++;
+	}
+	va_end(args);
+	return (0);
+}
+
+int		main()
+{
+	int x = 3;
+	//int y = 424242;
+	//int z = 5;
+	//char s1[] = "Here is where % through your arguments...\n";
+
+	//ft_printf("1, 2, %+010d\n", x, y, z);
+	ft_printf("%+010d\n", x);
+	(printf("The width value in our struct is: %d\n", args.width));
+	(printf("The precision value in our struct is: %d\n", args.precision));
+	printf("\nsize of regular structure = %lu\n", sizeof(args));
+	printf("SHARP flag state is: %d\n", CHECK_BIT(args.flgmods, SHARP_F));
+	printf("MINUS flag state is: %d\n", CHECK_BIT(args.flgmods, MINUS_F));
+	printf("PLUS flag state is: %d\n", CHECK_BIT(args.flgmods, PLUS_F));
+	printf("INVP flag state is: %d\n", CHECK_BIT(args.flgmods, INVP_F));
+	printf("ZERO flag state is: %d\n", CHECK_BIT(args.flgmods, ZERO_F));
+	printf("SGNDCHR flag state is: %d\n", CHECK_BIT(args.flgmods, SGNDCHR));
+	printf("SHOINT flag state is: %d\n", CHECK_BIT(args.flgmods, SHOINT));
+	printf("LONGINT flag state is: %d\n", CHECK_BIT(args.flgmods, LONGINT));
+	printf("LNGLNG flag state is: %d\n", CHECK_BIT(args.flgmods, LNGLNG));
+	printf("LNG_D flag state is: %d\n", CHECK_BIT(args.flgmods, LNG_D));
+	return (0);
+}
+/*
 int		main()
 {
 	char str1[] = "%-10hd\n";

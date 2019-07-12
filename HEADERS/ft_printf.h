@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 13:42:07 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 15:10:58 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*prependchar(char c, char *str);
 char	*insertplussign(char *str);
 char	*lead_zero_negsign(char *dest, char *src, int size);
 char	*leading_zeros_spaces(char *dest, char *src, int width, int arg_size);
-char	*rj_strncpy(char *src, int width);
+char	*rj_strncpy(char *src);
 char	*prefixchar(char prefix, char *str);
 char	*prependstr(char *pstr, char *str);
 

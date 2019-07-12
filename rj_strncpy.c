@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/09 18:54:02 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 15:14:32 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	y = 0;
 	while (src[y])
 	{
-		if (ft_atoi(src) >= 0 && CHECK_BIT(args.arg1, PLUS_F) && dest[0] != '-')
+		if (ft_atoi(src) >= 0 && CHECK_BIT(args.flgmods, PLUS_F) && dest[0] != '-')
 		{
-			if (CHECK_BIT(args.arg1, ZERO_F))
+			if (CHECK_BIT(args.flgmods, ZERO_F))
 				dest = prefixchar('+', dest);
 		}
-		else if (src[0] == '-' && (CHECK_BIT(args.arg1, ZERO_F)))
+		else if (src[0] == '-' && (CHECK_BIT(args.flgmods, ZERO_F)))
 		{
 			dest = prefixchar('-', dest);
 			src[0] = '0';
 		}
 		dest[size++] = src[y++];
 	}
-	if (!CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F) \
+	if (!CHECK_BIT(args.flgmods, ZERO_F) && CHECK_BIT(args.flgmods, PLUS_F) \
 			&& src[0] != '-')
 		dest = insertplussign(dest);
 	dest[size] = '\0';
@@ -75,12 +75,12 @@ char	*leading_zeros_spaces(char *dest, char *src, int width, int arg_size)
 	while (i < (width - arg_size))
 	{
 		dest[i] = ' ';
-		(CHECK_BIT(args.arg1, ZERO_F)) ? (dest[i++] = '0') : (dest[i++]);
+		(CHECK_BIT(args.flgmods, ZERO_F)) ? (dest[i++] = '0') : (dest[i++]);
 	}
 	return (dest = lead_zero_negsign(dest, src, (width - arg_size)));
 }
 
-char	*rj_strncpy(char *src, int width)
+char	*rj_strncpy(char *src)
 {
 	char *dest;
 	size_t i;
@@ -88,12 +88,12 @@ char	*rj_strncpy(char *src, int width)
 	int arg_size;
 
 	arg_size = ft_strlen(src);
-	dest = ft_strnew(width + arg_size);
+	dest = ft_strnew(args.width + arg_size);
 	i = 0;
 	x = 0;
-	if (width > arg_size)
-		dest = leading_zeros_spaces(dest, src, width, arg_size);
-	else if (ft_atoi(src) >= 0 && CHECK_BIT(args.arg1, PLUS_F))
+	if (args.width > arg_size)
+		dest = leading_zeros_spaces(dest, src, args.width, arg_size);
+	else if (ft_atoi(src) >= 0 && CHECK_BIT(args.flgmods, PLUS_F))
 		dest = prependchar('+', (ft_strcpy(dest, src)));
 	else
 		ft_strcpy(dest, src);
@@ -108,16 +108,16 @@ char	*rj_strncpy(char *src, int width)
 //		//(void)av;
 //		//(void)ac;
 //		int width = ft_atoi(av[2]);
-//		//SET_BIT(args.arg1, ZERO_F);
-//		//SET_BIT(args.arg1, PLUS_F);
+//		//SET_BIT(args.flgmods, ZERO_F);
+//		//SET_BIT(args.flgmods, PLUS_F);
 //		//char src[] = "42";
 //		int x = ft_atoi(av[1]);
 //		printf("ft_printf:%s\n", rj_strncpy(av[1], width));
-//		if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
+//		if (CHECK_BIT(args.flgmods, ZERO_F) && CHECK_BIT(args.flgmods, PLUS_F))
 //			printf("printf   :%+0*d\n", width, x);
-//		else if (CHECK_BIT(args.arg1, ZERO_F))
+//		else if (CHECK_BIT(args.flgmods, ZERO_F))
 //			printf("printf   :%0*d\n", width, x);
-//		else if (CHECK_BIT(args.arg1, PLUS_F))
+//		else if (CHECK_BIT(args.flgmods, PLUS_F))
 //			printf("printf   :%+*d\n", width, x);
 //		else
 //			printf("printf   :%*s\n", width, aplha);
@@ -133,11 +133,11 @@ char	*rj_strncpy(char *src, int width)
 		//double time_taken = ((double)t)/CLOCKS_PER_SEC;
 		//printf("ft_printf() took %f seconds to execute \n\n", time_taken);
 		//t = clock();
-		//if (CHECK_BIT(args.arg1, ZERO_F) && CHECK_BIT(args.arg1, PLUS_F))
+		//if (CHECK_BIT(args.flgmods, ZERO_F) && CHECK_BIT(args.flgmods, PLUS_F))
 		//	printf("printf   :%+0*d\n", width, x);
-		//else if (CHECK_BIT(args.arg1, ZERO_F))
+		//else if (CHECK_BIT(args.flgmods, ZERO_F))
 		//	printf("printf   :%0*d\n", width, x);
-		//else if (CHECK_BIT(args.arg1, PLUS_F))
+		//else if (CHECK_BIT(args.flgmods, PLUS_F))
 		//	printf("printf   :%+*d\n", width, x);
 		//else
 		//	printf("printf   :%*d\n", width, x);
