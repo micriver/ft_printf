@@ -6,11 +6,11 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 16:26:34 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:42:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./HEADERS/ft_printf.h"
+#include "../HEADERS/ft_printf.h"
 #include <stdio.h>
 #include <time.h>
 
@@ -67,17 +67,17 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	return (dest);
 }
 
-char	*leading_zeros_spaces(char *dest, char *src, int width, int arg_size)
+char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
 {
 	int i;
 
 	i = 0;
-	while (i < (width - arg_size))
+	while (i < (args.width - arg_size))
 	{
 		dest[i] = ' ';
 		(CHECK_BIT(args.flgmods, ZERO_F)) ? (dest[i++] = '0') : (dest[i++]);
 	}
-	return (dest = lead_zero_negsign(dest, src, (width - arg_size)));
+	return (dest = lead_zero_negsign(dest, src, (args.width - arg_size)));
 }
 
 char	*rj_strncpy(char *src)
@@ -92,7 +92,7 @@ char	*rj_strncpy(char *src)
 	i = 0;
 	x = 0;
 	if (args.width > arg_size)
-		dest = leading_zeros_spaces(dest, src, args.width, arg_size);
+		dest = leading_zeros_spaces(dest, src, arg_size);
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(args.flgmods, PLUS_F))
 		dest = prependchar('+', (ft_strcpy(dest, src)));
 	else

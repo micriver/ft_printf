@@ -6,11 +6,12 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:45 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/25 09:11:22 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 18:43:45 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "../HEADERS/ft_printf.h"
+#include "../HEADERS/libft.h"
 #include <stdio.h>
 
 char	*lj_strncpy(char *src, size_t n)

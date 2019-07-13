@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/06/26 19:56:00 by mirivera         ###   ########.fr        #
+#    Updated: 2019/07/12 18:48:55 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_printf.c
+SRCS = ft_printf.c \
+	parser.c \
+	conversion.c \
+	rj_strncpy.c \
+	#lj_strncpy.c 
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \
@@ -96,10 +100,10 @@ $(NAME):
 
 clean:
 	@rm -rf $(OBJECTS)
+	@rm -rf a.out*
 
 fclean:	clean
 	@rm -rf $(NAME)
-	@rm -rf a.out*
 
 re:	fclean all
 
