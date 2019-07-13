@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 18:59:13 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/13 15:49:07 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	ft_printf(char *fmt, ...)
 			i++;
 			char *argstring;
 			argstring = conversion(&i, fmt, args);
+			if (CHECK_BIT(arg.flgmods, MINUS_F))
+				argstring = lj_strncpy(argstring);
+			else
+				argstring = rj_strncpy(argstring);
 			ft_putstr(argstring);
 			i += 1;
 		}
@@ -50,25 +54,25 @@ int		main(int ac, char **av)
 		//char s1[] = "Here is where % through your arguments...\n";
 
 		//ft_printf("1, 2, %+010d\n", x, y, z);
-		ft_printf("%+010d\n", x);
-		printf("%+010d\n", x);
+		ft_printf("FT_PRINTF:%010d\n", x);
+		printf("PRINTF   :%010d\n", x);
 		//ft_printf(s1, x);
-		(printf("The width value in our struct is: %d\n", args.width));
-		(printf("The precision value in our struct is: %d\n", args.precision));
-		printf("\nsize of regular structure = %lu\n", sizeof(args));
-		printf("SHARP flag state is: %d\n", CHECK_BIT(args.flgmods, SHARP_F));
-		printf("MINUS flag state is: %d\n", CHECK_BIT(args.flgmods, MINUS_F));
-		printf("PLUS flag state is: %d\n", CHECK_BIT(args.flgmods, PLUS_F));
-		printf("INVP flag state is: %d\n", CHECK_BIT(args.flgmods, INVP_F));
-		printf("ZERO flag state is: %d\n", CHECK_BIT(args.flgmods, ZERO_F));
-		printf("SGNDCHR flag state is: %d\n", CHECK_BIT(args.flgmods, SGNDCHR));
-		printf("SHOINT flag state is: %d\n", CHECK_BIT(args.flgmods, SHOINT));
-		printf("LONGINT flag state is: %d\n", CHECK_BIT(args.flgmods, LONGINT));
-		printf("LNGLNG flag state is: %d\n", CHECK_BIT(args.flgmods, LNGLNG));
-		printf("LNG_D flag state is: %d\n", CHECK_BIT(args.flgmods, LNG_D));
+		(printf("The width value in our struct is: %d\n", arg.width));
+		(printf("The precision value in our struct is: %d\n", arg.precision));
+		printf("\nsize of regular structure = %lu\n", sizeof(arg));
+		printf("SHARP flag state is: %d\n", CHECK_BIT(arg.flgmods, SHARP_F));
+		printf("MINUS flag state is: %d\n", CHECK_BIT(arg.flgmods, MINUS_F));
+		printf("PLUS flag state is: %d\n", CHECK_BIT(arg.flgmods, PLUS_F));
+		printf("INVP flag state is: %d\n", CHECK_BIT(arg.flgmods, INVP_F));
+		printf("ZERO flag state is: %d\n", CHECK_BIT(arg.flgmods, ZERO_F));
+		printf("SGNDCHR flag state is: %d\n", CHECK_BIT(arg.flgmods, SGNDCHR));
+		printf("SHOINT flag state is: %d\n", CHECK_BIT(arg.flgmods, SHOINT));
+		printf("LONGINT flag state is: %d\n", CHECK_BIT(arg.flgmods, LONGINT));
+		printf("LNGLNG flag state is: %d\n", CHECK_BIT(arg.flgmods, LNGLNG));
+		printf("LNG_D flag state is: %d\n", CHECK_BIT(arg.flgmods, LNG_D));
 	}
 	else
-		printf("you fucked up\n");
+		ft_printf("Retry with an integer!\n");
 	return (0);
 }
 

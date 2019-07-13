@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 19:00:35 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:12:26 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int		flag_parse(char *str, int *i)
 		return (0);
 	while (!ft_isalnum(str[*x]) || str[*x] == '0') //we parse the parameters until we get to a conversion specifier
 	{
-		(str[*x] == '#') ? SET_BIT(args.flgmods, SHARP_F) : str[*x];
-		(str[*x] == '-') ? SET_BIT(args.flgmods, MINUS_F) : str[*x];
-		(str[*x] == '+') ? SET_BIT(args.flgmods, PLUS_F) : str[*x];
-		(str[*x] == ' ') ? SET_BIT(args.flgmods, INVP_F) : str[*x];
-		(str[*x] == '0') ? SET_BIT(args.flgmods, ZERO_F) : str[*x];
+		(str[*x] == '#') ? SET_BIT(arg.flgmods, SHARP_F) : str[*x];
+		(str[*x] == '-') ? SET_BIT(arg.flgmods, MINUS_F) : str[*x];
+		(str[*x] == '+') ? SET_BIT(arg.flgmods, PLUS_F) : str[*x];
+		(str[*x] == ' ') ? SET_BIT(arg.flgmods, INVP_F) : str[*x];
+		(str[*x] == '0') ? SET_BIT(arg.flgmods, ZERO_F) : str[*x];
 		(*x)++;
 	}
 	return (1);
@@ -56,7 +56,7 @@ int		width_parser(char *str, int *i)
 		y++;
 		(*x)++;
 	}
-	args.width = ft_atoi(result);
+	arg.width = ft_atoi(result);
 	return (1);
 }
 
@@ -82,7 +82,7 @@ int		precision_parser(char *str, int *i)
 		y++;
 		(*x)++;
 	}
-	args.precision = ft_atoi(result);
+	arg.precision = ft_atoi(result);
 	return (1);
 }
 
@@ -96,19 +96,19 @@ int		lengthmod_pars(char *str, int *i)
 		return (0);
 	else
 	{
-		(str[*x] == 'h' && str[(*x) + 1] == 'h') ? SET_BIT(args.flgmods, SGNDCHR) : str[*x];
+		(str[*x] == 'h' && str[(*x) + 1] == 'h') ? SET_BIT(arg.flgmods, SGNDCHR) : str[*x];
 		if (str[*x] == 'h' && str[(*x) + 1] != 'h')
 		{
-			SET_BIT(args.flgmods, SHOINT);
+			SET_BIT(arg.flgmods, SHOINT);
 			x++;
 		}
 		if (str[*x] == 'l' && str[(*x) + 1] != 'l')
 		{
-			SET_BIT(args.flgmods, LONGINT);
+			SET_BIT(arg.flgmods, LONGINT);
 			x++;
 		}
-		(str[*x] == 'l' && str[(*x) + 1] == 'l') ? SET_BIT(args.flgmods, LNGLNG) : str[*x];
-		(str[*x] == 'L') ? SET_BIT(args.flgmods, LNG_D) : str[*x];
+		(str[*x] == 'l' && str[(*x) + 1] == 'l') ? SET_BIT(arg.flgmods, LNGLNG) : str[*x];
+		(str[*x] == 'L') ? SET_BIT(arg.flgmods, LNG_D) : str[*x];
 	}
 	return (1);
 }

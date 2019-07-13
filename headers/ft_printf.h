@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 18:44:45 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:05:12 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct arguments
 	int flgmods : 16; //make sure that you set the bit width to only the amount of bits you actually need!!! eg, the # of flags/modifiers you'll be using
 	int width;
 	int precision;
-} args;
+} arg;
 
 
 int		ft_printf(char *fmt, ...);
@@ -52,6 +52,7 @@ char	*insertplussign(char *str);
 char	*lead_zero_negsign(char *dest, char *src, int size);
 char	*leading_zeros_spaces(char *dest, char *src, int arg_size);
 char	*rj_strncpy(char *src);
+char	*lj_strncpy(char *src);
 char	*prefixchar(char prefix, char *str);
 char	*prependstr(char *pstr, char *str);
 

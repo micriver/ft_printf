@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 19:07:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/13 15:39:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,14 @@ char	*insertplussign(char *str)
 
 	i = 0;
 	while (str[i] == ' ' || str[i] == '0')
+	{
+		if (str[i + 1] == '\0' && str[i] == '0')
+		{
+			str[i - 1] = '+';
+			return (str);
+		}
 		i++;	
+	}
 	str[i - 1] = '+';
 	return (str);
 }
@@ -48,19 +55,19 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	y = 0;
 	while (src[y])
 	{
-		if (ft_atoi(src) >= 0 && CHECK_BIT(args.flgmods, PLUS_F) && dest[0] != '-')
+		if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F) && dest[0] != '-')
 		{
-			if (CHECK_BIT(args.flgmods, ZERO_F))
+			if (CHECK_BIT(arg.flgmods, ZERO_F))
 				dest = prefixchar('+', dest);
 		}
-		else if (src[0] == '-' && (CHECK_BIT(args.flgmods, ZERO_F)))
+		else if (src[0] == '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
 		{
 			dest = prefixchar('-', dest);
 			src[0] = '0';
 		}
 		dest[size++] = src[y++];
 	}
-	if (!CHECK_BIT(args.flgmods, ZERO_F) && CHECK_BIT(args.flgmods, PLUS_F) \
+	if (!CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F) \
 			&& src[0] != '-')
 		dest = insertplussign(dest);
 	dest[size] = '\0';
@@ -72,12 +79,12 @@ char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
 	int i;
 
 	i = 0;
-	while (i < (args.width - arg_size))
+	while (i < (arg.width - arg_size))
 	{
 		dest[i] = ' ';
-		(CHECK_BIT(args.flgmods, ZERO_F)) ? (dest[i++] = '0') : (dest[i++]);
+		(CHECK_BIT(arg.flgmods, ZERO_F)) ? (dest[i++] = '0') : (dest[i++]);
 	}
-	return (dest = lead_zero_negsign(dest, src, (args.width - arg_size)));
+	return (dest = lead_zero_negsign(dest, src, (arg.width - arg_size)));
 }
 
 char	*rj_strncpy(char *src)
@@ -88,12 +95,12 @@ char	*rj_strncpy(char *src)
 	int arg_size;
 
 	arg_size = ft_strlen(src);
-	dest = ft_strnew(args.width + arg_size);
+	dest = ft_strnew(arg.width + arg_size);
 	i = 0;
 	x = 0;
-	if (args.width > arg_size)
+	if (arg.width > arg_size)
 		dest = leading_zeros_spaces(dest, src, arg_size);
-	else if (ft_atoi(src) >= 0 && CHECK_BIT(args.flgmods, PLUS_F))
+	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
 		dest = prependchar('+', (ft_strcpy(dest, src)));
 	else
 		ft_strcpy(dest, src);
@@ -108,16 +115,16 @@ char	*rj_strncpy(char *src)
 //		//(void)av;
 //		//(void)ac;
 //		int width = ft_atoi(av[2]);
-//		//SET_BIT(args.flgmods, ZERO_F);
-//		//SET_BIT(args.flgmods, PLUS_F);
+//		//SET_BIT(arg.flgmods, ZERO_F);
+//		//SET_BIT(arg.flgmods, PLUS_F);
 //		//char src[] = "42";
 //		int x = ft_atoi(av[1]);
 //		printf("ft_printf:%s\n", rj_strncpy(av[1], width));
-//		if (CHECK_BIT(args.flgmods, ZERO_F) && CHECK_BIT(args.flgmods, PLUS_F))
+//		if (CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F))
 //			printf("printf   :%+0*d\n", width, x);
-//		else if (CHECK_BIT(args.flgmods, ZERO_F))
+//		else if (CHECK_BIT(arg.flgmods, ZERO_F))
 //			printf("printf   :%0*d\n", width, x);
-//		else if (CHECK_BIT(args.flgmods, PLUS_F))
+//		else if (CHECK_BIT(arg.flgmods, PLUS_F))
 //			printf("printf   :%+*d\n", width, x);
 //		else
 //			printf("printf   :%*s\n", width, aplha);
@@ -133,11 +140,11 @@ char	*rj_strncpy(char *src)
 		//double time_taken = ((double)t)/CLOCKS_PER_SEC;
 		//printf("ft_printf() took %f seconds to execute \n\n", time_taken);
 		//t = clock();
-		//if (CHECK_BIT(args.flgmods, ZERO_F) && CHECK_BIT(args.flgmods, PLUS_F))
+		//if (CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F))
 		//	printf("printf   :%+0*d\n", width, x);
-		//else if (CHECK_BIT(args.flgmods, ZERO_F))
+		//else if (CHECK_BIT(arg.flgmods, ZERO_F))
 		//	printf("printf   :%0*d\n", width, x);
-		//else if (CHECK_BIT(args.flgmods, PLUS_F))
+		//else if (CHECK_BIT(arg.flgmods, PLUS_F))
 		//	printf("printf   :%+*d\n", width, x);
 		//else
 		//	printf("printf   :%*d\n", width, x);
