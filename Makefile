@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/07/12 18:58:09 by mirivera         ###   ########.fr        #
+#    Updated: 2019/07/12 19:07:53 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ OBJECTS += $(patsubst %.c,%.o,$(LIBFT_SRCS))
 all: $(NAME)
 
 $(NAME):
-	@$(CC) $(CFLAGS) -c $(addprefix SRCS/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) -I $(HEADERS)
+	@$(CC) $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) -I $(HEADERS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 
@@ -108,4 +108,4 @@ fclean:	clean
 re:	fclean all
 
 debug:
-	$(CC) $(CFLAGS) $(addprefix SRCS/,$(SRCS)) ./libft/libft.a -g
+	$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./libft/libft.a -g
