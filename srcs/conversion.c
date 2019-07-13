@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmaintest.c                                      :+:      :+:    :+:   */
+/*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 19:23:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/11 19:42:07 by mirivera         ###   ########.fr       */
+/*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
+/*   Updated: 2019/07/12 19:00:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "../headers/ft_printf.h"
 #include <stdio.h>
-#include "../libft/libft.h"
+#include <time.h>
 
-int 	main()
+char	*conversion(int *i, char *str, va_list args)
 {
-	char s[] = "bo"; 
-	int width = 3;
-
-	printf("%s\n", s);
-	ft_memset(s, ' ', width);
-	//printf("%s\n", ft_memset(s, 0, width));
-	printf("%s\n", s);
-	return(0);
+	char *result;
+	
+	master_pars(str, i);
+	//majority of the work has to happen below here now
+	if (str[*i] == 'd')
+	{
+		result = ft_itoa(va_arg(args, int));
+		//rj_strncpy goes here
+		result = rj_strncpy(result);
+	}
+	else
+		result = NULL; 
+	return (result);
 }

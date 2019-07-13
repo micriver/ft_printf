@@ -6,13 +6,13 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/07/12 18:48:55 by mirivera         ###   ########.fr        #
+#    Updated: 2019/07/12 18:58:09 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-HEADERS = HEADERS/
+HEADERS = headers/
 
 CC = gcc
 

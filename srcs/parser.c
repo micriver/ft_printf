@@ -6,11 +6,11 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/12 18:47:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/12 19:00:35 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../HEADERS/ft_printf.h"
+#include "../headers/ft_printf.h"
 #include <stdarg.h>
 #include <stdio.h>
 
