@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/13 15:49:07 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/13 15:57:20 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int		main(int ac, char **av)
 		//char s1[] = "Here is where % through your arguments...\n";
 
 		//ft_printf("1, 2, %+010d\n", x, y, z);
-		ft_printf("FT_PRINTF:%010d\n", x);
-		printf("PRINTF   :%010d\n", x);
+		ft_printf("FT_PRINTF:% 05d\n", x);
+		printf("PRINTF   :% 05d\n", x);
 		//ft_printf(s1, x);
 		(printf("The width value in our struct is: %d\n", arg.width));
 		(printf("The precision value in our struct is: %d\n", arg.precision));
