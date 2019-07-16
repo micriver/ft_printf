@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/16 12:56:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/16 13:07:20 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,6 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	if (!CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F) \
 			&& src[0] != '-')
 		dest = insertplussign(dest);
-	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
-	{
-		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			dest = prependchar(' ', dest);
-	}
 	dest[size] = '\0';
 	return (dest);
 }
