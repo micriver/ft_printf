@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/13 15:39:11 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/16 12:56:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,17 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	y = 0;
 	while (src[y])
 	{
+		//Might need a "check flags" function or a dispatch table here
+		//need's to be normed
 		if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F) && dest[0] != '-')
 		{
 			if (CHECK_BIT(arg.flgmods, ZERO_F))
 				dest = prefixchar('+', dest);
+		}
+		else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
+		{
+			if (CHECK_BIT(arg.flgmods, ZERO_F))
+				dest = prependchar(' ', dest);
 		}
 		else if (src[0] == '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
 		{
@@ -70,6 +77,11 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	if (!CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F) \
 			&& src[0] != '-')
 		dest = insertplussign(dest);
+	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
+	{
+		if (CHECK_BIT(arg.flgmods, ZERO_F))
+			dest = prependchar(' ', dest);
+	}
 	dest[size] = '\0';
 	return (dest);
 }
@@ -102,6 +114,11 @@ char	*rj_strncpy(char *src)
 		dest = leading_zeros_spaces(dest, src, arg_size);
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
 		dest = prependchar('+', (ft_strcpy(dest, src)));
+	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
+	{
+		if (CHECK_BIT(arg.flgmods, ZERO_F))
+			dest = prependchar(' ', src);
+	}
 	else
 		ft_strcpy(dest, src);
 	return (dest);
