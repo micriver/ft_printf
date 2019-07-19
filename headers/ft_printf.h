@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/13 13:05:12 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/19 11:23:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ char	*rj_strncpy(char *src);
 char	*lj_strncpy(char *src);
 char	*prefixchar(char prefix, char *str);
 char	*prependstr(char *pstr, char *str);
+char	*di_specifier(va_list args);
 
 #endif

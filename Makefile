@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/07/13 12:47:46 by mirivera         ###   ########.fr        #
+#    Updated: 2019/07/19 10:56:22 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = ft_printf.c \
 	parser.c \
 	conversion.c \
 	rj_strncpy.c \
-	lj_strncpy.c 
+	lj_strncpy.c \
+	di_specifier.c \
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \

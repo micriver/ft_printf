@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/13 13:12:26 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/19 11:46:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,31 @@ int		lengthmod_pars(char *str, int *i)
 		return (0);
 	else
 	{
-		(str[*x] == 'h' && str[(*x) + 1] == 'h') ? SET_BIT(arg.flgmods, SGNDCHR) : str[*x];
+		if (str[*x] == 'h' && str[(*x) + 1] == 'h')
+		{
+			SET_BIT(arg.flgmods, SGNDCHR);
+			(*x) += 2;
+		}
 		if (str[*x] == 'h' && str[(*x) + 1] != 'h')
 		{
 			SET_BIT(arg.flgmods, SHOINT);
-			x++;
+			(*x)++;
 		}
 		if (str[*x] == 'l' && str[(*x) + 1] != 'l')
 		{
 			SET_BIT(arg.flgmods, LONGINT);
-			x++;
+			(*x)++;
 		}
-		(str[*x] == 'l' && str[(*x) + 1] == 'l') ? SET_BIT(arg.flgmods, LNGLNG) : str[*x];
-		(str[*x] == 'L') ? SET_BIT(arg.flgmods, LNG_D) : str[*x];
+		if (str[*x] == 'l' && str[(*x) + 1] == 'l')
+		{
+			SET_BIT(arg.flgmods, LNGLNG);
+			(*x) += 2;
+		}
+		if (str[*x] == 'L')
+		{
+			SET_BIT(arg.flgmods, LNG_D);
+			(*x)++;
+		}
 	}
 	return (1);
 }

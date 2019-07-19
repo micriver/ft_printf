@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/16 13:08:16 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/19 11:41:26 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,22 @@ int	ft_printf(char *fmt, ...)
 
 int		main(int ac, char **av)
 {
-	if (ac == 2)
-	{
+	//if (ac == 2)
+	//{
 		//int x = 3;
-		int x = ft_atoi(av[1]);
+	//	short int x = ft_atoi(av[1]);
+		//long int x = ft_atoi(av[1]);
+		(void)av;
+		(void)ac;
+		long long x = 100000000000LL;
 		//char *s1 = av[1];
 		//int y = 424242;
 		//int z = 5;
 		//char s1[] = "Here is where % through your arguments...\n";
 
 		//ft_printf("1, 2, %+010d\n", x, y, z);
-		ft_printf("FT_PRINTF:%+05d\n", x);
-		printf("PRINTF   :%+05d\n", x);
+		ft_printf("FT_PRINTF:%lld\n", x);
+		printf("PRINTF   :%lld\n", x);
 		//ft_printf(s1, x);
 		(printf("The width value in our struct is: %d\n", arg.width));
 		(printf("The precision value in our struct is: %d\n", arg.precision));
@@ -70,9 +74,9 @@ int		main(int ac, char **av)
 		printf("LONGINT flag state is: %d\n", CHECK_BIT(arg.flgmods, LONGINT));
 		printf("LNGLNG flag state is: %d\n", CHECK_BIT(arg.flgmods, LNGLNG));
 		printf("LNG_D flag state is: %d\n", CHECK_BIT(arg.flgmods, LNG_D));
-	}
-	else
-		ft_printf("Retry with an integer!\n");
+	//}
+	//else
+	//	ft_printf("Retry with an integer!\n");
 	return (0);
 }
 
