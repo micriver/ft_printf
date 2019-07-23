@@ -29,3 +29,5 @@ tests.c
 *.sh
 .nfs*
 *.gch
+pft/
+/misc_files

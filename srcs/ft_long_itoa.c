@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   di_specifier.c                                     :+:      :+:    :+:   */
+/*   ft_long_itoa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/22 18:28:04 by mirivera         ###   ########.fr       */
+/*   Created: 2019/07/22 16:12:18 by mirivera          #+#    #+#             */
+/*   Updated: 2019/07/22 18:27:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
-//#include <stdint.h>
+#include "libft.h"
 
 char	*ft_long_itoa(int64_t n)
 {
@@ -39,24 +38,3 @@ char	*ft_long_itoa(int64_t n)
 	str[ft_strlen(str)] = '\0';
 	return (str);
 }
-
-char	*di_specifier(int64_t di)
-{
-	char *result;
-	//int64_t x;
-
-	//if (CHECK_BIT(arg.flgmods, SHOINT))
-	//	result = ft_itoa((short int)va_arg(args, int64_t));
-	//else if (CHECK_BIT(arg.flgmods, LONGINT))
-	//	result = ft_itoa((long int)va_arg(args, int64_t));
-	//else if (CHECK_BIT(arg.flgmods, LNGLNG))
-	//	//ft_itoa is not outputting correct number
-	//	//does it need to be itoa base?
-	//	result = ft_itoa((long long int)va_arg(args, int64_t));
-	//else
-	//	result = NULL;
-	//(CHECK_BIT(arg.flgmods, SHOINT)) ? result = ft_itoa(va_arg(args, (short int))) : args;
-	result = ft_long_itoa(di);
-	return (result);
-}
-
