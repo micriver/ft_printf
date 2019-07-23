@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/22 19:28:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/23 11:33:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <time.h>
 
-void	ft_printf(char *fmt, ...)
+int		ft_printf(char *fmt, ...)
 {
 	va_list args;
 	int i;
@@ -33,54 +33,57 @@ void	ft_printf(char *fmt, ...)
 			else
 				argstring = rj_strncpy(argstring);
 			ft_putstr(argstring);
+			//maybe count chars of argstring
+			//and assign to variable to return below?
 			i += 1;
 		}
 		ft_putchar(fmt[i]);
 		i++;
 	}
 	va_end(args);
-	//return (0);
+	return printf("%zu\n", ft_strlen(fmt));
 }
 
-//int		main(int ac, char **av)
+//int		main(void)
 //{
 //	//if (ac == 2)
 //	//{
-//		//int x = 3;
+//	int x = 3;
 //	//	short int x = ft_atoi(av[1]);
-//		//long int x = ft_atoi(av[1]);
-//		(void)av;
-//		(void)ac;
-//		long long x = 100000000000LL;
-//		long x = 100000000000LL;
-//		//char *s1 = av[1];
-//		//int y = 424242;
-//		//int z = 5;
-//		//char s1[] = "Here is where % through your arguments...\n";
+//	//	//long int x = ft_atoi(av[1]);
+//	//	(void)av;
+//	//	(void)ac;
+//	//	long long x = 100000000000LL;
+//	//	long x = 100000000000LL;
+//	//	//char *s1 = av[1];
+//	//	//int y = 424242;
+//	//	//int z = 5;
+//	//	//char s1[] = "Here is where % through your arguments...\n";
 //
-//		//ft_printf("1, 2, %+010d\n", x, y, z);
-//		ft_printf("FT_PRINTF:%lld\n", x);
-//		printf("PRINTF   :%lld\n", x);
-//		//ft_printf(s1, x);
-//		(printf("The width value in our struct is: %d\n", arg.width));
-//		(printf("The precision value in our struct is: %d\n", arg.precision));
-//		printf("\nsize of regular structure = %lu\n", sizeof(arg));
-//		printf("SHARP flag state is: %d\n", CHECK_BIT(arg.flgmods, SHARP_F));
-//		printf("MINUS flag state is: %d\n", CHECK_BIT(arg.flgmods, MINUS_F));
-//		printf("PLUS flag state is: %d\n", CHECK_BIT(arg.flgmods, PLUS_F));
-//		printf("INVP flag state is: %d\n", CHECK_BIT(arg.flgmods, INVP_F));
-//		printf("ZERO flag state is: %d\n", CHECK_BIT(arg.flgmods, ZERO_F));
-//		printf("SGNDCHR flag state is: %d\n", CHECK_BIT(arg.flgmods, SGNDCHR));
-//		printf("SHOINT flag state is: %d\n", CHECK_BIT(arg.flgmods, SHOINT));
-//		printf("LONGINT flag state is: %d\n", CHECK_BIT(arg.flgmods, LONGINT));
-//		printf("LNGLNG flag state is: %d\n", CHECK_BIT(arg.flgmods, LNGLNG));
-//		printf("LNG_D flag state is: %d\n", CHECK_BIT(arg.flgmods, LNG_D));
+//	//	//ft_printf("1, 2, %+010d\n", x, y, z);
+//		//ft_printf("FT_PRINTF:%d\n", x);
+//		//printf("PRINTF   :%d\n", x);
+//	//	//ft_printf(s1, x);
+//	//	(printf("The width value in our struct is: %d\n", arg.width));
+//	//	(printf("The precision value in our struct is: %d\n", arg.precision));
+//	//	printf("\nsize of regular structure = %lu\n", sizeof(arg));
+//	//	printf("SHARP flag state is: %d\n", CHECK_BIT(arg.flgmods, SHARP_F));
+//	//	printf("MINUS flag state is: %d\n", CHECK_BIT(arg.flgmods, MINUS_F));
+//	//	printf("PLUS flag state is: %d\n", CHECK_BIT(arg.flgmods, PLUS_F));
+//	//	printf("INVP flag state is: %d\n", CHECK_BIT(arg.flgmods, INVP_F));
+//	//	printf("ZERO flag state is: %d\n", CHECK_BIT(arg.flgmods, ZERO_F));
+//	//	printf("SGNDCHR flag state is: %d\n", CHECK_BIT(arg.flgmods, SGNDCHR));
+//	//	printf("SHOINT flag state is: %d\n", CHECK_BIT(arg.flgmods, SHOINT));
+//	//	printf("LONGINT flag state is: %d\n", CHECK_BIT(arg.flgmods, LONGINT));
+//	//	printf("LNGLNG flag state is: %d\n", CHECK_BIT(arg.flgmods, LNGLNG));
+//	//	printf("LNG_D flag state is: %d\n", CHECK_BIT(arg.flgmods, LNG_D));
 //	//}
 //	//else
 //	//	ft_printf("Retry with an integer!\n");
+//	ft_printf("%d\n", x);
+//	//printf("%d\n", x);
 //	return (0);
 //}
-
 
 /*
 int		main()

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/22 18:20:35 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/23 11:36:29 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int64_t		di_return_value(va_list args)
 		di = ((long int)va_arg(args, int64_t));
 	else if (CHECK_BIT(arg.flgmods, LNGLNG))
 		di = ((long long int)va_arg(args, int64_t));
+	else
+		di = (va_arg(args, int64_t));
 	return (di);
 }
 
@@ -44,6 +46,8 @@ char	*conversion(int *i, char *str, va_list args)
 		di = di_return_value(args);
 		result = di_specifier(di);
 	}
+	else if (str[*i] == 's')
+		result = s_specifier(args);
 	else
 		result = NULL; 
 	return (result);

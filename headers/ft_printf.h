@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/22 19:29:29 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/23 11:41:13 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ struct arguments
 } arg;
 
 
-//int		ft_printf(char *fmt, ...);
-void	ft_printf(char *fmt, ...);
+int		ft_printf(char *fmt, ...);
 void	master_pars(char *fmt, int *i);
 char	*conversion(int *i, char *str, va_list args);
 char	*prependchar(char c, char *str);
@@ -57,6 +56,7 @@ char	*lj_strncpy(char *src);
 char	*prefixchar(char prefix, char *str);
 char	*prependstr(char *pstr, char *str);
 //char	*di_specifier(va_list args);
+char	*s_specifier(va_list args);
 char	*di_specifier(int64_t di);
 
 #endif
