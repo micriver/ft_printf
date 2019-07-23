@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:17:33 by mirivera          #+#    #+#             */
-/*   Updated: 2019/06/27 13:54:19 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/22 19:36:19 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_isspace(int i);
-char				*ft_itoa(int n);
+char				*ft_itoa(int64_t n);
 char				**ft_strsplit(char const *s, char c);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
@@ -96,5 +96,6 @@ char				*ft_strndup(const char *src, int n);
 int					get_next_line(const int fd, char **line);
 char				*prefixchar(char prefix, const char *str);
 char				*prependstr(char *pstr, const char *str);
+char				*ft_long_itoa(int64_t);
 
 #endif

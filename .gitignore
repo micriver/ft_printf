@@ -31,3 +31,4 @@ tests.c
 *.gch
 pft/
 /misc_files
+pft/
