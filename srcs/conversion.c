@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/23 19:41:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 11:05:26 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*conversion(int *i, char *str, va_list args)
 {
 	char *result;
 	int64_t di;
-	int arg_length;
 
 	master_pars(str, i);
 	//majority of the work has to happen below here now
@@ -51,8 +50,6 @@ char	*conversion(int *i, char *str, va_list args)
 		result = s_specifier(args);
 	else
 		result = NULL; 
-	arg_length = (int)ft_strlen(result);
-	printf("length of your argument is %d\n", arg_length);
 	return (result);
 }
 
