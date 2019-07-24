@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/19 11:46:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 10:39:15 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,15 @@ int		lengthmod_pars(char *str, int *i)
 //master parser
 void	master_pars(char *fmt, int *i)
 {
+	//unsigned int start;
+	//start = (*i);
+
+	//parsing
 	flag_parse(fmt, i);
 	width_parser(fmt, i);
 	precision_parser(fmt, i);
 	lengthmod_pars(fmt, i);
+
+	//arg.parse_count = (*i) - start;
+	//printf("parse count = %d\n", arg.parse_count);
 }

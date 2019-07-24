@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/23 20:02:58 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 14:41:56 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 int		ft_printf(char *fmt, ...)
 {
 	va_list args;
+	char *argstring;
 	int i;
+	arg.char_count = 0;
 	va_start(args, fmt);
 	i = 0;
 	while (fmt[i])
@@ -26,22 +28,21 @@ int		ft_printf(char *fmt, ...)
 		if (fmt[i] == '%')
 		{
 			i++;
-			char *argstring;
 			argstring = conversion(&i, fmt, args);
 			if (CHECK_BIT(arg.flgmods, MINUS_F))
 				argstring = lj_strncpy(argstring);
 			else
 				argstring = rj_strncpy(argstring);
 			ft_putstr(argstring);
-			//maybe count chars of argstring
-			//and assign to variable to return below?
+			arg.char_count += ft_strlen(argstring);
 			i += 1;
 		}
 		ft_putchar(fmt[i]);
+		arg.char_count++;
 		i++;
 	}
 	va_end(args);
-	return printf("%d\n", i);
+	return (arg.char_count);
 }
 
 //int		main(void)
