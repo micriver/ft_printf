@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/24 14:41:56 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 19:59:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		ft_printf(char *fmt, ...)
 				argstring = rj_strncpy(argstring);
 			ft_putstr(argstring);
 			arg.char_count += ft_strlen(argstring);
+			//testing ft_printf arg loop, I have to reset these flags after each argument
+			TOGGLE_BIT(arg.flgmods, INVP_F);
 			i += 1;
 		}
 		ft_putchar(fmt[i]);
