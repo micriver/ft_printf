@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/24 10:39:15 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 18:46:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ int		width_parser(char *str, int *i)
 	char *result;
 	int *x;
 
-	j = (*i);
-	y = 0;
 	x = i;
 	if (str[*x] == '.')
+	{
+		arg.width = 0;
 		return (0);
+	}
+	j = (*i);
+	y = 0;
 	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
 		(j)++;
 	result = ft_strnew(j);
@@ -63,18 +66,18 @@ int		width_parser(char *str, int *i)
 // precision modifier
 int		precision_parser(char *str, int *i)
 {
-	int y;
-	int j;
-	char *result;
 	int *x;
-
-	j = (*i);
-	y = 0;
 	x = i;
 	if (str[*x] != '.')
 		return (0);
 	else
 		(*x) += 1;
+	int y;
+	int j;
+	char *result;
+
+	j = (*i);
+	y = 0;
 	result = ft_strnew(j);
 	while (!ft_isalpha(str[*x])) //we parse the parameters until we get to a conversion specifier
 	{

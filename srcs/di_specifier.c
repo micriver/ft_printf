@@ -6,11 +6,9 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/23 19:51:07 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 18:24:28 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//We're on the return_chars branch!
 
 #include "../headers/ft_printf.h"
 //#include <stdint.h>
@@ -45,19 +43,12 @@
 char	*di_specifier(int64_t di)
 {
 	char *result;
-	//int64_t x;
 
 	//if (CHECK_BIT(arg.flgmods, SHOINT))
 	//	result = ft_itoa((short int)va_arg(args, int64_t));
 	//else if (CHECK_BIT(arg.flgmods, LONGINT))
 	//	result = ft_itoa((long int)va_arg(args, int64_t));
 	//else if (CHECK_BIT(arg.flgmods, LNGLNG))
-	//	//ft_itoa is not outputting correct number
-	//	//does it need to be itoa base?
-	//	result = ft_itoa((long long int)va_arg(args, int64_t));
-	//else
-	//	result = NULL;
-	//(CHECK_BIT(arg.flgmods, SHOINT)) ? result = ft_itoa(va_arg(args, (short int))) : args;
 	result = ft_long_itoa(di);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/16 13:07:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 19:33:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,13 @@ char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
 char	*rj_strncpy(char *src)
 {
 	char *dest;
-	size_t i;
-	size_t x;
-	int arg_size;
 
-	arg_size = ft_strlen(src);
-	dest = ft_strnew(arg.width + arg_size);
-	i = 0;
-	x = 0;
-	if (arg.width > arg_size)
-		dest = leading_zeros_spaces(dest, src, arg_size);
+	if (arg.width)
+		dest = ft_strnew(arg.width + ft_strlen(src));
+	else
+		dest = ft_strnew(ft_strlen(src));
+	if (arg.width > (int)ft_strlen(src))
+		dest = leading_zeros_spaces(dest, src, ft_strlen(src));
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
 		dest = prependchar('+', (ft_strcpy(dest, src)));
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')

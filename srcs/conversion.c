@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/24 14:45:28 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/24 18:19:38 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int64_t		di_return_value(va_list args)
 char	*conversion(int *i, char *str, va_list args)
 {
 	char *result;
-	int64_t di;
+	//int64_t di;
+	int di;
 
 	master_pars(str, i);
 	//majority of the work has to happen below here now
