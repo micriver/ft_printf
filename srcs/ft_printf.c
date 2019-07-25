@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/24 19:59:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/25 16:29:45 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <time.h>
+
+void	print_struct(void);
+void	reset_flags(void);
 
 int		ft_printf(char *fmt, ...)
 {
@@ -33,11 +36,13 @@ int		ft_printf(char *fmt, ...)
 				argstring = lj_strncpy(argstring);
 			else
 				argstring = rj_strncpy(argstring);
+			//printf("new argument being printed:\n");
 			ft_putstr(argstring);
 			arg.char_count += ft_strlen(argstring);
 			//testing ft_printf arg loop, I have to reset these flags after each argument
-			TOGGLE_BIT(arg.flgmods, INVP_F);
 			i += 1;
+			//print_struct();
+			reset_flags();
 		}
 		ft_putchar(fmt[i]);
 		arg.char_count++;
