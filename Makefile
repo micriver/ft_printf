@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/07/25 15:04:49 by mirivera         ###   ########.fr        #
+#    Updated: 2019/07/25 19:28:38 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = ft_printf.c \
 	lj_strncpy.c \
 	di_specifier.c \
 	s_specifier.c \
+	print_struct.c \
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \
@@ -111,5 +112,5 @@ fclean:	clean
 re:	fclean all
 
 debug:
-	$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./srcs/print_struct.c ./misc_files/main.c ./libft/libft.a -g
+	$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./misc_files/main.c ./libft/libft.a -g -fsanitize=address
 	#gcc ./srcs/main.c $(NAME) -g

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 21:17:42 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/22 18:01:17 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/25 18:40:48 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 ** Line 30 determines # of places in the string
 */
 
-char	*ft_itoa(int64_t n)
+char	*ft_itoa(int n)
 {
-	int64_t	length;
-	int64_t sign;
+	int 	length;
+	int		sign;
 	char	*str;
 
 	sign = n;

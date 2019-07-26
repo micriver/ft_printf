@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 17:57:26 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/25 19:19:24 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@ int		ft_printf(char *fmt, ...)
 		{
 			i++;
 			argstring = conversion(&i, fmt, args);
+			//lines 33 - 38 can go into the conversion function, possibly
 			if (CHECK_BIT(arg.flgmods, MINUS_F))
 				argstring = lj_strncpy(argstring);
 			else
 				argstring = rj_strncpy(argstring);
-			//printf("new argument being printed:\n");
 			ft_putstr(argstring);
 			arg.char_count += ft_strlen(argstring);
-			//testing ft_printf arg loop, I have to reset these flags after each argument
 			i += 1;
-			//print_struct();
 			reset_flags();
 		}
 		ft_putchar(fmt[i]);
