@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 14:12:15 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/25 17:46:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ char	*prependstr(char *pstr, char *str);
 //char	*di_specifier(va_list args);
 char	*s_specifier(va_list args);
 char	*di_specifier(int64_t di);
+void	print_struct(void);
+void	reset_flags(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 13:07:22 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 16:22:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/25 18:06:53 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void	reset_flags(void)
 	int i;
 
 	i = 0;
-	while (i++ < 9)	
+	while (i < 9)	
 	{
 		if (CHECK_BIT(arg.flgmods, i))
 			TOGGLE_BIT(arg.flgmods, i);
+		i++;
 	}
 }
 

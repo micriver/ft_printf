@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 16:29:45 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/25 17:57:26 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <time.h>
-
-void	print_struct(void);
-void	reset_flags(void);
 
 int		ft_printf(char *fmt, ...)
 {
