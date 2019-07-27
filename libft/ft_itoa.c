@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 21:17:42 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 18:40:48 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/26 20:59:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ char	*ft_itoa(int n)
 		length++;
 	sign = n < 0 ? 1 : 0;
 	length = n < 0 ? length += 1 : length;
-	if (n == -2147483648)
-		return (str = ft_strdup("-2147483648"));
 	str = ft_strnew(length);
 	if (!str)
 		return (NULL);
+	if (n == -2147483648)
+		return (str = ft_strdup("-2147483648"));
 	if (sign)
 		str[0] = '-';
 	n = n < 0 ? n *= -1 : n;

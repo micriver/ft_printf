@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 19:19:24 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/26 21:31:58 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ int		ft_printf(char *fmt, ...)
 			i += 1;
 			reset_flags();
 		}
-		ft_putchar(fmt[i]);
+		if (fmt[i] == '\0')
+			break ;
+		else
+		{
+			ft_putchar(fmt[i]);
+			i++;
+		}
 		arg.char_count++;
-		i++;
+		//i++;
 	}
 	va_end(args);
 	return (arg.char_count);
