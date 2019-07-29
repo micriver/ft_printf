@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 19:18:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/29 14:52:24 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 struct arguments
 {
-	int flgmods : 16; //make sure that you set the bit width to only the amount of bits you actually need!!! eg, the # of flags/modifiers you'll be using
+	int flgmods : 16; 
 	int width;
 	int precision;
 	int char_count;
@@ -46,8 +46,27 @@ struct arguments
 
 
 int		ft_printf(char *fmt, ...);
+
+/*
+** Parsing
+*/
+
 void	master_pars(char *fmt, int *i);
+//parsing functions go here
+
+/*
+** Conversion
+*/
+
 char	*conversion(int *i, char *str, va_list args);
+char	*s_specifier(va_list args);
+char	*di_specifier(int64_t di);
+char	*u_specifier(int64_t u);
+
+/*
+** Formatting
+*/
+
 char	*prependchar(char c, char *str);
 char	*insertplussign(char *str);
 char	*lead_zero_negsign(char *dest, char *src, int size);
@@ -56,9 +75,11 @@ char	*rj_strncpy(char *src);
 char	*lj_strncpy(char *src);
 char	*prefixchar(char prefix, char *str);
 char	*prependstr(char *pstr, char *str);
-//char	*di_specifier(va_list args);
-char	*s_specifier(va_list args);
-char	*di_specifier(int64_t di);
+
+/*
+** Structure
+*/
+
 void	print_struct(void);
 void	reset_flags(void);
 
