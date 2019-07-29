@@ -6,46 +6,13 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/29 15:08:56 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/29 15:18:48 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 #include <stdio.h>
 #include <time.h>
-
-
-int64_t		u_return_value(va_list args)
-{
-	int64_t u;
-
-	u = 0;
-	if (CHECK_BIT(arg.flgmods, SHOINT))
-		u = ((unsigned short int)va_arg(args, int64_t));
-	//else if (CHECK_BIT(arg.flgmods, LONGINT))
-	//	u = ((long int)va_arg(args, int64_t));
-	//else if (CHECK_BIT(arg.flgmods, LNGLNG))
-	//	u = ((long long)va_arg(args, int64_t));
-	else
-		u = (va_arg(args, int));
-	return (u);
-}
-
-int64_t		di_return_value(va_list args)
-{
-	int64_t di;
-
-	di = 0;
-	if (CHECK_BIT(arg.flgmods, SHOINT))
-		di = ((short int)va_arg(args, int64_t));
-	else if (CHECK_BIT(arg.flgmods, LONGINT))
-		di = ((long int)va_arg(args, int64_t));
-	else if (CHECK_BIT(arg.flgmods, LNGLNG))
-		di = ((long long)va_arg(args, int64_t));
-	else
-		di = (va_arg(args, int));
-	return (di);
-}
 
 char	*conversion(int *i, char *str, va_list args)
 {
