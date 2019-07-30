@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/24 19:33:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/29 18:28:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,24 @@ char	*lead_zero_negsign(char *dest, char *src, int size)
 	int y;
 
 	y = 0;
-	while (src[y])
+	//need's to be normed
+	if ((ft_atoi(src) >= 0) && (CHECK_BIT(arg.flgmods, PLUS_F)) && (src[0] != '-'))
 	{
-		//Might need a "check flags" function or a dispatch table here
-		//need's to be normed
-		if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F) && dest[0] != '-')
-		{
-			if (CHECK_BIT(arg.flgmods, ZERO_F))
-				dest = prefixchar('+', dest);
-		}
-		else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
-		{
-			if (CHECK_BIT(arg.flgmods, ZERO_F))
-				dest = prependchar(' ', dest);
-		}
-		else if (src[0] == '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
-		{
-			dest = prefixchar('-', dest);
-			src[0] = '0';
-		}
-		dest[size++] = src[y++];
+		if (CHECK_BIT(arg.flgmods, ZERO_F))
+			dest = prefixchar('+', dest);
 	}
+	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
+	{
+		if (CHECK_BIT(arg.flgmods, ZERO_F))
+			dest = prependchar(' ', dest);
+	}
+	else if (src[0] == '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
+	{
+		dest = prefixchar('-', dest);
+		src[0] = '0';
+	}
+	while (src[y])
+		dest[size++] = src[y++];
 	if (!CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F) \
 			&& src[0] != '-')
 		dest = insertplussign(dest);

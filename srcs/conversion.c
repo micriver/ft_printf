@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/29 15:18:48 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/29 15:44:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ char	*conversion(int *i, char *str, va_list args)
 
 	master_pars(str, i);
 	//majority of the work has to happen below here now
-	//typecast for each length modifier happens in the actual conversion
-	//specifier function/c file
+	
 	//place a while loop here where you loop through n
+	
 	//and a list of specifiers in a string
+	//while loop and dispatch table here
 	if (str[*i] == 'd' || str[*i] == 'i' )
 	{
 		int64_t di; //this needs to be able to hold at least 64 bits
