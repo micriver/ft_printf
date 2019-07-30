@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/29 15:44:55 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:28:04 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*conversion(int *i, char *str, va_list args)
 		di = di_return_value(args);
 		result = di_specifier(di);
 	}
-	if (str[*i] == 'u')
+	else if (str[*i] == 'u')
 	{
 		int64_t u;
 		u = u_return_value(args);

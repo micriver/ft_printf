@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 15:15:22 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/29 19:48:18 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:28:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 int64_t		u_return_value(va_list args)
 {
-	int64_t u;
+	uint64_t u;
 
 	u = 0;
 	if (CHECK_BIT(arg.flgmods, SHOINT))
-		u = ((unsigned short int)va_arg(args, uint64_t));
+		u = ((unsigned short int)va_arg(args, unsigned int));
 	else if (CHECK_BIT(arg.flgmods, LONGINT))
 		u = ((unsigned long int)va_arg(args, uint64_t));
 	else if (CHECK_BIT(arg.flgmods, LNGLNG))
-		u = ((unsigned long long int)va_arg(args, uint64_t));
+		u = (va_arg(args, unsigned long long int));
 	else
 		u = ((unsigned int)va_arg(args, int));
 	return (u);

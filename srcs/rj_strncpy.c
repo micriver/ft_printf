@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/29 18:44:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:18:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char	*rj_strncpy(char *src)
 	char *dest;
 
 	if (arg.width)
+		//look at this
 		dest = ft_strnew(arg.width + ft_strlen(src));
 	else
 		dest = ft_strnew(ft_strlen(src));
