@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 12:46:11 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/29 16:50:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/29 18:31:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	*ft_strcat(char *dest, const char *src)
 	unsigned int j;
 
 	i = 0;
-	while (dest[i])
+	while (dest[i] != '\0')
 		++i;
 	j = 0;
-	while (src[j] && dest[i] == '\0')
+	while (src[j])
 	{
 		dest[i] = src[j];
 		++i;
