@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/30 16:25:14 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:18:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*di_specifier(int64_t di)
 	else if (CHECK_BIT(arg.flgmods, LNGLNG))
 		result = ft_long_itoa(di);
 	else
-		result = NULL;
+		result = ft_itoa(di);
+		//result = NULL;
 	return (result);
 }
 

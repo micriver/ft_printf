@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:17:33 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/25 19:17:21 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:06:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ int					get_next_line(const int fd, char **line);
 char				*prefixchar(char prefix, const char *str);
 char				*prependstr(char *pstr, const char *str);
 char				*ft_long_itoa(int64_t);
+char				*ft_ull_itoa(unsigned long long int n);
 
 #endif
