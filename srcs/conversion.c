@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/30 18:18:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/31 14:23:03 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ char	*conversion(int *i, char *str, va_list args)
 	}
 	else if (str[*i] == 'u')
 	{
-		int64_t u;
-		u = u_return_value(args);
-		result = u_specifier(u);
+		if (CHECK_BIT(arg.flgmods, LNGLNG))
+			result = ull_ret_val(args);
+		else
+		{
+			uint64_t u;
+			u = u_return_value(args);
+			result = u_specifier(u);
+		}
 	}
 	else if (str[*i] == 's')
 		result = s_specifier(args);
