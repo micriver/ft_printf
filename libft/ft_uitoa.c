@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ull_itoa.c                                      :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/30 17:59:23 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 15:30:39 by mirivera         ###   ########.fr       */
+/*   Created: 2019/07/31 15:55:05 by mirivera          #+#    #+#             */
+/*   Updated: 2019/07/31 16:13:04 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ull_itoa(unsigned long long int n)
+char	*ft_uitoa(unsigned long int n)
 {
-	unsigned long long int sign;
-	unsigned long long int length;
+	unsigned long int sign;
+	unsigned long int length;
 	char	*str;
 
 	sign = n;
