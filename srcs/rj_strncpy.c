@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/01 15:55:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/01 16:12:34 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	*rj_strncpy(char *src)
 	{
 		if (arg.width > (int)ft_strlen(src))
 			dest = leading_zeros_spaces(dest, src, ft_strlen(src));
+		else
+			ft_strcpy(dest, src);
 	}
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
 		dest = prependchar('+', (ft_strcpy(dest, src)));
