@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 18:36:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:47:43 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,38 @@
 
 #include "../headers/ft_printf.h"
 
-int64_t		di_return_value(va_list args)
-{
-	int64_t di;
+//int64_t		di_return_value(va_list args)
+//{
+//	int64_t di;
+//
+//	di = 0;
+//	if (CHECK_BIT(arg.flgmods, SHOINT))
+//		di = ((short int)va_arg(args, int));
+//	else if (CHECK_BIT(arg.flgmods, LONGINT))
+//		di = ((long int)va_arg(args, int));
+//	else if (CHECK_BIT(arg.flgmods, LNGLNG))
+//		di = (va_arg(args, long long int));
+//	else
+//		di = (va_arg(args, int));
+//	return (di);
+//}
 
-	di = 0;
+char	*di_ret_val(va_list args)
+{
+	//int64_t di;
+	char *result;
+
+	//di = 0;
 	if (CHECK_BIT(arg.flgmods, SHOINT))
-		di = ((short int)va_arg(args, int));
-	else if (CHECK_BIT(arg.flgmods, LONGINT))
-		di = ((long int)va_arg(args, int));
+		result = ft_itoa(va_arg(args, int));
+	//else if (CHECK_BIT(arg.flgmods, LONGINT))
+	//	di = ((long int)va_arg(args, int));
 	else if (CHECK_BIT(arg.flgmods, LNGLNG))
-		di = (va_arg(args, long long int));
+		result = ft_long_itoa(va_arg(args, long long int));
+		//result = (va_arg(args, long long int));
 	else
-		di = (va_arg(args, int));
-	return (di);
+		result = ft_itoa(va_arg(args, int));
+	return (result);
 }
 
 char	*di_specifier(int64_t di)

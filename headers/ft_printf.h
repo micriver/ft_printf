@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 16:19:29 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/31 18:57:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_printf(char *fmt, ...);
 */
 
 void	master_pars(char *fmt, int *i);
-//parsing functions go here
+//parsing functions will go here
 
 /*
 ** Conversion
@@ -61,25 +61,20 @@ void	master_pars(char *fmt, int *i);
 char					*conversion(int *i, char *str, va_list args);
 char					*s_specifier(va_list args);
 char					*di_specifier(int64_t di);
-int64_t					di_return_value(va_list args);
+char					*di_ret_val(va_list args);
 char					*u_specifier(int64_t u);
-//unsigned long long int	u_return_value(va_list args);
-//uint64_t 				u_return_value(va_list args);
-char					*u_return_value(va_list args);
+char					*u_ret_val(va_list args);
 char 					*ull_ret_val(va_list args);
 
 /*
 ** Formatting
 */
 
-//char	*prependchar(char c, char *str);
 char	*insertplussign(char *str);
 char	*lead_zero_negsign(char *dest, char *src, int size);
 char	*leading_zeros_spaces(char *dest, char *src, int arg_size);
 char	*rj_strncpy(char *src);
 char	*lj_strncpy(char *src);
-//char	*prefixchar(char prefix, char *str);
-//char	*prependstr(char *pstr, char *str);
 
 /*
 ** Structure

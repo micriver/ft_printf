@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 15:23:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:46:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,17 @@ char	*conversion(int *i, char *str, va_list args)
 	//while loop and dispatch table here
 	if (str[*i] == 'd' || str[*i] == 'i' )
 	{
-		int64_t di; //this needs to be able to hold at least 64 bits
+		//int64_t di; //this needs to be able to hold at least 64 bits
 					//for whatever value comes back from di_return value
-		di = di_return_value(args);
-		result = di_specifier(di);
+		result = di_ret_val(args);
+		//result = di_specifier(di);
 	}
 	else if (str[*i] == 'u')
 	{
 		if (CHECK_BIT(arg.flgmods, LNGLNG))
 			result = ull_ret_val(args);
 		else
-		{
-			result = u_return_value(args);
-			//result = u_specifier(u);
-		}
+			result = u_ret_val(args);
 	}
 	else if (str[*i] == 's')
 		result = s_specifier(args);
