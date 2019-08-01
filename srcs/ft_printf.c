@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/30 16:18:07 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/31 18:09:14 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ int		ft_printf(char *fmt, ...)
 			ft_putstr(argstring);
 			arg.char_count += ft_strlen(argstring);
 			i += 1;
-			printf("\nSHARP flag state is: %d\n", CHECK_BIT(arg.flgmods, SHARP_F));
-			printf("MINUS flag state is: %d\n", CHECK_BIT(arg.flgmods, MINUS_F));
-			printf("PLUS flag state is: %d\n", CHECK_BIT(arg.flgmods, PLUS_F));
-			printf("INVP flag state is: %d\n", CHECK_BIT(arg.flgmods, INVP_F));
-			printf("ZERO flag state is: %d\n", CHECK_BIT(arg.flgmods, ZERO_F));
-			printf("SGNDCHR flag state is: %d\n", CHECK_BIT(arg.flgmods, SGNDCHR));
-			printf("SHOINT flag state is: %d\n", CHECK_BIT(arg.flgmods, SHOINT));
-			printf("LONGINT flag state is: %d\n", CHECK_BIT(arg.flgmods, LONGINT));
-			printf("LNGLNG flag state is: %d\n", CHECK_BIT(arg.flgmods, LNGLNG));
-			printf("LNG_D flag state is: %d\n", CHECK_BIT(arg.flgmods, LNG_D));
 			reset_flags();
 		}
 		if (fmt[i] == '\0')

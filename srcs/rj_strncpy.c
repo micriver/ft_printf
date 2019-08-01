@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 16:33:10 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/07/31 18:08:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include <stdio.h>
 #include <time.h>
 
-char	*prependchar(char c, char *str)
-{
-	unsigned int i;
-	unsigned int j;
-	char *pstr;
-
-	pstr = ft_strnew(ft_strlen(str + 1));
-	i = 0;
-	j = 0;
-	pstr[i] = c;
-	while (pstr[i])
-		pstr[++i] = str[j++];
-	pstr[i] = '\0';
-	return (pstr);
-}
+//char	*prependchar(char c, char *str)
+//{
+//	unsigned int i;
+//	unsigned int j;
+//	char *pstr;
+//
+//	pstr = ft_strnew(ft_strlen(str + 1));
+//	i = 0;
+//	j = 0;
+//	pstr[i] = c;
+//	while (pstr[i])
+//		pstr[++i] = str[j++];
+//	pstr[i] = '\0';
+//	return (pstr);
+//}
 
 char	*insertplussign(char *str)
 {
