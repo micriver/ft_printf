@@ -11,7 +11,7 @@ libftprintf.a
 /samples/
 /rebuild
 /includes/*
-/tests
+/test*
 a.out.dSYM/
 libft/.gitignore
 
