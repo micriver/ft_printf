@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 18:57:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/01 15:53:53 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char 					*ull_ret_val(va_list args);
 */
 
 char	*insertplussign(char *str);
-char	*lead_zero_negsign(char *dest, char *src, int size);
+char	*lead_zero_negsign(char *dest, char *src);
 char	*leading_zeros_spaces(char *dest, char *src, int arg_size);
 char	*rj_strncpy(char *src);
 char	*lj_strncpy(char *src);
