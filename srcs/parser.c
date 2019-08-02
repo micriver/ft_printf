@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/02 14:29:48 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/02 16:43:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,28 @@ int		flag_parse(char *str, int *i)
 	return (1);
 }
 
+void		precision_check(char *str, int *i)
+{
+	int y;
+
+	y = (*i);
+	y++;
+	if (ft_strchr("diuoxXfsc", str[y]))
+		(*i) = y;
+	else
+	{
+		while (!ft_isalpha(str[y]) && str[y + 1] != '.')
+		y++;
+		if (str[y] != 'f')
+		{
+			(*i)++;
+			if (!CHECK_BIT(arg.flgmods, ZERO_F))
+				SET_BIT(arg.flgmods, ZERO_F);
+		}
+	}
+}	
+
+
 // width modifier parser
 int		width_parser(char *str, int *i)
 {
@@ -43,11 +65,14 @@ int		width_parser(char *str, int *i)
 	int *x;
 
 	x = i;
+	//precision/width function goes here
 	if (str[*x] == '.')
-	{
-		arg.width = 0;
-		return (0);
-	}
+		precision_check(str, i);
+	//if (str[*x] == '.')
+	//{
+	//	arg.width = 0;
+	//	return (0);
+	//}
 	j = (*i);
 	y = 0;
 	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
