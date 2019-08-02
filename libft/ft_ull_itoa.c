@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:59:23 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 15:30:39 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/02 14:42:23 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	*ft_ull_itoa(unsigned long long int n)
 	str = ft_strnew(length);
 	if (!str)
 		str[0] = '0';
-	n = n < 0 ? n *= -1 : n;
 	while (--length >= sign)
 	{
 		str[length] = (n >= 10) ? (n % 10) + 48 : n + 48;

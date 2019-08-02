@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/24 18:46:16 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/02 14:29:48 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		width_parser(char *str, int *i)
 		(j)++;
 	result = ft_strnew(j);
 	while (!(ft_isalpha(str[*x])) && str[*x] != '.') //we parse the parameters until we get to a '.' or conv specifier
+		//ft_strcpy(result, str);
 	{
 		result[y] = str[*x];
 		y++;

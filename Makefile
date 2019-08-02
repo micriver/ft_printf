@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/07/31 18:45:04 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/02 14:12:14 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,4 +117,4 @@ re:	fclean all
 debug:
 	@#$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./misc_files/main.c ./libft/libft.a -g -fsanitize=address
 	@#gcc ./srcs/main.c $(NAME) -g
-	$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./misc_files/main.c ./libft/*.c -g -fsanitize=address 
+	$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./test_files/main.c ./libft/*.c -g -fsanitize=address 
