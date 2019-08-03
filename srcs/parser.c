@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/02 19:00:27 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/02 20:27:12 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ void		precision_check(char *str, int *i)
 	y++;
 	if (ft_strchr("diuoxXfsc", str[y]))
 		(*i) = y;
-	else
-	{
-		while (!ft_isalpha(str[y]) && str[y + 1] != '.')
-		y++;
-		if (str[y] != 'f')
-		{
-			//I have to add a second zero in place of the '.' char here
-			(*i)++;
-			//if (!CHECK_BIT(arg.flgmods, ZERO_F))
-			//	SET_BIT(arg.flgmods, ZERO_F);
-		}
-	}
+	//else
+	//{
+	//	while (!ft_isalpha(str[y]) && str[y + 1] != '.')
+	//	y++;
+	//	if (str[y] != 'f')
+	//	{
+	//		//I have to add a second zero in place of the '.' char here
+	//		(*i)++;
+	//		//if (!CHECK_BIT(arg.flgmods, ZERO_F))
+	//		//	SET_BIT(arg.flgmods, ZERO_F);
+	//	}
+	//}
 }	
 
 
@@ -67,12 +67,8 @@ int		width_parser(char *str, int *i)
 
 	x = i;
 	if (str[*x] == '.')
-		precision_check(str, i);
-	//if (str[*x] == '.')
-	//{
-	//	arg.width = 0;
-	//	return (0);
-	//}
+		(*x)++;
+	//	precision_check(str, i);
 	j = (*i);
 	y = 0;
 	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
