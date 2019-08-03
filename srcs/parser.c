@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/02 16:43:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/02 19:00:27 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void		precision_check(char *str, int *i)
 		y++;
 		if (str[y] != 'f')
 		{
+			//I have to add a second zero in place of the '.' char here
 			(*i)++;
-			if (!CHECK_BIT(arg.flgmods, ZERO_F))
-				SET_BIT(arg.flgmods, ZERO_F);
+			//if (!CHECK_BIT(arg.flgmods, ZERO_F))
+			//	SET_BIT(arg.flgmods, ZERO_F);
 		}
 	}
 }	
@@ -65,7 +66,6 @@ int		width_parser(char *str, int *i)
 	int *x;
 
 	x = i;
-	//precision/width function goes here
 	if (str[*x] == '.')
 		precision_check(str, i);
 	//if (str[*x] == '.')
@@ -86,6 +86,7 @@ int		width_parser(char *str, int *i)
 		(*x)++;
 	}
 	arg.width = ft_atoi(result);
+	//printf("you're width is = %d\n", arg.width);
 	return (1);
 }
 
