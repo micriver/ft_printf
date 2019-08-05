@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/02 20:27:12 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 10:52:48 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int		width_parser(char *str, int *i)
 
 	x = i;
 	if (str[*x] == '.')
-		(*x)++;
+		return (0);
+		//(*x)++;
 	//	precision_check(str, i);
 	j = (*i);
 	y = 0;
@@ -102,13 +103,14 @@ int		precision_parser(char *str, int *i)
 	j = (*i);
 	y = 0;
 	result = ft_strnew(j);
-	while (!ft_isalpha(str[*x])) //we parse the parameters until we get to a conversion specifier
+	while (!ft_isalpha(str[*x])) //we parse the string/numbers until we get to a conversion specifier
 	{
 		result[y] = str[*x];
 		y++;
 		(*x)++;
 	}
 	arg.precision = ft_atoi(result);
+	//printf("you're precision is = %d\n", arg.precision);
 	return (1);
 }
 

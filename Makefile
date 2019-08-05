@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/02 14:12:14 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/03 20:02:34 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,10 @@ fclean:	clean
 	@rm -rf $(NAME)
 
 re:	fclean all
+
+norme:
+	@echo 'Le Norme...'
+	@norminette -R CheckForbiddenSourceHeader $(HEADERS) $(addprefix srcs/,$(SRCS)) 
 
 debug:
 	@#$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./misc_files/main.c ./libft/libft.a -g -fsanitize=address

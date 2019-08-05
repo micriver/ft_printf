@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/02 18:51:19 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 11:25:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,39 @@ char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
 	return (dest = lead_zero_negsign(dest, src));
 }
 
+//char	*precision_str(char argstring)
+//{
+//	unsigned int i;
+//	unsigned int count;
+//	
+//	i = 0;
+//	count = 0;
+//	while (argstring[0] == '-' || argstring[0] == '+' argstring[i] != '\0')
+//		(ft_isdigit(argstring[i])) ? count++ : count;
+//	
+//
+//}
+
 char	*rj_strncpy(char *src)
 {
 	char *dest;
 
 	dest = ft_strnew(ft_strlen(src));
-	if (arg.width)
+	if (arg.width) //create string with (width) amount of characters
 	{
 		if (arg.width > (int)ft_strlen(src))
 			dest = leading_zeros_spaces(dest, src, ft_strlen(src));
 		else
 			ft_strcpy(dest, src);
 	}
+	//handle precision string building here
+	//if (arg.precision) //create string with (precision) amount of digits
+	//{
+	//	if (arg.precision > (int)ft_strlen(src))
+	//		dest = leading_zeros_spaces(dest, src, ft_strlen(src));
+	//	else
+	//		ft_strcpy(dest, src);
+	//}
 	//if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, ZERO_F))
 	//	dest = prependchar('-', (ft_strcpy(dest, src)));
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
