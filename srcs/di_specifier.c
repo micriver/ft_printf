@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 11:33:56 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:41:05 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*di_ret_val(va_list args)
 //arg.char_count will go here
 //ft_putstr will go here
 
-char	*rj_strncpy(char *src)
+char	*di_print(char *src)
 {
 	char *dest;
 

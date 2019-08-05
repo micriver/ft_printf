@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 10:52:48 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:37:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,18 +153,21 @@ int		lengthmod_pars(char *str, int *i)
 	return (1);
 }
 
+int		conv_pars(char *fmt, int *i)
+{
+	if (!ft_strchr("diuoxXfsc", fmt[*i]))
+			return (0);
+	arg.conv = (char)ft_strchr("diuoxXfsc", fmt[*i]);
+	(*i) += 1; //this line came from ft_printf, to iterate out of the parsed argument
+	return (1);
+}
+
 //master parser
 void	master_pars(char *fmt, int *i)
 {
-	//unsigned int start;
-	//start = (*i);
-
-	//parsing
 	flag_parse(fmt, i);
 	width_parser(fmt, i);
 	precision_parser(fmt, i);
 	lengthmod_pars(fmt, i);
-
-	//arg.parse_count = (*i) - start;
-	//printf("parse count = %d\n", arg.parse_count);
+	conv_pars(fmt, i);
 }

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 10:49:33 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:42:31 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*conversion(int *i, char *str, va_list args)
 	//place a while loop here where you loop through n
 	//and a list of specifiers in a string
 	//while loop and dispatch table here
-	if (str[*i] == 'd' || str[*i] == 'i' )
+	if ((arg.conv = 'd') || (arg.conv = 'i'))
 		result = di_ret_val(args);
 	else if (str[*i] == 'u')
 	{

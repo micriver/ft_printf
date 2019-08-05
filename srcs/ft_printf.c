@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 11:33:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:42:09 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,23 @@ int		ft_printf(char *fmt, ...)
 	i = 0;
 	while (fmt[i])
 	{
+		//if (fmt[i] == '%')
+		//{
+		//	i++;
+		//	argstring = conversion(&i, fmt, args);
+		//	//lines 33 - 38 can go into each conversion specifier's .c file
+		//	if (CHECK_BIT(arg.flgmods, MINUS_F))
+		//		argstring = lj_strncpy(argstring);
+		//	else
+		//		argstring = rj_strncpy(argstring);
+		//	ft_putstr(argstring);
+		//	arg.char_count += ft_strlen(argstring);
+		//	reset_flags();
+		//}
 		if (fmt[i] == '%')
 		{
 			i++;
-			argstring = conversion(&i, fmt, args);
+			conversion(&i, fmt, args);
 			//lines 33 - 38 can go into each conversion specifier's .c file
 			if (CHECK_BIT(arg.flgmods, MINUS_F))
 				argstring = lj_strncpy(argstring);
@@ -36,7 +49,6 @@ int		ft_printf(char *fmt, ...)
 				argstring = rj_strncpy(argstring);
 			ft_putstr(argstring);
 			arg.char_count += ft_strlen(argstring);
-			i += 1;
 			reset_flags();
 		}
 		if (fmt[i] == '\0')

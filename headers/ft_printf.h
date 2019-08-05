@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/02 16:43:55 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:21:49 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@
 
 struct arguments
 {
-	int flgmods : 16; 
-	int width;
-	int precision;
-	int char_count;
+	int		flgmods : 16; 
+	int		width;
+	int		precision;
+	int		char_count;
+	char	conv;
 } arg;
 
 
