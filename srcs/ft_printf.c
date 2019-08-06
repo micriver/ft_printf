@@ -6,9 +6,11 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 19:53:32 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/06 13:26:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//WHATUP BITCH!!!!
 
 #include "../headers/ft_printf.h"
 #include <stdarg.h>
