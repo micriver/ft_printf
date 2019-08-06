@@ -6,11 +6,9 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 19:53:22 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/06 14:21:20 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//on the dui branch now!
 
 #include "../headers/ft_printf.h"
 
@@ -40,8 +38,6 @@ void	di_print(char *src)
 		//create string with (precision/THE MINIMUM) amount of digits
 		if (arg.precision > (int)ft_strlen(src))
 			res = leading_zeros_spaces(res, src, ft_strlen(src));
-	//	else
-	//		ft_strcpy(res, src);
 	}
 	//precision has been handled
 	else if (arg.width)
@@ -51,9 +47,9 @@ void	di_print(char *src)
 	}
 	else
 		ft_strcpy(res, src);
-	//return (res);
 	arg.char_count += ft_strlen(res);
 	ft_putstr(res);
+	reset_flags();
 }
 
 void	di_ret_val(va_list args)
