@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 13:21:49 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:53:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,12 @@ void	master_pars(char *fmt, int *i);
 ** Conversion
 */
 
-char					*conversion(int *i, char *str, va_list args);
+//char					*conversion(int *i, char *str, va_list args);
+void					conversion(int *i, char *str, va_list args);
 char					*s_specifier(va_list args);
 char					*di_specifier(int64_t di);
-char					*di_ret_val(va_list args);
+//char					*di_ret_val(va_list args);
+void					di_ret_val(va_list args);
 char					*u_specifier(int64_t u);
 char					*u_ret_val(va_list args);
 char 					*ull_ret_val(va_list args);

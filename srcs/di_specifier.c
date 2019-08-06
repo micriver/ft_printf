@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 18:03:35 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:53:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,33 @@
 //	return (res);
 //}
 
+void	di_print(char *src)
+{
+	char *res;
+
+	res = ft_strnew(ft_strlen(src));
+	//CHECK FOR LEFT JUST OR RIGHT JUST FIRST
+	if (arg.precision) 
+	{
+		//create string with (precision/THE MINIMUM) amount of digits
+		if (arg.precision > (int)ft_strlen(src))
+			res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//	else
+	//		ft_strcpy(res, src);
+	}
+	//precision has been handled
+	else if (arg.width)
+	{
+		if (arg.width > (int)ft_strlen(res))
+			res = leading_zeros_spaces(res, src, ft_strlen(src));
+	}
+	else
+		ft_strcpy(res, src);
+	//return (res);
+	arg.char_count += ft_strlen(res);
+	ft_putstr(res);
+}
+
 void	di_ret_val(va_list args)
 {
 	char *res;
@@ -50,31 +77,6 @@ void	di_ret_val(va_list args)
 //arg.char_count will go here
 //ft_putstr will go here
 
-void	di_print(char *src)
-{
-	char *res;
-
-	res = ft_strnew(ft_strlen(src));
-	//CHECK FOR LEFT JUST OR RIGHT JUST FIRST
-	if (arg.precision) 
-	{
-		//create string with (precision/THE MINIMUM) amount of digits
-		if (arg.precision > (int)ft_strlen(src))
-			res = leading_zeros_spaces(res, src, ft_strlen(src));
-	//	else
-	//		ft_strcpy(res, src);
-	}
-	//precision has been handled
-	else if (arg.width)
-	{
-		if (arg.width > (int)ft_strlen(res))
-		res = leading_zeros_spaces(res, src, ft_strlen(src));
-	}
-	else
-		ft_strcpy(res, src);
-	//return (res);
-	ft_putstr(res);
-}
 
 
 	//if (arg.precision) //create string with (precision) amount of digits
