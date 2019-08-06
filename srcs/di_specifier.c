@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 13:41:05 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/05 18:03:35 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,34 @@
 
 #include "../headers/ft_printf.h"
 
-char	*di_ret_val(va_list args)
+//char	*di_ret_val(va_list args)
+//{
+//	char *res;
+//
+//	if (CHECK_BIT(arg.flgmods, SHOINT))
+//		res = ft_itoa(va_arg(args, int));
+//	else if ((CHECK_BIT(arg.flgmods, LNGLNG)) || (CHECK_BIT(arg.flgmods, LONGINT)))
+//		res = ft_long_itoa(va_arg(args, long long int));
+//	else
+//		res = ft_itoa(va_arg(args, int));
+//	//send to formatting stuff with rj or lj and precision or width handling
+//	//res = di_print(res);
+//	return (res);
+//}
+
+void	di_ret_val(va_list args)
 {
-	char *result;
+	char *res;
 
 	if (CHECK_BIT(arg.flgmods, SHOINT))
-		result = ft_itoa(va_arg(args, int));
+		res = ft_itoa(va_arg(args, int));
 	else if ((CHECK_BIT(arg.flgmods, LNGLNG)) || (CHECK_BIT(arg.flgmods, LONGINT)))
-		result = ft_long_itoa(va_arg(args, long long int));
+		res = ft_long_itoa(va_arg(args, long long int));
 	else
-		result = ft_itoa(va_arg(args, int));
+		res = ft_itoa(va_arg(args, int));
 	//send to formatting stuff with rj or lj and precision or width handling
-	//result = di_print(result);
-	return (result);
+	di_print(res);
+	//return (res);
 }
 
 //precision string printing will go here
@@ -35,36 +50,67 @@ char	*di_ret_val(va_list args)
 //arg.char_count will go here
 //ft_putstr will go here
 
-char	*di_print(char *src)
+void	di_print(char *src)
 {
-	char *dest;
+	char *res;
 
-	dest = ft_strnew(ft_strlen(src));
-	if (arg.width) //create string with (width) amount of characters
+	res = ft_strnew(ft_strlen(src));
+	//CHECK FOR LEFT JUST OR RIGHT JUST FIRST
+	if (arg.precision) 
 	{
-		if (arg.width > (int)ft_strlen(src))
-			dest = leading_zeros_spaces(dest, src, ft_strlen(src));
-		else
-			ft_strcpy(dest, src);
+		//create string with (precision/THE MINIMUM) amount of digits
+		if (arg.precision > (int)ft_strlen(src))
+			res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//	else
+	//		ft_strcpy(res, src);
 	}
-	//handle precision string building here
+	//precision has been handled
+	else if (arg.width)
+	{
+		if (arg.width > (int)ft_strlen(res))
+		res = leading_zeros_spaces(res, src, ft_strlen(src));
+	}
+	else
+		ft_strcpy(res, src);
+	//return (res);
+	ft_putstr(res);
+}
+
+
 	//if (arg.precision) //create string with (precision) amount of digits
 	//{
 	//	if (arg.precision > (int)ft_strlen(src))
-	//		dest = leading_zeros_spaces(dest, src, ft_strlen(src));
+	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
 	//	else
-	//		ft_strcpy(dest, src);
+	//		ft_strcpy(res, src);
 	//}
-	//if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, ZERO_F))
-	//	dest = prependchar('-', (ft_strcpy(dest, src)));
-	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
-		dest = prependchar('+', (ft_strcpy(dest, src)));
-	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
-	{
-		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			dest = prependchar(' ', src);
-	}
-	else
-		ft_strcpy(dest, src);
-	return (dest);
-}
+	//if (arg.width) //create string with (width) amount of characters
+	//{
+	////	if (arg.width > arg.precision)
+	////		//create the precision string first
+	//	if (arg.width > (int)ft_strlen(src))
+	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//	else
+	//		ft_strcpy(res, src);
+	//}
+	////handle precision string building here
+	////if (arg.precision) //create string with (precision) amount of digits
+	////{
+	////	if (arg.precision > (int)ft_strlen(src))
+	////		res = leading_zeros_spaces(res, src, ft_strlen(src));
+	////	else
+	////		ft_strcpy(res, src);
+	////}
+	////if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, ZERO_F))
+	////	res = prependchar('-', (ft_strcpy(res, src)));
+	//else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
+	//	res = prependchar('+', (ft_strcpy(res, src)));
+	//else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && res[0] != '-')
+	//{
+	//	if (CHECK_BIT(arg.flgmods, ZERO_F))
+	//		res = prependchar(' ', src);
+	//}
+	//else
+	//	ft_strcpy(res, src);
+	////return (res);
+	//ft_putstr(res);
