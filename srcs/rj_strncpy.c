@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/06 19:59:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/07 13:39:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,17 @@ char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
 			dest[i++] = '0';
 		if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
 			dest = ft_prependchar('+', dest);
+		if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
+			dest = ft_prependchar(' ', dest);
 		dest = ft_strjoin(dest, src);
 		if (src[0] == '-')
 		{
 			ft_srch_rep(dest, '-', '0');
 			dest = ft_prependchar('-', dest);
 		}
-		if (arg.width)
+		if (arg.precision > arg.width)
+			return (dest);
+		else
 			dest = wipr_join(dest);
 			//dest = ft_strnew(arg.width - ft_strlen(dest));
 		return (dest);
