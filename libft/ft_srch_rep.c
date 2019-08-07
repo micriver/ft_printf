@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_srch_rep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/06 19:59:42 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/06 15:48:56 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/06 15:52:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
-#include <stdarg.h>
+#include <stdio.h>
 
-int		ft_printf(char *fmt, ...)
+char	*ft_srch_rep(char *s, char c, char d)
 {
-	va_list args;
 	int i;
-	arg.char_count = 0;
-	va_start(args, fmt);
-	i = 0;
-	while (fmt[i])
-	{
-		if (fmt[i] == '%')
-			conversion(&i, fmt, args);
-		if (fmt[i] == '\0')
-			break ;
-		else
-		{
-			ft_putchar(fmt[i]);
-			arg.char_count++;
-			i++;
-		}
-	}
-	va_end(args);
-	return (arg.char_count);
-}
 
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			s[i] = d;
+		i++;
+	}
+	return (s);
+}

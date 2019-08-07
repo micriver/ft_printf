@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 13:14:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 19:53:27 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/06 19:59:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ char	*lead_zero_negsign(char *dest, char *src)
 	if ((ft_atoi(src) >= 0) && (CHECK_BIT(arg.flgmods, PLUS_F)) && (src[0] != '-'))
 	{
 		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			dest = prefixchar('+', dest);
+			dest = ft_prefixchar('+', dest);
 	}
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
 	{
 		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			dest = prependchar(' ', dest);
+			dest = ft_prependchar(' ', dest);
 	}
 	else if (src[0] == '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
 	{
-		dest = prependchar('-', dest);
+		dest = ft_prependchar('-', dest);
 		src[0] = '0';
 	}
 	dest = ft_strjoin(dest, src);
@@ -52,6 +52,18 @@ char	*lead_zero_negsign(char *dest, char *src)
 			&& src[0] != '-')
 		dest = insertplussign(dest);
 	return (dest);
+}
+
+char	*wipr_join(char *src)
+{
+	char *widthstring;
+	int i;
+
+	i = 0;
+	widthstring = ft_strnew(arg.width - (ft_strlen(src)));
+	while (i < arg.width - ((int)ft_strlen(src)))
+		widthstring[i++] = ' ';
+	return (src = ft_strjoin(widthstring, src));
 }
 
 char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
@@ -64,7 +76,18 @@ char	*leading_zeros_spaces(char *dest, char *src, int arg_size)
 		dest = ft_strnew(arg.precision - (int)ft_strlen(src));
 		while (i < (arg.precision - (int)ft_strlen(src)))
 			dest[i++] = '0';
-		return (ft_strjoin(dest, src));
+		if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
+			dest = ft_prependchar('+', dest);
+		dest = ft_strjoin(dest, src);
+		if (src[0] == '-')
+		{
+			ft_srch_rep(dest, '-', '0');
+			dest = ft_prependchar('-', dest);
+		}
+		if (arg.width)
+			dest = wipr_join(dest);
+			//dest = ft_strnew(arg.width - ft_strlen(dest));
+		return (dest);
 	}
 	dest = ft_strnew(arg.width - arg_size);
 	while (i < (arg.width - arg_size))
@@ -109,13 +132,13 @@ char	*rj_strncpy(char *src)
 	//		ft_strcpy(dest, src);
 	//}
 	//if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, ZERO_F))
-	//	dest = prependchar('-', (ft_strcpy(dest, src)));
+	//	dest = ft_prependchar('-', (ft_strcpy(dest, src)));
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
-		dest = prependchar('+', (ft_strcpy(dest, src)));
+		dest = ft_prependchar('+', (ft_strcpy(dest, src)));
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && dest[0] != '-')
 	{
 		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			dest = prependchar(' ', src);
+			dest = ft_prependchar(' ', src);
 	}
 	else
 		ft_strcpy(dest, src);

@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/03 20:02:34 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/06 15:52:23 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = ft_printf.c \
 	parser.c \
 	conversion.c \
-	rj_strncpy.c \
-	lj_strncpy.c \
 	di_specifier.c \
 	u_specifier.c \
 	s_specifier.c \
 	print_struct.c \
+	rj_strncpy.c \
+	lj_strncpy.c \
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \
@@ -89,11 +89,12 @@ LIBFT_SRCS = ft_atoi.c \
 	ft_tolower.c \
 	ft_toupper.c \
 	get_next_line.c \
-	prefixchar.c \
-	prependchar.c \
+	ft_prefixchar.c \
+	ft_prependchar.c \
    	ft_long_itoa.c \
 	ft_ull_itoa.c \
 	ft_uitoa.c \
+	ft_srch_rep.c \
 
 OBJECTS = $(patsubst %.c,%.o,$(SRCS))
 OBJECTS += $(patsubst %.c,%.o,$(LIBFT_SRCS))

@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:17:33 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/03 17:02:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:52:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,11 @@ char				*ft_strndup(const char *src, int n);
 int					get_next_line(const int fd, char **line);
 //char				*prefixchar(char prefix, const char *str);
 //char				*prependchar(char *pstr, const char *str);
-char				*prefixchar(char prefix, char *str);
-char				*prependchar(char c, char *str);
+char				*ft_prefixchar(char prefix, char *str);
+char				*ft_prependchar(char c, char *str);
 char				*ft_long_itoa(int64_t di);
 char				*ft_ull_itoa(unsigned long long int n);
 char				*ft_uitoa(unsigned long int n);
+char				*ft_srch_rep(char *s, char c, char d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/06 14:21:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/06 19:59:43 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	di_print(char *src)
 		//create string with (precision/THE MINIMUM) amount of digits
 		if (arg.precision > (int)ft_strlen(src))
 			res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
+	//		ft_prependchar('+', res);
 	}
 	//precision has been handled
 	else if (arg.width)
@@ -62,9 +64,7 @@ void	di_ret_val(va_list args)
 		res = ft_long_itoa(va_arg(args, long long int));
 	else
 		res = ft_itoa(va_arg(args, int));
-	//send to formatting stuff with rj or lj and precision or width handling
 	di_print(res);
-	//return (res);
 }
 
 //precision string printing will go here

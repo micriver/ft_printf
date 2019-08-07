@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prefixchar.c                                       :+:      :+:    :+:   */
+/*   ft_prefixchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 19:48:43 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 16:28:36 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/06 14:32:15 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/06 15:11:39 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*prefixchar(char prefix, char *str)
+char	*ft_prefixchar(char prefix, char *str)
 {
 	unsigned int	i;
 	unsigned int	j;

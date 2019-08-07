@@ -6,12 +6,11 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:23:45 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/31 16:33:18 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:01:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
-#include "../headers/libft.h"
 
 char	*lj_strncpy(char *src)
 {
@@ -26,9 +25,9 @@ char	*lj_strncpy(char *src)
 		dest = ft_strnew(arg.width);
 	ft_strcpy(dest, src);
 	if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, PLUS_F))
-		dest = prependchar('+', src);
+		dest = ft_prependchar('+', src);
 	else if(ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F)) 
-		dest = prependchar(' ', src);
+		dest = ft_prependchar(' ', src);
 	if (arg_size > arg.width)
 		return (dest);
 	i = ft_strlen(dest);
