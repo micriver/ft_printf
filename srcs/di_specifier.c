@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/08 09:34:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/08 15:56:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_wi_flag_check(char *res, char *src)
 	int i;
 
 	i = 0;
-	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
+	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-' && (CHECK_BIT(arg.flgmods, ZERO_F)) && !arg.precision)
 		res = ft_prefixchar('+', res);
 	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-' && (!CHECK_BIT(arg.flgmods, ZERO_F)))
 	{
@@ -43,15 +43,15 @@ char	*ft_wi_flag_check(char *res, char *src)
 	}
 	if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
 		res = ft_prefixchar(' ', res);
-	if (src[0] == '-')
+	if (src[0] == '-' && (arg.width < arg.precision))
 	{
-		if (CHECK_BIT(arg.flgmods, ZERO_F)) 
+		if ((CHECK_BIT(arg.flgmods, ZERO_F)) && !arg.precision)
 		{
 			res = ft_srch_rep(res, '-', '0');
 			res = ft_prefixchar('-', res);
 		}
-		else
-			ft_srch_rep(res, ft_isdigit(res[i - 1]), '-');
+		//else
+		//	ft_srch_rep(res, ft_isdigit(res[i - 1]), '-');
 		res = ft_prefixchar('-', res);
 	}
 	return (res);
@@ -94,25 +94,33 @@ char 	*ft_build_precstr(char *src)
 	res = ft_strnew(arg.precision - (int)ft_strlen(src));
 	while (i < (arg.precision - (int)ft_strlen(src)))
 		res[i++] = '0';
-	return (res = ft_strjoin(res, src));
+	res = ft_strjoin(res, src);
+	if (src[0] == '-' && ((int)ft_strlen(src) < arg.precision))
+	{
+		res = ft_srch_rep(res, '-', '0');
+		res = ft_prependchar('-', res);
+	}
+	return (res);
 }
 
 char 	*ft_build_wiprstr(char *res, char *src)
 {
 	int i;
 	int diff;
+	char *wiprstr;
+	(void)src;
 
 	diff = arg.width - (int)ft_strlen(res); //width - precision string built before
 	i = 0;
-	res = ft_strnew(diff);
-	while (i < (arg.width - (int)ft_strlen(res)))
+	wiprstr = ft_strnew(diff);
+	while (i < (diff))
 	{
-		res[i] = ' ';
-		(CHECK_BIT(arg.flgmods, ZERO_F)) ? res[i++] = '0' : res[i++];
+		wiprstr[i] = ' ';
+		(CHECK_BIT(arg.flgmods, ZERO_F) && !arg.precision) ? wiprstr[i++] = '0' : wiprstr[i++];
 	}
 	//while (i < diff)
 	//	res[i++] = ' ';
-	return (res = ft_strjoin(res, src));
+	return (res = ft_strjoin(wiprstr, res));
 	//int diff;
 
 	//diff = arg.width - (int)ft_strlen(res);
@@ -127,7 +135,8 @@ char	*di_wipr_fill(char *src)
 	char *res;
 	//build precision string first
 	res = ft_build_precstr(src);
-
+	if (CHECK_BIT(arg.flgmods, ZERO_F) && CHECK_BIT(arg.flgmods, PLUS_F) && arg.precision && src[0] != '-')
+		res = ft_prependchar('+', res);
 	if (arg.precision > arg.width)
 	{
 		res = ft_pr_flag_check(res, src); //run flag PRECISION prepend/prefix check
@@ -140,6 +149,7 @@ char	*di_wipr_fill(char *src)
 	else
 	{
 		res = ft_build_wiprstr(res, src); //fill difference between precision and width with ' '.
+		//need to figure this out, maybe check for plus and zero flag behavior?
 		res = ft_wi_flag_check(res, src); //run flag WIDTH prefix check on that string
 		return (res); //return that final string
 	}
