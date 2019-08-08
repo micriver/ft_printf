@@ -6,62 +6,141 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/07 15:45:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/07 19:40:04 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-char	*ft_flag_check(char *res, char *src)
+//make a flag check .c file and place functions inside there
+char	*ft_pr_flag_check(char *res, char *src)
 {
-	if (arg.precision)
-		ft_pr_flag_check(res, src);
-			if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
-				res = ft_prependchar('+', res);
-			if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
-				res = ft_prependchar(' ', res);
-			if (src[0] == '-')
-			{
-				ft_srch_rep(dest, '-', '0');
-				dest = ft_prependchar('-', dest);
-			}
-	else if (arg.width)
-		ft_wi_flag_check(res, src);
-			if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
-				res = ft_prefixchar('+', res);
-			if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
-				res = ft_prefixchar(' ', res);
-			if (src[0] == '-')
-			{
-				if (CHECK_BIT(arg.flgmods, ZERO_F)) 
-					ft_srch_rep(res, '-', '0');
-				res = ft_prefixchar('-', res);
-			}
+	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
+		res = ft_prependchar('+', res);
+	if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
+		res = ft_prependchar(' ', res);
+	if (src[0] == '-')
+	{
+		ft_srch_rep(res, '-', '0');
+		res = ft_prependchar('-', res);
+	}
 	return (res);
 }
 
 
-char	*di_wipr_fill(char *src)
+char	*ft_wi_flag_check(char *res, char *src)
 {
 	int i;
 
 	i = 0;
-	//build precision string first
+	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
+		res = ft_prefixchar('+', res);
+	if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
+		res = ft_prefixchar(' ', res);
+	if (src[0] == '-')
+	{
+		if (CHECK_BIT(arg.flgmods, ZERO_F)) 
+			ft_srch_rep(res, '-', '0');
+		else
+		{
+			while (res[i] == ' ')
+				i++;
+			ft_srch_rep(res, res[i - 1], '-');
+		}
+		res = ft_prefixchar('-', res);
+	}
+	return (res);
+}
+
+
+char	*ft_basic_flag_check(char *res, char *src)
+{
+	if ((ft_atoi(src) >= 0) && (CHECK_BIT(arg.flgmods, PLUS_F)) && (src[0] != '-'))
+	{
+		if (CHECK_BIT(arg.flgmods, ZERO_F))
+			res = ft_prependchar('+', res);
+	}
+	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
+	{
+		if (CHECK_BIT(arg.flgmods, ZERO_F))
+			res = ft_prependchar(' ', res);
+	}
+	return (res);
+}
+
+char 	*ft_build_widthstr(char *src)
+{
+	char *res;
+	int i;
+
+	i = 0;
+	res = ft_strnew(arg.width - (int)ft_strlen(src));
+	while (i < (arg.width - (int)ft_strlen(src)))
+	{
+		res[i] = ' ';
+		(CHECK_BIT(arg.flgmods, ZERO_F)) ? res[i++] = '0' : res[i++];
+	}
+	return (res = ft_strjoin(res, src));
+}
+
+char 	*ft_build_precstr(char *src)
+{
+	char *res;
+	int i;
+
+	i = 0;
 	res = ft_strnew(arg.precision - (int)ft_strlen(src));
 	while (i < (arg.precision - (int)ft_strlen(src)))
 		res[i++] = '0';
-	res = ft_strjoin(res, src);
+	return (res = ft_strjoin(res, src));
+}
+
+char 	*ft_build_wiprstr(char *res, char *src)
+{
+	int i;
+	int diff;
+
+	diff = arg.width - (int)ft_strlen(res); //width - precision string built before
+	i = 0;
+	res = ft_strnew(diff);
+	while (i < (arg.width - (int)ft_strlen(res)))
+	{
+		res[i] = ' ';
+		(CHECK_BIT(arg.flgmods, ZERO_F)) ? res[i++] = '0' : res[i++];
+	}
+	//while (i < diff)
+	//	res[i++] = ' ';
+	return (res = ft_strjoin(res, src));
+	//int diff;
+
+	//diff = arg.width - (int)ft_strlen(res);
+	//res = ft_strnew(diff);
+	//while (diff)
+	//	res[diff--] = ' ';
+	//res = ft_strjoin(res, src);
+}
+
+char	*di_wipr_fill(char *src)
+{
+	char *res;
+	//build precision string first
+	res = ft_build_precstr(src);
 
 	if (arg.precision > arg.width)
-		//run flag prepend/prefix check
-		//build precision string and return that
+	{
+		res = ft_pr_flag_check(res, src); //run flag PRECISION prepend/prefix check
 		return (res);
+	}
+	//else if (arg.precision > arg.width)
+	//{
+	//	
+	//}
 	else
-		//run flag prepend/prefix check
-		//return that final string
-
-
-
+	{
+		res = ft_build_wiprstr(res, src); //fill difference between precision and width with ' '.
+		res = ft_wi_flag_check(res, src); //run flag WIDTH prefix check on that string
+		return (res); //return that final string
+	}
 	return (res);
 }
 
@@ -75,21 +154,28 @@ char	*di_wipr_fill(char *src)
 
 char	*di_wipr_ch(char *src)
 {
-	int arg_size;
 	char *res;
 
-	arg_size = ft_strlen(src);
-	if ((arg_size > arg.width) && (arg_size > arg.precision))
-	{
-		//run flag prepend/prefix check
-		return (src);
-	}
+	res = ft_strnew(ft_strlen(src));
 	if (arg.width && arg.precision)
-		res = di_wipr_fill(src);
+	{
+		if (((int)ft_strlen(src) > arg.width) && ((int)ft_strlen(src) > arg.precision))
+			res = ft_basic_flag_check((ft_strcpy(res, src)), src);  //run flag BASIC prepend/prefix check
+		else
+			res = di_wipr_fill(src);
+	}
 	else if (arg.width && !arg.precision)
-		res = di_width_fill(src);
+	{
+		res = ft_build_widthstr(src);
+		res = ft_wi_flag_check(res, src); //width flag check
+	}
 	else if (arg.precision && !arg.width ) 
-		res = di_prec_fill(src);
+	{
+		res = ft_build_precstr(src);
+		res = ft_pr_flag_check(res, src); //run flag PRECISION prepend/prefix check
+	}
+	else
+		return (src);
 	return (res);
 }
 
@@ -104,22 +190,24 @@ void	di_print(char *src)
 
 	res = ft_strnew(ft_strlen(src));
 	//CHECK FOR LEFT JUST OR RIGHT JUST FIRST
-	//if (res = DI_WIPR_CHECK(RES))
-	if (arg.precision) 
-	{
-		if (arg.precision > arg.width)
-			res = leading_zeros_spaces(res, src, ft_strlen(src));
-		//create string with (precision/THE MINIMUM) amount of digits
-		else if (arg.precision > (int)ft_strlen(src))
-			res = leading_zeros_spaces(res, src, ft_strlen(src));
-		else if (arg.precision < arg.width)
-	}
-	//precision has been handled
-	else if (arg.width)
-	{
-		if (arg.width > (int)ft_strlen(res))
-			res = leading_zeros_spaces(res, src, ft_strlen(src));
-	}
+	if (arg.width || arg.precision)
+		res = di_wipr_ch(src);
+	//if ((res = di_wipr_ch(src)))
+	//if (arg.precision) 
+	//{
+	//	if (arg.precision > arg.width)
+	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//	//create string with (precision/THE MINIMUM) amount of digits
+	//	else if (arg.precision > (int)ft_strlen(src))
+	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//	else if (arg.precision < arg.width)
+	//}
+	////precision has been handled
+	//else if (arg.width)
+	//{
+	//	if (arg.width > (int)ft_strlen(res))
+	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
+	//}
 	else
 		ft_strcpy(res, src);
 	arg.char_count += ft_strlen(res);
