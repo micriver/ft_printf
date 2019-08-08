@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/07 19:40:04 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/08 09:34:08 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,25 @@ char	*ft_wi_flag_check(char *res, char *src)
 	int i;
 
 	i = 0;
-	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-')
+	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-' && (CHECK_BIT(arg.flgmods, ZERO_F)))
 		res = ft_prefixchar('+', res);
+	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-' && (!CHECK_BIT(arg.flgmods, ZERO_F)))
+	{
+		while (res[i] == ' ')
+			i++;
+		res[i - 1] = '+';
+	}
 	if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
 		res = ft_prefixchar(' ', res);
 	if (src[0] == '-')
 	{
 		if (CHECK_BIT(arg.flgmods, ZERO_F)) 
-			ft_srch_rep(res, '-', '0');
-		else
 		{
-			while (res[i] == ' ')
-				i++;
-			ft_srch_rep(res, res[i - 1], '-');
+			res = ft_srch_rep(res, '-', '0');
+			res = ft_prefixchar('-', res);
 		}
+		else
+			ft_srch_rep(res, ft_isdigit(res[i - 1]), '-');
 		res = ft_prefixchar('-', res);
 	}
 	return (res);
@@ -56,14 +61,11 @@ char	*ft_wi_flag_check(char *res, char *src)
 char	*ft_basic_flag_check(char *res, char *src)
 {
 	if ((ft_atoi(src) >= 0) && (CHECK_BIT(arg.flgmods, PLUS_F)) && (src[0] != '-'))
-	{
-		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			res = ft_prependchar('+', res);
-	}
+		res = ft_prependchar('+', src);
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
 	{
 		if (CHECK_BIT(arg.flgmods, ZERO_F))
-			res = ft_prependchar(' ', res);
+			res = ft_prependchar(' ', src);
 	}
 	return (res);
 }
@@ -209,7 +211,7 @@ void	di_print(char *src)
 	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
 	//}
 	else
-		ft_strcpy(res, src);
+		res = ft_basic_flag_check(res, src);  //run flag BASIC prepend/prefix check
 	arg.char_count += ft_strlen(res);
 	ft_putstr(res);
 	reset_flags();
