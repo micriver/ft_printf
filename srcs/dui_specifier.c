@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   di_specifier.c                                     :+:      :+:    :+:   */
+/*   dui_specifier.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/18 19:18:08 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/08 15:56:25 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/11 15:06:14 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/11 15:09:02 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_pr_flag_check(char *res, char *src)
 	if (src[0] == '-')
 	{
 		ft_srch_rep(res, '-', '0');
-		res = ft_prependchar('-', res);
+		res = ft_prefixchar('-', res);
 	}
 	return (res);
 }
@@ -103,34 +103,22 @@ char 	*ft_build_precstr(char *src)
 	return (res);
 }
 
-char 	*ft_build_wiprstr(char *res, char *src)
+char 	*ft_build_wiprstr(char *res)
 {
-	int i;
 	int diff;
 	char *wiprstr;
-	(void)src;
 
 	diff = arg.width - (int)ft_strlen(res); //width - precision string built before
-	i = 0;
 	wiprstr = ft_strnew(diff);
-	while (i < (diff))
+	while (diff)
 	{
-		wiprstr[i] = ' ';
-		(CHECK_BIT(arg.flgmods, ZERO_F) && !arg.precision) ? wiprstr[i++] = '0' : wiprstr[i++];
+		wiprstr[diff--] = ' ';
+		(CHECK_BIT(arg.flgmods, ZERO_F) && !arg.precision) ? wiprstr[diff--] = '0' : wiprstr[diff--];
 	}
-	//while (i < diff)
-	//	res[i++] = ' ';
 	return (res = ft_strjoin(wiprstr, res));
-	//int diff;
-
-	//diff = arg.width - (int)ft_strlen(res);
-	//res = ft_strnew(diff);
-	//while (diff)
-	//	res[diff--] = ' ';
-	//res = ft_strjoin(res, src);
 }
 
-char	*di_wipr_fill(char *src)
+char	*dui_wipr_fill(char *src)
 {
 	char *res;
 	//build precision string first
@@ -142,29 +130,16 @@ char	*di_wipr_fill(char *src)
 		res = ft_pr_flag_check(res, src); //run flag PRECISION prepend/prefix check
 		return (res);
 	}
-	//else if (arg.precision > arg.width)
-	//{
-	//	
-	//}
 	else
 	{
-		res = ft_build_wiprstr(res, src); //fill difference between precision and width with ' '.
-		//need to figure this out, maybe check for plus and zero flag behavior?
+		res = ft_build_wiprstr(res); //fill difference between precision and width with ' '.
 		res = ft_wi_flag_check(res, src); //run flag WIDTH prefix check on that string
 		return (res); //return that final string
 	}
 	return (res);
 }
 
-
-
-
-
-
-
-
-
-char	*di_wipr_ch(char *src)
+char	*dui_wipr_ch(char *src)
 {
 	char *res;
 
@@ -174,7 +149,7 @@ char	*di_wipr_ch(char *src)
 		if (((int)ft_strlen(src) > arg.width) && ((int)ft_strlen(src) > arg.precision))
 			res = ft_basic_flag_check((ft_strcpy(res, src)), src);  //run flag BASIC prepend/prefix check
 		else
-			res = di_wipr_fill(src);
+			res = dui_wipr_fill(src);
 	}
 	else if (arg.width && !arg.precision)
 	{
@@ -191,43 +166,22 @@ char	*di_wipr_ch(char *src)
 	return (res);
 }
 
-
-
-
-
-
-void	di_print(char *src)
+void	dui_print(char *src)
 {
 	char *res;
 
 	res = ft_strnew(ft_strlen(src));
 	//CHECK FOR LEFT JUST OR RIGHT JUST FIRST
 	if (arg.width || arg.precision)
-		res = di_wipr_ch(src);
-	//if ((res = di_wipr_ch(src)))
-	//if (arg.precision) 
-	//{
-	//	if (arg.precision > arg.width)
-	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
-	//	//create string with (precision/THE MINIMUM) amount of digits
-	//	else if (arg.precision > (int)ft_strlen(src))
-	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
-	//	else if (arg.precision < arg.width)
-	//}
-	////precision has been handled
-	//else if (arg.width)
-	//{
-	//	if (arg.width > (int)ft_strlen(res))
-	//		res = leading_zeros_spaces(res, src, ft_strlen(src));
-	//}
+		res = dui_wipr_ch(src);
 	else
-		res = ft_basic_flag_check(res, src);  //run flag BASIC prepend/prefix check
+		res = ft_basic_flag_check(res, src); 
 	arg.char_count += ft_strlen(res);
 	ft_putstr(res);
 	reset_flags();
 }
 
-void	di_ret_val(va_list args)
+void	dui_ret_val(va_list args)
 {
 	char *res;
 
@@ -237,6 +191,6 @@ void	di_ret_val(va_list args)
 		res = ft_long_itoa(va_arg(args, long long int));
 	else
 		res = ft_itoa(va_arg(args, int));
-	di_print(res);
+	dui_print(res);
 }
 

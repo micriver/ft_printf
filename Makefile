@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/06 15:52:23 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/11 15:23:17 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = ft_printf.c \
 	parser.c \
 	conversion.c \
-	di_specifier.c \
+	dui_specifier.c \
 	u_specifier.c \
 	s_specifier.c \
 	print_struct.c \
@@ -122,4 +122,4 @@ norme:
 debug:
 	@#$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./misc_files/main.c ./libft/libft.a -g -fsanitize=address
 	@#gcc ./srcs/main.c $(NAME) -g
-	$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./test_files/main.c ./libft/*.c -g -fsanitize=address 
+	$(CC) $(CFLAGS) -g $(addprefix srcs/,$(SRCS)) ./test_files/main.c ./libft/*.c  -fsanitize=address 

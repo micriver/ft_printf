@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/06 15:05:27 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/11 15:38:27 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/libft.h"
 # include "get_next_line.h"
 
-//#define	CONV_SPECS("diuoxXfsc")
+#define	CONV_SPECS "diuoxXfsc$%*"
 
 #define CHECK_BIT(var,pos) ((var >> pos) & 1) 
 #define SET_BIT(var,pos) (var |= 1 << pos) 
@@ -45,6 +45,7 @@ struct arguments
 	int		precision;
 	int		char_count;
 	char	conv;
+	//char	conv[9];
 } arg;
 
 
@@ -66,10 +67,13 @@ void					conversion(int *i, char *str, va_list args);
 char					*s_specifier(va_list args);
 char					*di_specifier(int64_t di);
 //char					*di_ret_val(va_list args);
-void					di_ret_val(va_list args);
+void					dui_ret_val(va_list args);
 char					*u_specifier(int64_t u);
-char					*u_ret_val(va_list args);
-char 					*ull_ret_val(va_list args);
+//char					*u_ret_val(va_list args);
+void					dui_print(char *src);
+void					u_ret_val(va_list args);
+//char 					*ull_ret_val(va_list args);
+void 					ull_ret_val(va_list args);
 
 /*
 ** Formatting

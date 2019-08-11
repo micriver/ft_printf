@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/05 13:37:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/11 15:38:33 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,6 @@ int		flag_parse(char *str, int *i)
 	}
 	return (1);
 }
-
-void		precision_check(char *str, int *i)
-{
-	int y;
-
-	y = (*i);
-	y++;
-	if (ft_strchr("diuoxXfsc", str[y]))
-		(*i) = y;
-	//else
-	//{
-	//	while (!ft_isalpha(str[y]) && str[y + 1] != '.')
-	//	y++;
-	//	if (str[y] != 'f')
-	//	{
-	//		//I have to add a second zero in place of the '.' char here
-	//		(*i)++;
-	//		//if (!CHECK_BIT(arg.flgmods, ZERO_F))
-	//		//	SET_BIT(arg.flgmods, ZERO_F);
-	//	}
-	//}
-}	
-
 
 // width modifier parser
 int		width_parser(char *str, int *i)
@@ -155,9 +132,16 @@ int		lengthmod_pars(char *str, int *i)
 
 int		conv_pars(char *fmt, int *i)
 {
-	if (!ft_strchr("diuoxXfsc", fmt[*i]))
-			return (0);
-	arg.conv = (char)ft_strchr("diuoxXfsc", fmt[*i]);
+
+	int n;
+
+	n = 0;
+	while (CONV_SPECS[n])
+	{
+		if (fmt[*i] == CONV_SPECS[n])
+			arg.conv = CONV_SPECS[n];
+		n++;
+	}
 	(*i) += 1; //this line came from ft_printf, to iterate out of the parsed argument
 	return (1);
 }
