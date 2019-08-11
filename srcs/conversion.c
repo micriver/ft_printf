@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/11 15:36:12 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/11 15:40:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	conversion(int *i, char *str, va_list args)
 //		n++;
 //	}
 	//printf("You're conversion character is %c\n", arg.conv);
-	if ((arg.conv = 'd') || (arg.conv = 'i'))
+	if (arg.conv == 'd' || arg.conv == 'i')
 		dui_ret_val(args);
 	//if (arg.conv = 'u')
 	//if (ft_strcmp(arg.conv, "u") == 0)
