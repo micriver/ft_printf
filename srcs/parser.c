@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/11 15:38:33 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/12 20:29:59 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		flag_parse(char *str, int *i)
 		return (0);
 	while (!ft_isalnum(str[*x]) || str[*x] == '0') //we parse the parameters until we get to a conversion specifier
 	{
+		if (str[*x] == '.')
+			return (0);
 		(str[*x] == '#') ? SET_BIT(arg.flgmods, SHARP_F) : str[*x];
 		(str[*x] == '-') ? SET_BIT(arg.flgmods, MINUS_F) : str[*x];
 		(str[*x] == '+') ? SET_BIT(arg.flgmods, PLUS_F) : str[*x];

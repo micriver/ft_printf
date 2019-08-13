@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 15:06:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/12 16:27:05 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/13 15:50:28 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*ft_wi_flag_check(char *res, char *src)
 	int i;
 
 	i = 0;
-	((int)ft_strlen(src) > arg.width) ? ft_strcpy(res, src) : res;
 	if (CHECK_BIT(arg.flgmods, PLUS_F) && src[0] != '-' && (CHECK_BIT(arg.flgmods, ZERO_F)) && !arg.precision)
 		res = ft_prefixchar('+', res);
 	if ((CHECK_BIT(arg.flgmods, PLUS_F)) && (src[0] != '-') && (!CHECK_BIT(arg.flgmods, ZERO_F)))
@@ -45,32 +44,33 @@ char	*ft_wi_flag_check(char *res, char *src)
 	}
 	if (CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
 		res = ft_prefixchar(' ', res);
-	if (src[0] == '-' && (arg.width < arg.precision))
+	//if (src[0] == '-' && (arg.width < arg.precision))
+	if (src[0] == '-' )
 	{
+		//might have to control a negative source string function to handle signs
+		//if (arg.width < arg.precision)
+			//do stuff
 		if ((CHECK_BIT(arg.flgmods, ZERO_F)) && !arg.precision)
 		{
 			res = ft_srch_rep(res, '-', '0');
 			res = ft_prefixchar('-', res);
 		}
-		//else
-		//	ft_srch_rep(res, ft_isdigit(res[i - 1]), '-');
+		else if ((arg.width > (int)ft_strlen(src) && (!CHECK_BIT(arg.flgmods, ZERO_F))))
+			return (res);
 		res = ft_prefixchar('-', res);
 	}
-	else
-	{
-		return (res);
-		//res = ft_strnew(ft_strlen(src));
-		//res = ft_strcpy(res, src);
-	}
-//	else
-//		return (res = ft_strcpy(ft_strnew(ft_strlen(src)), src));
 	return (res);
 }
 
 
+/*
+** The basic flag_check looks at argument strings that are > their width and/or
+** precision as well as arguments that do not have either of those values
+*/
+
 char	*ft_basic_flag_check(char *res, char *src)
 {
-	if ((ft_atoi(src) >= 0) && (CHECK_BIT(arg.flgmods, PLUS_F)) && (src[0] != '-'))
+	if ((ft_atoi(src) >= 0) && (CHECK_BIT(arg.flgmods, PLUS_F)) && (*src != '-'))
 		res = ft_prependchar('+', src);
 	else if (ft_atoi(src) >= 0 && CHECK_BIT(arg.flgmods, INVP_F) && src[0] != '-')
 	{
@@ -99,6 +99,7 @@ char 	*ft_build_widthstr(char *src)
 	return (res = ft_strjoin(res, src));
 }
 
+//WAS GOING THROUGH THIS FUNCTION WITH ELIJAH, NEEDS TO BE FIXED!
 char 	*ft_build_precstr(char *src)
 {
 	char *res;
@@ -111,9 +112,15 @@ char 	*ft_build_precstr(char *src)
 	res = ft_strjoin(res, src);
 	if (src[0] == '-' && ((int)ft_strlen(src) < arg.precision))
 	{
-		res = ft_srch_rep(res, '-', '0');
-		res = ft_prependchar('-', res);
+		temp = ft_strjoin(temp, res);
+		free(res);
+		res = ft_srch_rep(temp, '-', '0');
+		free(temp);
+		temp
+		res = ft_prependchar('-', temp);
 	}
+	res = temp;
+	free(temp);
 	return (res);
 }
 
@@ -171,10 +178,13 @@ char	*dui_build_check(char *res, char *src)
 char	*dui_wi_check(char *res, char *src)
 {
 	if (((int)ft_strlen(src) > arg.width))
-		return (res = ft_wi_flag_check(res, src)); //width flag check
+	{
+		res = ft_strcpy(ft_strnew(ft_strlen(src)), src);
+		return (res = ft_basic_flag_check(res, src)); //width flag check
+	}
 	else
 	{
-		res = ft_strnew(ft_strlen(src));
+		//res = ft_strnew(ft_strlen(src));
 		return (res = ft_wi_flag_check(ft_build_widthstr(src), src)); //width flag check
 	}
 }
@@ -195,13 +205,7 @@ char	*dui_wipr_ch(char *src)
 	if (arg.width && arg.precision)
 		return (res = dui_build_check(res, src));
 	else if (arg.width && !arg.precision)
-	{
 		return (res = dui_wi_check(res, src));
-		//if (((int)ft_strlen(src) > arg.width))
-		//	return (res = ft_wi_flag_check(res, src)); //width flag check
-		//else
-		//	return (res = ft_wi_flag_check(ft_build_widthstr(src), src)); //width flag check
-	}
 	else if (arg.precision && !arg.width ) 
 		return (res = dui_pr_check(res, src));
 	else
@@ -227,6 +231,8 @@ void	dui_ret_val(va_list args)
 {
 	char *res;
 
+//you can use long long itoa for all of them!!!!!
+//230 can just be (if), get rid of first two lines
 	if (CHECK_BIT(arg.flgmods, SHOINT))
 		res = ft_itoa(va_arg(args, int));
 	else if ((CHECK_BIT(arg.flgmods, LNGLNG)) || (CHECK_BIT(arg.flgmods, LONGINT)))
