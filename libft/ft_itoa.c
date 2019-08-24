@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 21:17:42 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/26 20:59:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/16 13:21:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 char	*ft_itoa(int n)
 {
-	int 	length;
+	int		length;
 	int		sign;
 	char	*str;
 

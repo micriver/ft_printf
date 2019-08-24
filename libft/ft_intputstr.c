@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_intputstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 15:55:05 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/19 19:13:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/16 10:54:49 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/19 19:12:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_uitoa(unsigned long int n)
+int	ft_intputstr(char *str)
 {
-	unsigned long int	sign;
-	unsigned long int	length;
-	char				*str;
+	int i;
 
-	sign = n;
-	length = 1;
-	while (sign /= 10)
-		length++;
-	str = ft_strnew(length);
-	if (!str)
-		str[0] = '0';
-	while (--length >= sign)
-	{
-		str[length] = (n >= 10) ? (n % 10) + 48 : n + 48;
-		n /= 10;
-		if (length == 0)
-			break ;
-	}
-	str[ft_strlen(str)] = '\0';
-	return (str);
+	i = 0;
+	while (str[i])
+		write(1, &str[i++], 1);
+	return (i);
 }

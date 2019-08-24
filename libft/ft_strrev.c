@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 15:55:05 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/19 19:13:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/19 19:14:55 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/19 19:15:19 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_uitoa(unsigned long int n)
+char	*ft_strrev(char *str)
 {
-	unsigned long int	sign;
-	unsigned long int	length;
-	char				*str;
+	int		i;
+	int		length;
+	char	temp;
 
-	sign = n;
-	length = 1;
-	while (sign /= 10)
+	length = 0;
+	while (str[length] != '\0')
 		length++;
-	str = ft_strnew(length);
-	if (!str)
-		str[0] = '0';
-	while (--length >= sign)
+	i = -1;
+	while (++i < --length)
 	{
-		str[length] = (n >= 10) ? (n % 10) + 48 : n + 48;
-		n /= 10;
-		if (length == 0)
-			break ;
+		temp = str[i];
+		str[i] = str[length];
+		str[length] = temp;
 	}
-	str[ft_strlen(str)] = '\0';
 	return (str);
 }

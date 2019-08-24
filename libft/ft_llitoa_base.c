@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 15:55:05 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/19 19:13:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/16 16:10:08 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/16 16:13:12 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_uitoa(unsigned long int n)
+char	*ft_llitoa_base(long long int num, char *str, int base, int i)
 {
-	unsigned long int	sign;
-	unsigned long int	length;
-	char				*str;
+	long long int	rem;
+	long long int	temp;
+	long long int	length;
+	int				sign;
 
-	sign = n;
+	temp = num;
+	sign = 1;
 	length = 1;
-	while (sign /= 10)
+	while (temp /= base)
 		length++;
 	str = ft_strnew(length);
-	if (!str)
-		str[0] = '0';
-	while (--length >= sign)
+	if (num == 0)
 	{
-		str[length] = (n >= 10) ? (n % 10) + 48 : n + 48;
-		n /= 10;
-		if (length == 0)
-			break ;
+		str[i] = '0';
+		str[i + 1] = '\0';
+		return (str);
 	}
-	str[ft_strlen(str)] = '\0';
-	return (str);
+	while (num != 0)
+	{
+		rem = (num % base);
+		str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+		num = (num / base);
+	}
+	str[i] = '\0';
+	return (ft_strrev(str));
 }

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_ullitoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 15:55:05 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/19 19:13:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/16 14:04:29 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/16 14:08:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_uitoa(unsigned long int n)
+char	*ft_ullitoa(unsigned long long int n)
 {
-	unsigned long int	sign;
-	unsigned long int	length;
-	char				*str;
+	unsigned long long int	sign;
+	unsigned long long int	length;
+	char					*str;
 
 	sign = n;
 	length = 1;

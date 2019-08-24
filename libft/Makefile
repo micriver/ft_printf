@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 09:12:29 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/06 15:51:28 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/16 14:01:51 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ SRC = 	ft_atoi.c ft_lstdelone.c ft_memset.c ft_strclr.c ft_strmap.c ft_strsub.c 
 		ft_itoa.c ft_memcpy.c ft_putstr_fd.c ft_strjoin.c ft_strrchr.c \
 		ft_lstadd.c ft_memdel.c ft_strcat.c ft_strlcat.c ft_strsplit.c \
 		ft_lstdel.c ft_memmove.c ft_strchr.c ft_strlen.c ft_strstr.c ft_strndup.c \
-		get_next_line.c ft_prefixchar.c ft_prependchar.c ft_long_itoa.c ft_ull_itoa.c \
-		ft_uitoa.c ft_srch_rep.c \
+		get_next_line.c ft_prefixchar.c ft_prependchar.c ft_llitoa.c ft_ullitoa.c \
+		ft_uitoa.c ft_srch_rep.c ft_intputstr.c ft_intputchar.c ft_strrev.c ft_itoa_base.c \
 
 OBJECTS =	ft_atoi.o ft_lstdelone.o ft_memset.o ft_strclr.o ft_strmap.o ft_strsub.o \
 			ft_bzero.o ft_lstiter.o ft_putchar.o ft_strcmp.o ft_strmapi.o ft_strtrim.o \
@@ -43,8 +43,8 @@ OBJECTS =	ft_atoi.o ft_lstdelone.o ft_memset.o ft_strclr.o ft_strmap.o ft_strsub
 			ft_itoa.o ft_memcpy.o ft_putstr_fd.o ft_strjoin.o ft_strrchr.o \
 			ft_lstadd.o ft_memdel.o ft_strcat.o ft_strlcat.o ft_strsplit.o \
 			ft_lstdel.o ft_memmove.o ft_strchr.o ft_strlen.o ft_strstr.o ft_strndup.o \
-			get_next_line.o ft_prefixchar.o ft_prependchar.o ft_long_itoa.o ft_ull_itoa.o \
-			ft_uitoa.o ft_srch_rep.o \
+			get_next_line.o ft_prefixchar.o ft_prependchar.o ft_llitoa.o ft_ullitoa.o \
+			ft_uitoa.o ft_srch_rep.o ft_intputstr.o ft_intputchar.o ft_strrev.o ft_itoa_base.o \
 
 all: $(NAME)
 
@@ -54,6 +54,7 @@ $(NAME):
 	@ranlib $(NAME)
 
 clean:
+	@rm -rf a.out*
 	@rm -rf $(OBJECTS)
 
 fclean: clean

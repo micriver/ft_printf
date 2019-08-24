@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_llitoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 15:55:05 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/19 19:13:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/16 13:57:53 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/16 14:08:45 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_uitoa(unsigned long int n)
+char	*ft_llitoa(long long int n)
 {
-	unsigned long int	sign;
-	unsigned long int	length;
-	char				*str;
+	int64_t	length;
+	int64_t sign;
+	char	*str;
 
 	sign = n;
 	length = 1;
 	while (sign /= 10)
 		length++;
+	sign = n < 0 ? 1 : 0;
+	length = n < 0 ? length += 1 : length;
 	str = ft_strnew(length);
 	if (!str)
-		str[0] = '0';
+		return (NULL);
+	if (n == -2147483648)
+		return (str = ft_strdup("-2147483648"));
+	if (sign)
+		str[0] = '-';
+	n = n < 0 ? n *= -1 : n;
 	while (--length >= sign)
 	{
 		str[length] = (n >= 10) ? (n % 10) + 48 : n + 48;
 		n /= 10;
-		if (length == 0)
-			break ;
 	}
 	str[ft_strlen(str)] = '\0';
 	return (str);
