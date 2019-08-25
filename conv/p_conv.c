@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   p_conv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:24:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/16 15:38:54 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/24 19:21:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+void	p_conv(va_list args)
 {
-	va_list		args;
-	int			i;
+	char *res;
+	void *ptr;
 
-	arg.char_count = 0;
-	va_start(args, fmt);
-	i = 0;
-	while (fmt[i])
-	{
-		if (fmt[i] == '%' && fmt[i + 1] == '%')
-		{
-			i += 2;
-			arg.char_count += ft_intputchar('%');
-		}
-		else if (fmt[i] == '%')
-			conversion(&i, fmt, args);
-		else if (fmt[i] == '\0')
-			break ;
-		else
-			arg.char_count += ft_intputchar(fmt[i++]);
-	}
-	va_end(args);
-	return (arg.char_count);
+	res = NULL;
+	ptr = va_arg(args, void *);
+	res = ft_llitoa_base((long)ptr, res, 16, 0);
+	res = ft_strjoin("0x", res);
+	arg.char_count += ft_intputstr(res);
+	reset_flags();
+	free(res);
 }

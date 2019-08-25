@@ -6,15 +6,12 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/12 20:29:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/24 17:45:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
-#include <stdarg.h>
-#include <stdio.h>
 
-// flag parser
 int		flag_parse(char *str, int *i)
 {
 	int *x;
@@ -22,7 +19,7 @@ int		flag_parse(char *str, int *i)
 	x = i;
 	if (str[*x] == '.')
 		return (0);
-	while (!ft_isalnum(str[*x]) || str[*x] == '0') //we parse the parameters until we get to a conversion specifier
+	while (!ft_isalnum(str[*x]) || str[*x] == '0')
 	{
 		if (str[*x] == '.')
 			return (0);
@@ -36,7 +33,6 @@ int		flag_parse(char *str, int *i)
 	return (1);
 }
 
-// width modifier parser
 int		width_parser(char *str, int *i)
 {
 	int y;
@@ -47,26 +43,21 @@ int		width_parser(char *str, int *i)
 	x = i;
 	if (str[*x] == '.')
 		return (0);
-		//(*x)++;
-	//	precision_check(str, i);
 	j = (*i);
 	y = 0;
 	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
 		(j)++;
 	result = ft_strnew(j);
-	while (!(ft_isalpha(str[*x])) && str[*x] != '.') //we parse the parameters until we get to a '.' or conv specifier
-		//ft_strcpy(result, str);
+	while (!(ft_isalpha(str[*x])) && str[*x] != '.')
 	{
 		result[y] = str[*x];
 		y++;
 		(*x)++;
 	}
 	arg.width = ft_atoi(result);
-	//printf("you're width is = %d\n", arg.width);
 	return (1);
 }
 
-// precision modifier
 int		precision_parser(char *str, int *i)
 {
 	int *x;
@@ -82,14 +73,13 @@ int		precision_parser(char *str, int *i)
 	j = (*i);
 	y = 0;
 	result = ft_strnew(j);
-	while (!ft_isalpha(str[*x])) //we parse the string/numbers until we get to a conversion specifier
+	while (!ft_isalpha(str[*x]))
 	{
 		result[y] = str[*x];
 		y++;
 		(*x)++;
 	}
 	arg.precision = ft_atoi(result);
-	//printf("you're precision is = %d\n", arg.precision);
 	return (1);
 }
 
@@ -134,21 +124,22 @@ int		lengthmod_pars(char *str, int *i)
 
 int		conv_pars(char *fmt, int *i)
 {
-
 	int n;
 
 	n = 0;
 	while (CONV_SPECS[n])
 	{
 		if (fmt[*i] == CONV_SPECS[n])
+		{
 			arg.conv = CONV_SPECS[n];
+			break ;
+		}
 		n++;
 	}
-	(*i) += 1; //this line came from ft_printf, to iterate out of the parsed argument
+	(*i) += 1;
 	return (1);
 }
 
-//master parser
 void	master_pars(char *fmt, int *i)
 {
 	flag_parse(fmt, i);

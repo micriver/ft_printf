@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/12 17:54:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/24 18:56:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,77 +19,93 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-# include "get_next_line.h"
+# include "../libft/get_next_line.h"
 
-#define	CONV_SPECS "diuoxXfsc$%*"
+# define CONV_SPECS "scdiuoxXpf$%*"
 
-#define CHECK_BIT(var,pos) ((var >> pos) & 1) 
-#define SET_BIT(var,pos) (var |= 1 << pos) 
-#define TOGGLE_BIT(var,pos) (var ^= (1 << pos)) 
+# define CHECK_BIT(var,pos) ((var >> pos) & 1)
+# define SET_BIT(var,pos) (var |= 1 << pos)
+# define TOGGLE_BIT(var,pos) (var ^= (1 << pos))
 
-#define ZERO_F (0)
-#define MINUS_F (1)
-#define PLUS_F (2)
-#define SHARP_F (3)
-#define INVP_F (4)
-#define SGNDCHR (5)
-#define SHOINT (6)
-#define LONGINT (7)
-#define LNGLNG (8)
-#define LNG_D (9)
+# define ZERO_F (0)
+# define MINUS_F (1)
+# define PLUS_F (2)
+# define SHARP_F (3)
+# define INVP_F (4)
+# define SGNDCHR (5)
+# define SHOINT (6)
+# define LONGINT (7)
+# define LNGLNG (8)
+# define LNG_D (9)
 
-struct arguments
-{
-	int		flgmods : 16; 
-	int		width;
-	int		precision;
-	int		char_count;
-	char	conv;
-	//char	conv[9];
-} arg;
-
-
-int		ft_printf(char *fmt, ...);
-
-/*
-** Parsing
-*/
-
-void	master_pars(char *fmt, int *i);
-//parsing functions will go here
+int					ft_printf(char *fmt, ...);
 
 /*
 ** Conversion
 */
 
-//char					*conversion(int *i, char *str, va_list args);
-void					conversion(int *i, char *str, va_list args);
-char					*s_specifier(va_list args);
-char					*di_specifier(int64_t di);
-//char					*di_ret_val(va_list args);
-void					dui_ret_val(va_list args);
-char					*u_specifier(int64_t u);
-//char					*u_ret_val(va_list args);
-void					dui_print(char *src);
-void					u_ret_val(va_list args);
-//char 					*ull_ret_val(va_list args);
-void 					ull_ret_val(va_list args);
+void				conversion(int *i, char *str, va_list args);
+void				dui_ret_val(va_list args);
+char				*u_specifier(int64_t u);
+void				dui_print(char *src);
+void				ull_ret_val(va_list args);
+
+void				s_conv(va_list args);
+void				c_conv(va_list args);
+void				dui_conv(va_list args);
+void				u_conv(va_list args);
+void				i_conv(va_list args);
+void				f_conv(va_list args);
+void				o_conv(va_list args);
+void				x_conv(va_list args);
+void				bx_conv(va_list args);
+void				ox_conv(va_list args);
+void				p_conv(va_list args);
+
+/*
+** Structs
+*/
+
+typedef struct		s_dispatch_table
+{
+	char			specifier;
+	void			(*function)();
+}					t_dt;
+
+struct				s_arguments
+{
+	int				flgmods : 16;
+	int				width;
+	int				precision;
+	int				char_count;
+	char			conv;
+}					arg;
+
+/*
+** Parsing
+*/
+
+void				master_pars(char *fmt, int *i);
+int					flag_parse(char *str, int *i);
+int					width_parser(char *str, int *i);
+int					precision_parser(char *str, int *i);
+int					lengthmod_pars(char *str, int *i);
+int					conv_pars(char *fmt, int *i);
 
 /*
 ** Formatting
+** //will most likely be getting rid of all these
+** /char	*insertplussign(char *str);
+** /char	*lead_zero_negsign(char *dest, char *src);
+** /char	*leading_zeros_spaces(char *dest, char *src, int arg_size);
+** /char	*rj_strncpy(char *src);
+** /char	*lj_strncpy(char *src);
 */
-
-char	*insertplussign(char *str);
-char	*lead_zero_negsign(char *dest, char *src);
-char	*leading_zeros_spaces(char *dest, char *src, int arg_size);
-char	*rj_strncpy(char *src);
-char	*lj_strncpy(char *src);
 
 /*
-** Structure
+** Struc functions
 */
 
-void	print_struct(void);
-void	reset_flags(void);
+void				reset_flags(void);
 
 #endif

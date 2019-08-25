@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/11 15:23:17 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/24 19:59:46 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,27 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRCS = ft_printf.c \
 	parser.c \
-	conversion.c \
-	dui_specifier.c \
-	u_specifier.c \
-	s_specifier.c \
-	print_struct.c \
-	rj_strncpy.c \
-	lj_strncpy.c \
+	reset_struct.c \
+
+CONV = conversion.c \
+	c_conv.c \
+	s_conv.c \
+	dui_conv.c \
+	ox_conv.c \
+	p_conv.c \
+	#u_conv.c \
+	#f_conv.c \
+	#bx_conv.c \
+
+FORM = #bx_form.c \
+	d_form.c \
+	f_form.c \
+	i_form.c \
+	o_form.c \
+	p_form.c \
+	s_form.c \
+	u_form.c \
+	x_form.c \
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \
@@ -98,28 +112,39 @@ LIBFT_SRCS = ft_atoi.c \
 
 OBJECTS = $(patsubst %.c,%.o,$(SRCS))
 OBJECTS += $(patsubst %.c,%.o,$(LIBFT_SRCS))
+OBJECTS += $(patsubst %.c,%.o,$(CONV))
+OBJECTS += $(patsubst %.c,%.o,$(FORM))
 
 all: $(NAME)
 
 $(NAME):
-	@$(CC) $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) -I $(HEADERS)
+	@echo 'Compiling your source files...'
+	@$(CC) $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) -I $(HEADERS)
+	@echo 'Building your library...'
 	@ar rc $(NAME) $(OBJECTS)
+	@echo 'Optimizing your library...'
 	@ranlib $(NAME)
+	@echo 'Library has been completed!'
 
 clean:
+	@echo 'Removing object files and any executables...'
 	@rm -rf $(OBJECTS)
 	@rm -rf a.out*
+	@rm -rf debug*
+	@rm -rf *.dysm
 
 fclean:	clean
+	@echo 'Removing the library...'
 	@rm -rf $(NAME)
 
 re:	fclean all
+	@#echo 'Removing everything and then re-compiling...'
 
 norme:
 	@echo 'Le Norme...'
-	@norminette -R CheckForbiddenSourceHeader $(HEADERS) $(addprefix srcs/,$(SRCS)) 
+	@norminette -R CheckForbiddenSourceHeader $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM))
 
 debug:
-	@#$(CC) $(CFLAGS) $(addprefix srcs/,$(SRCS)) ./misc_files/main.c ./libft/libft.a -g -fsanitize=address
-	@#gcc ./srcs/main.c $(NAME) -g
-	$(CC) $(CFLAGS) -g $(addprefix srcs/,$(SRCS)) ./test_files/main.c ./libft/*.c  -fsanitize=address 
+	@echo 'Creating your test executable...'
+	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) ./misc_files/main2.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
+	@echo 'debug_ft_printf executable created'

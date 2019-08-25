@@ -6,35 +6,41 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/11 15:45:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/24 20:00:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
-#include <stdio.h>
+
+const		t_dt	g_dt[] =
+{
+	{'c', c_conv},
+	{'s', s_conv},
+	{'d', dui_conv},
+	{'u', dui_conv},
+	{'i', dui_conv},
+	//{'f', f_conv},
+	{'o', ox_conv},
+	{'p', p_conv},
+	{'x', ox_conv},
+	//{'X', bx_conv}
+};
 
 void	conversion(int *i, char *str, va_list args)
 {
+	int x;
+
+	x = 0;
 	(*i)++;
 	master_pars(str, i);
-	//place a while loop here where you loop through n
-	//and a list of specifiers in a string
-	//DISPATCH TABLE!!!!
-	//while loop and dispatch table here
-	//printf("You're conversion character is %c\n", arg.conv);
-	if (arg.conv == 'd' || arg.conv == 'i')
-		dui_ret_val(args);
-	else if (arg.conv == 'u')
+	//conv_pars(str, i);
+	while (x < 10)
 	{
-		if (CHECK_BIT(arg.flgmods, LNGLNG))
-			ull_ret_val(args);
-		else
-			u_ret_val(args);
+		if (g_dt[x].specifier == arg.conv)
+		{
+			g_dt[x].function(args);
+			break ;
 	}
-	//else if (str[*i] == 's')
-	//	result = s_specifier(args);
-	//else
-	//	result = NULL; 
-	//return (result);
+		x++;
+	}
 }
-

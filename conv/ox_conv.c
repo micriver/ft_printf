@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ox_conv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:24:47 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/16 14:08:58 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/24 19:25:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+void	ox_conv(va_list args)
 {
-	va_list		args;
-	int			i;
+	char	*res;
+	int		n;
+	char	*temp;
 
-	arg.char_count = 0;
-	va_start(args, fmt);
-	i = 0;
-	while (fmt[i])
+	n = va_arg(args, int64_t);
+	res = NULL;
+	if (n == 0)
 	{
-		if (fmt[i] == '%' && fmt[i + 1] == '%')
-		{
-			i += 2;
-			arg.char_count += ft_intputchar('%');
-		}
-		else if (fmt[i] == '%')
-			conversion(&i, fmt, args);
-		else if (fmt[i] == '\0')
-			break ;
-		else
-			arg.char_count += ft_intputchar(fmt[i++]);
+		temp = "0";
+		res = ft_strnew(1);
+		res = ft_strcpy(res, temp);
 	}
-	va_end(args);
-	return (arg.char_count);
+	else if (arg.conv == 'o')
+		res = ft_itoa_base(n, res, 8, 0);
+	else
+		res = ft_itoa_base(n, res, 16, 0);
+	arg.char_count += ft_intputstr(res);
+	reset_flags();
+	free(res);
 }

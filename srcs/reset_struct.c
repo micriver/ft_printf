@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_specifier.c                                      :+:      :+:    :+:   */
+/*   reset_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 11:36:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/07/23 11:56:18 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/17 20:05:15 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/24 19:05:39 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
-#include <stdio.h>
 
-char	*s_specifier(va_list args)
+void	reset_flags(void)
 {
-	char *result;
-	char *temp;
-	char *argument;
+	int i;
 
-	result = NULL;
-	//unsigned int x;
-	temp = va_arg(args, char *);
-	argument = ft_strnew(ft_strlen(temp));
-	//temp = ft_strnew(ft_strlen((const char *)args));
-	result = ft_strcpy(argument, temp);
-	return (result);
+	i = 0;
+	while (i < 9)
+	{
+		if (CHECK_BIT(arg.flgmods, i))
+			TOGGLE_BIT(arg.flgmods, i);
+		i++;
+	}
 }
-

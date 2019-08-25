@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   s_conv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/13 15:45:58 by mirivera          #+#    #+#             */
-/*   Updated: 2019/04/17 13:21:58 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/17 19:52:03 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/24 19:19:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../headers/ft_printf.h"
 
-# define BUFF_SIZE 9999
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft.h"
+void	s_conv(va_list args)
+{
+	char *res;
 
-int		get_next_line(const int fd, char **line);
-
-#endif
+	res = va_arg(args, char *);
+	if (res == NULL)
+		arg.char_count += ft_intputstr("(null)");
+	else
+		arg.char_count += ft_intputstr(res);
+}
