@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/24 19:59:46 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/24 20:18:16 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ CONV = conversion.c \
 	dui_conv.c \
 	ox_conv.c \
 	p_conv.c \
+	bx_conv.c \
 	#u_conv.c \
 	#f_conv.c \
-	#bx_conv.c \
 
 FORM = #bx_form.c \
 	d_form.c \

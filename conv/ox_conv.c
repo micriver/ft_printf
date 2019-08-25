@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:08:58 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:25:54 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/24 20:32:50 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ox_conv(va_list args)
 {
 	char	*res;
-	int		n;
+	int64_t	n;
 	char	*temp;
 
 	n = va_arg(args, int64_t);

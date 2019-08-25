@@ -12,14 +12,20 @@ libftprintf.a
 /rebuild
 /includes/*
 /test*
-a.out.dSYM/
+*dSYM/
 libft/.gitignore
+/misc_files
+
+#dot files
+._*
 
 #Object Files
 *.o
 /objects
 
 #Misc files
+debug_ft_printf
+*.pdf
 tests.c
 .DS_Store
 *.py
@@ -30,7 +36,4 @@ tests.c
 .nfs*
 *.gch
 pft/
-/misc_files
-pft/
-/srcs/main.c
-pft/
+*main.c

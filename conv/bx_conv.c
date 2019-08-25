@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 19:50:07 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:52:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/24 20:33:31 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	bx_conv(va_list args)
 {
 	char	*res;
-	int		n;
+	int64_t	n;
 	char	*temp;
 
 	n = va_arg(args, int64_t);
@@ -26,7 +26,7 @@ void	bx_conv(va_list args)
 		res = ft_strnew(1);
 		res = ft_strcpy(res, temp);
 	}
-	res = ft_itoa_baseUP(n, res, 8, 0);
+	res = ft_itoa_baseUP(n, res, 16, 0);
 	arg.char_count += ft_intputstr(res);
 	reset_flags();
 	free(res);
