@@ -29,7 +29,7 @@ long double		ft_round(long double value)
 		i++;
 	}
 	result = (int)(value * multip) + .5;
-	return (printf ("%.2f\n", (float)result / multip));
+	return (printf ("%.7f\n", (float)result / multip));
 	//return ((float)result / multip);
 }
 
@@ -39,7 +39,10 @@ int		main()
 {
 	//float value = -37.66666;
 	//float value = -10.000;
-	float value = -23.688;
+	//float value = -23.688;
+	//float value = -11029.000568;
+	//float value = -11029.8641;
+	float value = -12229.12436800;
 	ft_round(value);
 }
 
