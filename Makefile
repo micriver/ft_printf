@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/24 20:18:16 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/27 14:13:29 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ CONV = conversion.c \
 	ox_conv.c \
 	p_conv.c \
 	bx_conv.c \
+	f_conv.c \
 	#u_conv.c \
-	#f_conv.c \
 
 FORM = #bx_form.c \
 	d_form.c \
@@ -146,5 +146,5 @@ norme:
 
 debug:
 	@echo 'Creating your test executable...'
-	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) ./misc_files/main2.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
+	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
 	@echo 'debug_ft_printf executable created'

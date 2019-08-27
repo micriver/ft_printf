@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 20:15:28 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/27 14:19:13 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ const		t_dt	g_dt[] =
 	{'d', dui_conv},
 	{'u', dui_conv},
 	{'i', dui_conv},
-	//{'f', f_conv},
+	{'f', f_conv},
 	{'o', ox_conv},
 	{'p', p_conv},
 	{'x', ox_conv},
@@ -33,7 +33,7 @@ void	conversion(int *i, char *str, va_list args)
 	x = 0;
 	(*i)++;
 	master_pars(str, i);
-	//conv_pars(str, i);
+	//see if you can insert you're conversion character macro here
 	while (x < 10)
 	{
 		if (g_dt[x].specifier == arg.conv)
