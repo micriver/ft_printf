@@ -6,21 +6,22 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/27 15:09:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/27 15:16:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-
+//create ft_power(int base, int exponent)
+//		 ft_power(10, arg.precision);
+//fpart = round(double value);
+//		0.45 / (10 to the precision(th) power)
 
 long double		decconv(long double dec)
 {
 	int i;
-	//int fakeprec;
 
 	i = 0;
-	//fakeprec = 6;
 	if (dec < 0)
 		dec *= -1;
 	while (i++ < arg.precision)
@@ -47,10 +48,10 @@ void	f_conv(va_list args)
 	ipart = (int)num;
 	whlnum = ft_itoa(ipart);
 	fpart = num - ipart;	
-	fpart = decconv(fpart);
-	ipart = (int)fpart;
 	//function to round the decimals
 	//should go here prior to itoa
+	fpart = decconv(fpart);
+	ipart = (int)fpart;
 	decnum = ft_itoa(ipart);
 
 
