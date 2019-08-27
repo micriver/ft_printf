@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/27 14:13:29 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/27 14:48:38 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,6 +145,6 @@ norme:
 	@norminette -R CheckForbiddenSourceHeader $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM))
 
 debug:
-	@echo 'Creating your test executable...'
+	@echo 'Compiling your test executable...'
 	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
 	@echo 'debug_ft_printf executable created'

@@ -6,22 +6,24 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/27 14:43:07 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/27 15:09:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-long double		deccount(long double dec)
+
+
+long double		decconv(long double dec)
 {
 	int i;
-	int fakeprec;
+	//int fakeprec;
 
 	i = 0;
-	fakeprec = 6;
+	//fakeprec = 6;
 	if (dec < 0)
 		dec *= -1;
-	while (i++ < fakeprec)
+	while (i++ < arg.precision)
 		dec = dec * 10;
 	return (dec);
 }
@@ -30,6 +32,9 @@ long double		deccount(long double dec)
 
 void	f_conv(va_list args)
 {
+	//If the precision is missing, it is taken as 6
+	if (!arg.precision && arg.precision != 0)
+		arg.precision = 6;
 	//(void)args;
 	//ft_putstr("here");
 	double num;
@@ -42,7 +47,7 @@ void	f_conv(va_list args)
 	ipart = (int)num;
 	whlnum = ft_itoa(ipart);
 	fpart = num - ipart;	
-	fpart = deccount(fpart);
+	fpart = decconv(fpart);
 	ipart = (int)fpart;
 	//function to round the decimals
 	//should go here prior to itoa
@@ -60,8 +65,17 @@ void	f_conv(va_list args)
 	//printf("Your decimal number as a string = %s\n", decnum);
 	//printf("\n");
 	ft_putstr(whlnum);
-	ft_putchar('.');
-	ft_putstr(decnum);
-	free(whlnum);
-	free(decnum);
+	//if the precision is explicitly zero...
+	if (arg.precision == 0)
+	{
+		free(whlnum);
+		free(decnum);
+	}
+	else
+	{
+		ft_putchar('.');
+		ft_putstr(decnum);
+		free(whlnum);
+		free(decnum);
+	}
 }
