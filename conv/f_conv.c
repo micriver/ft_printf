@@ -6,11 +6,44 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/27 15:16:55 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/28 11:25:23 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
+#include <stdio.h>
+
+unsigned long long	ft_power(int base, unsigned int exponent)
+{
+	unsigned long long result;
+
+	result = 1;
+	if (exponent == 0)
+		return (1);
+	while (exponent != 0)
+	{
+		result *= base;
+		--exponent;
+	}
+	return (result);
+}
+
+double		round(double value)
+{
+	double magic;
+	
+	//instead of .45, the rounded values
+	//matched with regular printf
+	//when it was changed to 0.25
+	magic = 0.25;
+	if (arg.precision != 0)
+	{
+		magic /= (ft_power(10, arg.precision));
+		return (value += magic);
+	}
+	else
+		return (value += magic);
+}
 
 //create ft_power(int base, int exponent)
 //		 ft_power(10, arg.precision);
@@ -34,7 +67,11 @@ long double		decconv(long double dec)
 void	f_conv(va_list args)
 {
 	//If the precision is missing, it is taken as 6
-	if (!arg.precision && arg.precision != 0)
+	//If the precision is less than zero OR IN OTHER WORDS
+	//MISSING, it is taken as 6
+	//printf("precision = %d\n", arg.precision);
+	if (arg.precision < 0)
+	//if (!arg.precision && arg.precision != 0)
 		arg.precision = 6;
 	//(void)args;
 	//ft_putstr("here");
@@ -49,6 +86,7 @@ void	f_conv(va_list args)
 	whlnum = ft_itoa(ipart);
 	fpart = num - ipart;	
 	//function to round the decimals
+	fpart = round(fpart);
 	//should go here prior to itoa
 	fpart = decconv(fpart);
 	ipart = (int)fpart;
@@ -80,3 +118,20 @@ void	f_conv(va_list args)
 		free(decnum);
 	}
 }
+
+#if 0
+
+#include <stdio.h>
+int		main(int ac, char **av)
+{
+	//int base = 10;
+	//unsigned int exponent = 2;
+	if (ac == 3)
+		printf ("%lld\n", ft_power(atoi(av[1]), atoi(av[2])));
+	return (0);
+
+}
+
+
+
+#endif

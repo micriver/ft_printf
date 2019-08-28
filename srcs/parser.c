@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 17:45:54 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/28 11:17:29 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int		precision_parser(char *str, int *i)
 	int *x;
 	x = i;
 	if (str[*x] != '.')
+	{
+		arg.precision = -1;
 		return (0);
+	}
 	else
 		(*x) += 1;
 	int y;
