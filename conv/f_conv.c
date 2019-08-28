@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/28 11:25:23 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/28 15:41:31 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ long double		decconv(long double dec)
 	int i;
 
 	i = 0;
+	//printf("precision = %d\n", arg.precision);
 	if (dec < 0)
 		dec *= -1;
 	while (i++ < arg.precision)
@@ -62,7 +63,33 @@ long double		decconv(long double dec)
 	return (dec);
 }
 
+char	*roundup(char *str)
+{
+	int i;
+	char number;
 
+	//printf ("The string before being rounded is: %s\n", str);
+	//printf ("precision = %d\n", arg.precision);
+
+	i = arg.precision;
+	number = str[i - 1];
+	//while (i <= arg.precision - 1)
+	//	str[i]++;
+	if (number > '5' && number != '9')
+	{
+		str[i - 1] = number + 1;
+		//number += '1';
+		//str[i + 1] = '\0';
+	}
+	if (number == '9')
+	{
+		str[i - 1] = '0';
+		str[i - 2] = '1';
+	}
+	//printf ("The rounded string is: %s\n", str);
+	return (str);
+
+}
 
 void	f_conv(va_list args)
 {
@@ -77,21 +104,24 @@ void	f_conv(va_list args)
 	//ft_putstr("here");
 	double num;
 	num = va_arg(args, double);
-	int	ipart;
+	long long int	ipart;
 	long double fpart;
 	char *whlnum;
 	char *decnum;
 
-	ipart = (int)num;
-	whlnum = ft_itoa(ipart);
+	ipart = (long long int)num;
+	whlnum = ft_llitoa(ipart);
 	fpart = num - ipart;	
 	//function to round the decimals
-	fpart = round(fpart);
+	//fpart = round(fpart);
 	//should go here prior to itoa
 	fpart = decconv(fpart);
-	ipart = (int)fpart;
-	decnum = ft_itoa(ipart);
-
+	ipart = (long long int)fpart;
+	decnum = ft_ullitoa(ipart);
+	//function to iterate through the string
+	//round up the index at the precision value,
+	// then terminate it just after the precision
+	decnum = roundup(decnum);
 
 
 	//printf("%s\n", whlnum);
