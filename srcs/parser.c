@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/28 11:17:29 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/28 16:53:05 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,20 @@ int		precision_parser(char *str, int *i)
 {
 	int *x;
 	x = i;
-	if (str[*x] != '.')
+	//if the precision is missig
+	if (str[*x] == 'f')
 	{
-		arg.precision = -1;
+		arg.precision = 6;
 		return (0);
 	}
 	else
 		(*x) += 1;
+	//if there's just a decimal point and an 'f' char
+	if (str[*x - 1] == '.' && str[*x] == 'f')
+	{
+		SET_BIT(arg.flgmods, LONEDEC);
+		return (0);
+	}
 	int y;
 	int j;
 	char *result;
