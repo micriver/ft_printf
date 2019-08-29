@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 11:10:41 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 16:10:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,15 @@ int					width_parser(char *str, int *i);
 int					precision_parser(char *str, int *i);
 int					lengthmod_pars(char *str, int *i);
 int					conv_pars(char *fmt, int *i);
+
+/*
+** Parsing support functions
+** Some of my parsers were a little too long...
+*/
+
+void				precbuild(char *str, int *i);
+void				isshort(char *str, int *i);
+void				islonglong(char *str, int *i);
 
 /*
 ** Formatting

@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/29 10:54:28 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/29 16:04:31 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = ft_printf.c \
 	parser.c \
 	reset_struct.c \
 	supportfuncs.c \
+	supportpars.c \
 
 CONV = conversion.c \
 	c_conv.c \

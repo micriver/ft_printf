@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 11:39:38 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 16:13:07 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 
 int		flag_parse(char *str, int *i)
 {
-	int *x;
-
-	x = i;
-	if (str[*x] == '.')
+	if (str[*i] == '.')
 		return (0);
-	while (!ft_isalnum(str[*x]) || str[*x] == '0')
+	while (!ft_isalnum(str[*i]) || str[*i] == '0')
 	{
-		if (str[*x] == '.')
+		if (str[*i] == '.')
 			return (0);
-		(str[*x] == '#') ? SET_BIT(arg.flgmods, SHARP_F) : str[*x];
-		(str[*x] == '-') ? SET_BIT(arg.flgmods, MINUS_F) : str[*x];
-		(str[*x] == '+') ? SET_BIT(arg.flgmods, PLUS_F) : str[*x];
-		(str[*x] == ' ') ? SET_BIT(arg.flgmods, INVP_F) : str[*x];
-		(str[*x] == '0') ? SET_BIT(arg.flgmods, ZERO_F) : str[*x];
-		(*x)++;
+		(str[*i] == '#') ? SET_BIT(arg.flgmods, SHARP_F) : str[*i];
+		(str[*i] == '-') ? SET_BIT(arg.flgmods, MINUS_F) : str[*i];
+		(str[*i] == '+') ? SET_BIT(arg.flgmods, PLUS_F) : str[*i];
+		(str[*i] == ' ') ? SET_BIT(arg.flgmods, INVP_F) : str[*i];
+		(str[*i] == '0') ? SET_BIT(arg.flgmods, ZERO_F) : str[*i];
+		(*i)++;
 	}
 	return (1);
 }
@@ -38,121 +35,55 @@ int		width_parser(char *str, int *i)
 	int		y;
 	int		j;
 	char	*result;
-	int		*x;
 
-	x = i;
-	if (str[*x] == '.')
+	if (str[*i] == '.')
 		return (0);
 	j = (*i);
 	y = 0;
 	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
 		(j)++;
 	result = ft_strnew(j);
-	while (!(ft_isalpha(str[*x])) && str[*x] != '.')
+	while (!(ft_isalpha(str[*i])) && str[*i] != '.')
 	{
-		result[y] = str[*x];
+		result[y] = str[*i];
 		y++;
-		(*x)++;
+		(*i)++;
 	}
 	arg.width = ft_atoi(result);
 	return (1);
 }
 
 /*
-** At the top of my precision parser function,
-** there are checks that give value my
-** precision member in my struct for f_conv checks
+** First two checks are for my f_conv.
+** They give value to my struct for later use
 */
 
 int		precision_parser(char *str, int *i)
 {
-	int		*x;
-	int		y;
-	int		j;
-	char	*result;
-
-	x = i;
-	if (str[*x] == 'f')
+	if (str[*i] == 'f')
 	{
 		arg.precision = 6;
 		return (0);
 	}
-	else
-		(*x) += 1;
-	if (str[*x - 1] == '.' && str[*x] == 'f')
+	if (str[*i] == '.' && str[*i + 1] == 'f')
 	{
 		SET_BIT(arg.flgmods, LONEDEC);
 		return (0);
 	}
-	else if (str[*x - 1] == '.')
-	{
-		j = (*i);
-		y = 0;
-		result = ft_strnew(j);
-		while (!ft_isalpha(str[*x]))
-		{
-			result[y] = str[*x];
-			y++;
-			(*x)++;
-		}
-	}
-	arg.precision = ft_atoi(result);
+	if (str[*i] == '.')
+		precbuild(str, i);
 	return (1);
 }
 
 int		lengthmod_pars(char *str, int *i)
 {
-	int *x;
-
-	x = i;
-	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L')
+	if (str[*i] != 'h' && str[*i] != 'l' && str[*i] != 'L')
 		return (0);
 	else
 	{
-		if (str[*x] == 'h' && str[(*x) + 1] == 'h')
-		{
-			SET_BIT(arg.flgmods, SGNDCHR);
-			(*x) += 2;
-		}
-		if (str[*x] == 'h' && str[(*x) + 1] != 'h')
-		{
-			SET_BIT(arg.flgmods, SHOINT);
-			(*x)++;
-		}
-		if (str[*x] == 'l' && str[(*x) + 1] != 'l')
-		{
-			SET_BIT(arg.flgmods, LONGINT);
-			(*x)++;
-		}
-		if (str[*x] == 'l' && str[(*x) + 1] == 'l')
-		{
-			SET_BIT(arg.flgmods, LNGLNG);
-			(*x) += 2;
-		}
-		if (str[*x] == 'L')
-		{
-			SET_BIT(arg.flgmods, LNG_D);
-			(*x)++;
-		}
+		isshort(str, i);
+		islonglong(str, i);
 	}
-	return (1);
-}
-
-int		conv_pars(char *fmt, int *i)
-{
-	int n;
-
-	n = 0;
-	while (CONV_SPECS[n])
-	{
-		if (fmt[*i] == CONV_SPECS[n])
-		{
-			arg.conv = CONV_SPECS[n];
-			break ;
-		}
-		n++;
-	}
-	(*i) += 1;
 	return (1);
 }
 
