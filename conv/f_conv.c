@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/28 20:15:16 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/28 20:36:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ long double		decconv(long double dec)
 		dec *= -1;
 	if (arg.precision == 0)
 	{
-		while (i++ < 6)
+		while (i++ < 3)
 			dec = dec * 10;
 	}
 	else
@@ -105,7 +105,23 @@ void	f_conv(va_list args)
 			ft_putchar('0');
 	}
 	else if (CHECK_BIT(arg.flgmods, LONEDEC))
+	{
+		char number;
+
+		number = whlnum[ft_strlen(whlnum) - 1];
+		fpart = num - ipart;	
+		fpart = decconv(fpart);
+		ipart = (long long int)fpart;
+		decnum = ft_llitoa(ipart);
+		if (decnum[0] >= '5' && number != 9)
+			whlnum[ft_strlen(whlnum) - 1] = number + 1;
+		if (decnum[0] >= '5' && number == '9')
+		{
+			whlnum[ft_strlen(whlnum) - 1] = '0';
+			whlnum[ft_strlen(whlnum) - 2] = '1';
+		}
 		ft_putstr(whlnum);
+	}
 	//if the precision is explicitly zero, no decimal char appears
 	else if (arg.precision == 0)
 	{
