@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/28 16:39:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 11:10:41 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ void				ox_conv(va_list args);
 void				p_conv(va_list args);
 
 /*
+** Conversion support functions 
+*/
+
+char				*roundup(char *str);
+long double			decconv(long double dec);
+
+/*
 ** Structs
 */
 
@@ -108,5 +115,7 @@ int					conv_pars(char *fmt, int *i);
 */
 
 void				reset_flags(void);
+void				reset_members(void);
+void				reset_struct(void);
 
 #endif

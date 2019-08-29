@@ -6,11 +6,19 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:05:15 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:05:39 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 11:11:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
+
+void	reset_members(void)
+{
+	arg.width = 0;
+	arg.precision = 0;
+	arg.char_count = 0;
+	arg.conv = 0;
+}
 
 void	reset_flags(void)
 {
@@ -23,4 +31,10 @@ void	reset_flags(void)
 			TOGGLE_BIT(arg.flgmods, i);
 		i++;
 	}
+}
+
+void	reset_struct(void)
+{
+	reset_flags();
+	reset_members();
 }

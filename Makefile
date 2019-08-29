@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/27 14:48:38 by mirivera         ###   ########.fr        #
+#    Updated: 2019/08/29 10:54:28 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = ft_printf.c \
 	parser.c \
 	reset_struct.c \
+	supportfuncs.c \
 
 CONV = conversion.c \
 	c_conv.c \
