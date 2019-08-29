@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/28 16:59:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 11:39:38 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int		flag_parse(char *str, int *i)
 
 int		width_parser(char *str, int *i)
 {
-	int y;
-	int j;
-	char *result;
-	int *x;
+	int		y;
+	int		j;
+	char	*result;
+	int		*x;
 
 	x = i;
 	if (str[*x] == '.')
@@ -58,11 +58,20 @@ int		width_parser(char *str, int *i)
 	return (1);
 }
 
+/*
+** At the top of my precision parser function,
+** there are checks that give value my
+** precision member in my struct for f_conv checks
+*/
+
 int		precision_parser(char *str, int *i)
 {
-	int *x;
+	int		*x;
+	int		y;
+	int		j;
+	char	*result;
+
 	x = i;
-	//if the precision is missig
 	if (str[*x] == 'f')
 	{
 		arg.precision = 6;
@@ -70,36 +79,33 @@ int		precision_parser(char *str, int *i)
 	}
 	else
 		(*x) += 1;
-	//if there's just a decimal point and an 'f' char
 	if (str[*x - 1] == '.' && str[*x] == 'f')
 	{
 		SET_BIT(arg.flgmods, LONEDEC);
 		return (0);
 	}
-	int y;
-	int j;
-	char *result;
-
-	j = (*i);
-	y = 0;
-	result = ft_strnew(j);
-	while (!ft_isalpha(str[*x]))
+	else if (str[*x - 1] == '.')
 	{
-		result[y] = str[*x];
-		y++;
-		(*x)++;
+		j = (*i);
+		y = 0;
+		result = ft_strnew(j);
+		while (!ft_isalpha(str[*x]))
+		{
+			result[y] = str[*x];
+			y++;
+			(*x)++;
+		}
 	}
 	arg.precision = ft_atoi(result);
 	return (1);
 }
 
-// length modifier parser (hh), (h), (l), (ll), with diouxX and f with (l), (L) 
 int		lengthmod_pars(char *str, int *i)
 {
 	int *x;
 
 	x = i;
-	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L' )
+	if (str[*x] != 'h' && str[*x] != 'l' && str[*x] != 'L')
 		return (0);
 	else
 	{
