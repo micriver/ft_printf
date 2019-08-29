@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/28 16:59:41 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/28 20:15:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,16 @@ long double		decconv(long double dec)
 	i = 0;
 	if (dec < 0)
 		dec *= -1;
-	while (i++ < arg.precision)
-		dec = dec * 10;
+	if (arg.precision == 0)
+	{
+		while (i++ < 6)
+			dec = dec * 10;
+	}
+	else
+	{
+		while (i++ < arg.precision)
+			dec = dec * 10;
+	}
 	return (dec);
 }
 
@@ -78,52 +86,58 @@ long double		decconv(long double dec)
 
 void	f_conv(va_list args)
 {
-	//if there is no precision, it starts @-1
-	//if (arg.precision < 0)
-	//	arg.precision = 6;
-	double num;
-	num = va_arg(args, double);
-	long long int	ipart;
-	long double fpart;
+	long double num;
+	long long int ipart;
+	double fpart;
 	char *whlnum;
 	char *decnum;
 
+	num = va_arg(args, double);
 	decnum = NULL;
 	ipart = (int)num;
 	whlnum = ft_llitoa(ipart);
 	//if just a decimal point appears
-	if (CHECK_BIT(arg.flgmods, LONEDEC || arg.precision == 0))
+	if (ft_strcmp(whlnum, "0") == 0)
 	{
 		ft_putstr(whlnum);
-		free(whlnum);
+		ft_putchar('.');
+		while (arg.precision-- > 0)
+			ft_putchar('0');
 	}
-	//if there is a precision
-	else
+	else if (CHECK_BIT(arg.flgmods, LONEDEC))
+		ft_putstr(whlnum);
+	//if the precision is explicitly zero, no decimal char appears
+	else if (arg.precision == 0)
 	{
+		char number;
+
+		number = whlnum[ft_strlen(whlnum) - 1];
 		fpart = num - ipart;	
 		fpart = decconv(fpart);
-		ipart = (unsigned long long int)fpart;
-		decnum = ft_ullitoa(ipart);
+		ipart = (long long int)fpart;
+		decnum = ft_llitoa(ipart);
+		if (decnum[0] >= '5' && number != 9)
+			whlnum[ft_strlen(whlnum) - 1] = number + 1;
+		if (decnum[0] >= '5' && number == '9')
+		{
+			whlnum[ft_strlen(whlnum) - 1] = '0';
+			whlnum[ft_strlen(whlnum) - 2] = '1';
+		}
+		ft_putstr(whlnum);
+	}
+	//if there is a precision
+	else if (arg.precision > 0)
+	{
+			
+		fpart = num - ipart;	
+		fpart = decconv(fpart);
+		ipart = (long long int)fpart;
+		decnum = ft_llitoa(ipart);
 		decnum = roundup(decnum);
 		ft_putstr(whlnum);
 		ft_putchar('.');
 		ft_putstr(decnum);
-		free(whlnum);
-		free(decnum);
 	}
-	//else
-	//{
-	//	//if the precision is explicitly zero...
-	//	if (arg.precision == 0 || ))
-	//	{
-	//		free(whlnum);
-	//		free(decnum);
-	//	}
-	//	else
-	//	{
-	//		ft_putchar('.');
-	//		ft_putstr(decnum);
-	//		free(whlnum);
-	//		free(decnum);
-	//	}
+	free(whlnum);
+	free(decnum);
 }
