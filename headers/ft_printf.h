@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 16:21:12 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 23:52:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ void				islonglong(char *str, int *i);
 
 /*
 ** Formatting
+*/
+
+char				*c_form(char orig);
+
+/*
 ** //will most likely be getting rid of all these
 ** /char	*insertplussign(char *str);
 ** /char	*lead_zero_negsign(char *dest, char *src);
