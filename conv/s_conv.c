@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 19:52:03 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:19:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:58:29 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,6 @@ void	s_conv(va_list args)
 		arg.char_count += ft_intputstr("(null)");
 	else
 		arg.char_count += ft_intputstr(res);
+	reset_struct();
+	free(res);
 }

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:08:58 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 20:32:50 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:55:32 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	ox_conv(va_list args)
 	else
 		res = ft_itoa_base(n, res, 16, 0);
 	arg.char_count += ft_intputstr(res);
-	reset_flags();
+	reset_struct();
 	free(res);
 }

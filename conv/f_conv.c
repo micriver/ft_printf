@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 22:28:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:55:15 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void			f_conv(va_list args)
 		precpresent(whlnum, decnum);
 	free(whlnum);
 	free(decnum);
+	reset_struct();
 }

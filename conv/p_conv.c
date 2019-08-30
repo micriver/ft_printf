@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:38:54 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:21:06 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:58:43 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	p_conv(va_list args)
 	res = ft_llitoa_base((long)ptr, res, 16, 0);
 	res = ft_strjoin("0x", res);
 	arg.char_count += ft_intputstr(res);
-	reset_flags();
+	reset_struct();
 	free(res);
 }

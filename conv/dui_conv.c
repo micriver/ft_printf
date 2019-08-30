@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:53:17 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 20:38:00 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:54:58 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	dui_conv(va_list args)
 	else
 		res = ft_ullitoa(va_arg(args, unsigned long long int));
 	arg.char_count += ft_intputstr(res);
-	reset_flags();
+	reset_struct();
 	free(res);
 }
