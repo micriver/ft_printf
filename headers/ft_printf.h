@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/31 14:10:00 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/31 14:23:59 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void				islonglong(char *str, int *i);
 
 char				*c_form(char orig);
 void				s_form(char *orig);
+void				p_form(char *orig);
 
 /*
 ** //will most likely be getting rid of all these
