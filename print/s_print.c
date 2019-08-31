@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_conv.c                                           :+:      :+:    :+:   */
+/*   s_print.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/17 19:52:03 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/31 14:14:24 by mirivera         ###   ########.fr       */
+/*   Created: 2019/08/31 13:37:12 by mirivera          #+#    #+#             */
+/*   Updated: 2019/08/31 14:03:42 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-void	s_conv(va_list args)
+void		s_print(char *res)
 {
-	char *res;
-
-	res = va_arg(args, char *);
-	if (res == NULL && !arg.width)
-	{
-		arg.char_count += ft_intputstr("(null)");
-		free(res);
-	}
-	else if ((res == NULL) && arg.width < 6)
-	{
-		arg.char_count += ft_intputstr("(null)");
-		free(res);
-	}
-	else if ((res == NULL) && arg.width > 6)
-		s_form("(null)");
-	else
-		s_form(res);
+	arg.char_count += ft_intputstr(res);
+	free(res);
+	reset_struct();
 }

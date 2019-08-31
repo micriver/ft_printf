@@ -6,11 +6,24 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 22:53:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/08/31 14:10:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
+
+/*
+** prfree prints the final converted argument string,
+** adds its # of chars to the char_count, 
+** and resets the struct for the next argument
+*/
+
+void		prfree(char *res)
+{
+	arg.char_count += ft_intputstr(res);
+	free(res);
+	reset_struct();
+}
 
 /*
 ** roundup() and decconv() are both supporting the f_conv
