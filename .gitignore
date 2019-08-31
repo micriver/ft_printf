@@ -15,6 +15,7 @@ libftprintf.a
 *dSYM/
 libft/.gitignore
 /misc_files
+/print
 
 #dot files
 ._*
