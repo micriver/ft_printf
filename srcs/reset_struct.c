@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:05:15 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 11:11:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/01 15:45:56 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	reset_members(void)
 {
 	arg.width = 0;
 	arg.precision = 0;
-	arg.char_count = 0;
 	arg.conv = 0;
 }
 
