@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 19:52:03 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/01 16:06:38 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:48:23 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	s_conv(va_list args)
 		arg.char_count += ft_intputstr("(null)");
 		free(res);
 	}
-	else if ((res == NULL) && arg.width < 6)
+	else if ((res == NULL) && arg.width <= 6 && !arg.precision)
 	{
 		arg.char_count += ft_intputstr("(null)");
 		free(res);
 	}
+	else if ((res == NULL) && arg.width <= 6 && arg.precision)
+		s_form("(null)");
 	else if ((res == NULL) && arg.width > 6)
 		s_form("(null)");
 	else
