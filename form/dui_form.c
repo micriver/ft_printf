@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/01 20:17:30 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/01 20:49:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 char		*dui_pbuild(char *temp, char *origstr)
 {
 	int i;
+	int length;
 
 	i = 0;
+	length = arg.precision - (int)ft_strlen(origstr);
 	if (arg.precision >= (int)ft_strlen(origstr))
 	{
-		temp = ft_strnew(arg.precision - (int)ft_strlen(origstr));
-		while (i < (arg.precision - (int)ft_strlen(origstr)))
+		temp = ft_strnew(length);
+		while (i < (length))
 			temp[i++] = '0';
 		temp = ft_strjoin(temp, origstr);
 	}
