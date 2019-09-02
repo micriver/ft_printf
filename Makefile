@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/02 11:04:43 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/02 13:38:18 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = ft_printf.c \
 	reset_struct.c \
 	supportfuncs.c \
 	supportpars.c \
+	cssupport.c \
 
 CONV = conversion.c \
 	c_conv.c \
@@ -43,6 +44,8 @@ FORM = c_form.c \
 	x_form.c \
 
 CKSIGN = dui_sign.c \
+	invpf_check.c \
+	plusf_check.c \
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \

@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 11:27:27 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 13:37:05 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 
-# define CONV_SPECS "scdiuoxXpf$%*"
+# define CONV_SPECS "scdiuoxXpf"
+# define SPECIAL_SPECS "$%*"
 # define WIDTH arg.width
 # define PREC arg.precision
 
@@ -40,6 +41,12 @@
 # define LNGLNG (8)
 # define LNG_D (9)
 # define LONEDEC (10)
+
+# define ZERO_FLAG CHECK_BIT(arg.flgmods, ZERO_F)
+# define MINUS_FLAG CHECK_BIT(arg.flgmods, MINUS_F)
+# define PLUS_FLAG CHECK_BIT(arg.flgmods, PLUS_F)
+# define INVP_FLAG CHECK_BIT(arg.flgmods, INVP_F)
+
 
 int					ft_printf(char *fmt, ...);
 
@@ -134,6 +141,17 @@ void				dui_form(char *orig);
 */
 
 void				dui_sign(char *formstr, char *origstr);
+char				*plusf_check(char *formstr, char *origstr);
+char				*invpf_check(char *formstr, char *origstr);
+
+/*
+** Checksign support functions
+*/
+
+char				*pr_widch(char *formstr, char *origstr);
+char				*under_pr(char *formstr);
+char				*weird1ch(char *formstr);
+char				*weird2ch(char *formstr);
 
 /*
 ** Print functions

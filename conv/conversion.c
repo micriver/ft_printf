@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/27 14:19:13 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 12:42:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ const		t_dt	g_dt[] =
 
 void	conversion(int *i, char *str, va_list args)
 {
-	int x;
+	size_t x;
 
 	x = 0;
 	(*i)++;
 	master_pars(str, i);
-	//see if you can insert you're conversion character macro here
-	while (x < 10)
+	while (x < ft_strlen(CONV_SPECS))
 	{
 		if (g_dt[x].specifier == arg.conv)
 		{
