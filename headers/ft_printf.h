@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 14:29:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 16:27:05 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define ZERO_FLAG CHECK_BIT(arg.flgmods, ZERO_F)
 # define MINUS_FLAG CHECK_BIT(arg.flgmods, MINUS_F)
 # define PLUS_FLAG CHECK_BIT(arg.flgmods, PLUS_F)
+# define SHARP_FLAG CHECK_BIT(arg.flgmods, SHARP_F)
 # define INVP_FLAG CHECK_BIT(arg.flgmods, INVP_F)
 
 
@@ -126,6 +127,7 @@ char				*c_form(char orig);
 void				s_form(char *orig);
 void				p_form(char *orig);
 void				dui_form(char *orig);
+void				ox_form(char *origstr);
 
 /*
 ** //will most likely be getting rid of all these

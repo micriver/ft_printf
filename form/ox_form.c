@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dui_form.c                                         :+:      :+:    :+:   */
+/*   ox_form.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 16:09:16 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/02 16:17:03 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/02 16:29:51 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-char		*dui_pbuild(char *temp, char *origstr)
+char		*ox_pbuild(char *temp, char *origstr)
 {
 	int i;
 	int length;
@@ -31,7 +31,7 @@ char		*dui_pbuild(char *temp, char *origstr)
 	return (temp);
 }
 
-char		*wbuild(char *temp)
+char		*ox_wstrbuild(char *temp)
 {
 	int		diff;
 	int		i;
@@ -56,25 +56,28 @@ char		*wbuild(char *temp)
 	return (temp);
 }
 
-char		*dui_wbuild(char *temp)
+char		*ox_wbuild(char *temp)
 {
 	if (arg.width <= (int)ft_strlen(temp))
 		return (temp);
 	else
-		temp = wbuild(temp);
+		temp = ox_wstrbuild(temp);
 	return (temp);
 }
 
-void		dui_form(char *origstr)
+void		ox_form(char *origstr)
 {
 	char	*temp;
 
 	temp = ft_strnew(ft_strlen(origstr));
 	if (arg.precision)
-		temp = dui_pbuild(temp, origstr);
+		temp = ox_pbuild(temp, origstr);
 	else
 		temp = ft_strcpy(temp, origstr);
 	if (arg.width)
-		temp = dui_wbuild(temp);
-	dui_sign(temp, origstr);
+		temp = ox_wbuild(temp);
+	if (SHARP_FLAG && (!(ft_strcmp(origstr, "4dc") == 0)))
+		ft_strjoin("0x", temp);
+	prfree(temp);
+	free(origstr);
 }
