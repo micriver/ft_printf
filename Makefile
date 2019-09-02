@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/01 17:46:51 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/01 19:01:37 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ FORM = c_form.c \
 	o_form.c \
 	x_form.c \
 
-#CKSIGN =
+CKSIGN = dui_sign.c \
 
 LIBFT_SRCS = ft_atoi.c \
 	ft_bzero.c \
@@ -148,5 +148,5 @@ norme:
 
 debug:
 	@echo 'Compiling your test executable...'
-	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
+	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
 	@echo 'debug_ft_printf executable created'

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/01 18:22:46 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/01 20:17:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void		dui_form(char *origstr)
 		temp = ft_strcpy(temp, origstr);
 	if (arg.width)
 		temp = dui_wbuild(temp);
-	prfree(temp);
+	dui_sign(temp, origstr);
 }

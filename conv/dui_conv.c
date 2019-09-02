@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:53:17 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/01 18:27:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/01 19:29:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void		dui_conv(va_list args)
 	int64_t	n;
 
 	n = cast(args, 0);
-	if (n == 0)
-		arg.char_count += ft_intputchar('0');
 	if (arg.conv == 'd' || arg.conv == 'i')
 		res = ft_llitoa(n);
 	else
