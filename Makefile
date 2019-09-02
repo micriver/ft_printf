@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/08/31 15:13:29 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/01 17:46:51 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,17 +32,14 @@ CONV = conversion.c \
 	p_conv.c \
 	bx_conv.c \
 	f_conv.c \
-	#u_conv.c \
 
 FORM = c_form.c \
 	s_form.c \
 	p_form.c \
+	dui_form.c \
 	#bx_form.c \
-	d_form.c \
 	f_form.c \
-	i_form.c \
 	o_form.c \
-	u_form.c \
 	x_form.c \
 
 #CKSIGN =
