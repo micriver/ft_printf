@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/01 21:03:14 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 11:27:27 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include "../libft/get_next_line.h"
 
 # define CONV_SPECS "scdiuoxXpf$%*"
+# define WIDTH arg.width
+# define PREC arg.precision
 
 # define CHECK_BIT(var,pos) ((var >> pos) & 1)
 # define SET_BIT(var,pos) (var |= 1 << pos)
