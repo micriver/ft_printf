@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/02 13:38:18 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/02 14:29:08 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = ft_printf.c \
 	supportfuncs.c \
 	supportpars.c \
 	cssupport.c \
+	cssupport2.c \
 
 CONV = conversion.c \
 	c_conv.c \
@@ -110,22 +111,30 @@ LIBFT_SRCS = ft_atoi.c \
 	get_next_line.c \
 	ft_prefixchar.c \
 	ft_prependchar.c \
-   	ft_long_itoa.c \
-	ft_ull_itoa.c \
-	ft_uitoa.c \
 	ft_srch_rep.c \
+	ft_strrev.c \
+   	ft_long_itoa.c \
+	ft_ullitoa.c \
+	ft_uitoa.c \
 	ft_insertchar.c \
+	ft_intputchar.c \
+	ft_intputstr.c \
+	ft_llitoa.c \
+	ft_llitoa_base.c \
+	ft_itoa_base.c \
+	ft_itoa_baseUP.c \
 
 OBJECTS = $(patsubst %.c,%.o,$(SRCS))
 OBJECTS += $(patsubst %.c,%.o,$(LIBFT_SRCS))
 OBJECTS += $(patsubst %.c,%.o,$(CONV))
 OBJECTS += $(patsubst %.c,%.o,$(FORM))
+OBJECTS += $(patsubst %.c,%.o,$(CKSIGN))
 
 all: $(NAME)
 
 $(NAME):
 	@echo 'Compiling your source files...'
-	@$(CC) $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) -I $(HEADERS)
+	@$(CC) $(CFLAGS) -c $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) -I $(HEADERS)
 	@echo 'Building your library...'
 	@ar rc $(NAME) $(OBJECTS)
 	@echo 'Optimizing your library...'
