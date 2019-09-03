@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xX_form.c                                          :+:      :+:    :+:   */
+/*   xbx_form.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 18:50:15 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 19:11:10 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/02 22:44:14 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-char		*xX_pbuild(char *temp, char *origstr)
+char		*xbx_pbuild(char *temp, char *origstr)
 {
 	int i;
 	int length;
@@ -31,7 +31,7 @@ char		*xX_pbuild(char *temp, char *origstr)
 	return (temp);
 }
 
-char		*xX_wstrbuild(char *temp)
+char		*xbx_wstrbuild(char *temp)
 {
 	int		diff;
 	int		i;
@@ -56,16 +56,16 @@ char		*xX_wstrbuild(char *temp)
 	return (temp);
 }
 
-char		*xX_wbuild(char *temp)
+char		*xbx_wbuild(char *temp)
 {
 	if (arg.width <= (int)ft_strlen(temp))
 		return (temp);
 	else
-		temp = xX_wstrbuild(temp);
+		temp = xbx_wstrbuild(temp);
 	return (temp);
 }
 
-void		xX_zero(char *temp, char *origstr)
+void		xbx_zero(char *temp, char *origstr)
 {
 	if ((ft_strcmp(origstr, "0") == 0) && (CHECK_BIT(arg.flgmods, LONEDEC)))
 	{
@@ -79,14 +79,14 @@ void		xX_zero(char *temp, char *origstr)
 	}
 }
 
-void		xX_form(char *origstr)
+void		xbx_form(char *origstr)
 {
 	char		*temp;
 
 	temp = ft_strnew(ft_strlen(origstr));
 	if (arg.precision)
 	{
-		temp = xX_pbuild(temp, origstr);
+		temp = xbx_pbuild(temp, origstr);
 		if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
 			temp = ft_strjoin("0x", temp);
 		else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
@@ -103,6 +103,6 @@ void		xX_form(char *origstr)
 			temp = ft_strjoin("0X", temp);
 	}
 	if (arg.width)
-		temp = xX_wbuild(temp);
-	xX_zero(temp, origstr);
+		temp = xbx_wbuild(temp);
+	xbx_zero(temp, origstr);
 }

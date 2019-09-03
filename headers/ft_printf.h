@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 18:56:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 22:46:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define PLUS_FLAG CHECK_BIT(arg.flgmods, PLUS_F)
 # define SHARP_FLAG CHECK_BIT(arg.flgmods, SHARP_F)
 # define INVP_FLAG CHECK_BIT(arg.flgmods, INVP_F)
+# define LONEDEC_F CHECK_BIT(arg.flgmods, LONEDEC)
 
 
 int					ft_printf(char *fmt, ...);
@@ -61,7 +62,7 @@ void				c_conv(va_list args);
 void				dui_conv(va_list args);
 void				f_conv(va_list args);
 void				o_conv(va_list args);
-void				xX_conv(va_list args);
+void				xbx_conv(va_list args);
 void				p_conv(va_list args);
 
 /*
@@ -109,6 +110,7 @@ int					conv_pars(char *fmt, int *i);
 void				precbuild(char *str, int *i);
 void				isshort(char *str, int *i);
 void				islonglong(char *str, int *i);
+void				predec(char *str, int *i);
 
 /*
 ** Formatting
@@ -119,7 +121,7 @@ void				s_form(char *orig);
 void				p_form(char *orig);
 void				o_form(char *orig);
 void				dui_form(char *orig);
-void				xX_form(char *origstr);
+void				xbx_form(char *origstr);
 
 /*
 ** //will most likely be getting rid of all these

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/31 14:10:22 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 22:41:36 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 /*
 ** prfree prints the final converted argument string,
-** adds its # of chars to the char_count, 
+** adds its # of chars to the char_count,
 ** and resets the struct for the next argument
 */
 
-void		prfree(char *res)
+void			prfree(char *res)
 {
 	arg.char_count += ft_intputstr(res);
 	free(res);

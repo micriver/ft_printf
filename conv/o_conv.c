@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:48:31 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 19:02:06 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 21:27:51 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	o_conv(va_list args)
 		temp = "0";
 		res = ft_strnew(1);
 		res = ft_strcpy(res, temp);
+		o_form(res);
 	}
 	else if (arg.conv == 'o')
 	{

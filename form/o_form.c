@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:57:50 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 19:05:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 22:39:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,41 @@ char		*o_wbuild(char *temp)
 	return (temp);
 }
 
+char		*o_zeroch(char *temp, char *origstr)
+{
+	if (PREC == 0)
+		PREC = -1;
+	temp = ft_strcpy(temp, origstr);
+	if (SHARP_FLAG)
+	{
+		if (LONEDEC_F)
+			temp = ft_strcpy(temp, origstr);
+		else if (PREC == 0)
+			temp = ft_strcpy(temp, origstr);
+	}
+	else if (LONEDEC_F)
+		temp[0] = '\0';
+	else
+		temp = ft_strcpy(temp, origstr);
+	return (temp);
+}
+
 void		o_form(char *origstr)
 {
 	char		*temp;
 
 	temp = ft_strnew(ft_strlen(origstr));
-	if (SHARP_FLAG) 
-		PREC += 1;
-	if (PREC)
-		temp = o_pbuild(temp, origstr);
+	if (SHARP_FLAG && (ft_strcmp(origstr, "0") != 0))
+		PREC += (ft_strlen(origstr) + 1);
+	if (ft_strcmp(origstr, "0") == 0)
+		temp = o_zeroch(temp, origstr);
 	else
-		temp = ft_strcpy(temp, origstr);
+	{
+		if (PREC)
+			temp = o_pbuild(temp, origstr);
+		else
+			temp = ft_strcpy(temp, origstr);
+	}
 	if (arg.width)
 		temp = o_wbuild(temp);
 	prfree(temp);

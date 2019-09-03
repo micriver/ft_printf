@@ -6,11 +6,22 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:38:09 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 16:21:09 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 22:40:10 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
+
+void	predec(char *str, int *i)
+{
+	if (str[*i] == '.' && (str[*i + 1] == 'f' || str[*i + 1] == 's' \
+				|| str[*i + 1] == 'd' || str[*i + 1] == 'x' \
+				|| str[*i + 1] == 'o'))
+	{
+		SET_BIT(arg.flgmods, LONEDEC);
+		(*i)++;
+	}
+}
 
 int		conv_pars(char *str, int *i)
 {
