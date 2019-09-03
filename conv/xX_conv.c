@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ox_conv.c                                          :+:      :+:    :+:   */
+/*   xX_conv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/16 14:08:58 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 16:18:32 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/02 18:45:33 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/02 19:10:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-void	ox_conv(va_list args)
+void	xX_conv(va_list args)
 {
 	char	*res;
 	int64_t	n;
@@ -25,10 +25,16 @@ void	ox_conv(va_list args)
 		temp = "0";
 		res = ft_strnew(1);
 		res = ft_strcpy(res, temp);
+		xX_form(res);
 	}
-	else if (arg.conv == 'o')
-		res = ft_itoa_base(n, res, 8, 0);
+	else if (arg.conv == 'X')
+	{
+		res = ft_itoa_baseUP(n, res, 16, 0);
+		xX_form(res);
+	}
 	else
+	{
 		res = ft_itoa_base(n, res, 16, 0);
-	ox_form(res);
+		xX_form(res);
+	}
 }

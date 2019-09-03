@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 14:58:41 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 18:24:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		precision_parser(char *str, int *i)
 		return (0);
 	}
 	if (str[*i] == '.' && (str[*i + 1] == 'f' || str[*i + 1] == 's' \
-				|| str[*i + 1] == 'd'))
+				|| str[*i + 1] == 'd' || str[*i + 1] == 'x'))
 	{
 		SET_BIT(arg.flgmods, LONEDEC);
 		(*i)++;

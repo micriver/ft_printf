@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 16:27:05 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 18:56:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,12 @@ int					ft_printf(char *fmt, ...);
 */
 
 void				conversion(int *i, char *str, va_list args);
-void				dui_ret_val(va_list args);
-char				*u_specifier(int64_t u);
-void				dui_print(char *src);
-void				ull_ret_val(va_list args);
-
 void				s_conv(va_list args);
 void				c_conv(va_list args);
 void				dui_conv(va_list args);
-void				u_conv(va_list args);
-void				i_conv(va_list args);
 void				f_conv(va_list args);
 void				o_conv(va_list args);
-void				x_conv(va_list args);
-void				bx_conv(va_list args);
-void				ox_conv(va_list args);
+void				xX_conv(va_list args);
 void				p_conv(va_list args);
 
 /*
@@ -126,8 +117,9 @@ void				islonglong(char *str, int *i);
 char				*c_form(char orig);
 void				s_form(char *orig);
 void				p_form(char *orig);
+void				o_form(char *orig);
 void				dui_form(char *orig);
-void				ox_form(char *origstr);
+void				xX_form(char *origstr);
 
 /*
 ** //will most likely be getting rid of all these
