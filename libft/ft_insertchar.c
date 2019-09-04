@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 11:00:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 11:05:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 22:52:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_insertchar(char *formstr, char c, int x)
 {
-	char *res;
-	int i;
+	char	*res;
+	int		i;
 
 	i = 0;
 	res = ft_strnew(ft_strlen(formstr));
@@ -32,7 +32,7 @@ char	*ft_insertchar(char *formstr, char c, int x)
 			break ;
 	}
 	res[x] = '\0';
-	formstr = res;	
+	formstr = res;
 	return (formstr);
 	free(res);
 }

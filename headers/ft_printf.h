@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:46:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/02 22:56:08 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@
 # define INVP_FLAG CHECK_BIT(arg.flgmods, INVP_F)
 # define LONEDEC_F CHECK_BIT(arg.flgmods, LONEDEC)
 
-
 int					ft_printf(char *fmt, ...);
 
 /*
@@ -66,7 +65,7 @@ void				xbx_conv(va_list args);
 void				p_conv(va_list args);
 
 /*
-** Conversion support functions 
+** Conversion support functions
 */
 
 char				*roundup(char *str);

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:43:24 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:43:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 10:19:56 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	xbx_conv(va_list args)
 	}
 	else if (arg.conv == 'X')
 	{
-		res = ft_itoa_baseUP(n, res, 16, 0);
+		res = ft_itoa_base_up(n, res, 16, 0);
 		xbx_form(res);
 	}
 	else

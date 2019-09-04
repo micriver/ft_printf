@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_baseUP.c                                   :+:      :+:    :+:   */
+/*   ft_itoa_base_up.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/24 15:58:07 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 20:27:50 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/02 22:53:56 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/02 22:54:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 ** by dividing the digit by the given base.
 */
 
-char		*ft_itoa_baseUP(int64_t num, char *str, int base, int i)
+char		*ft_itoa_base_up(int64_t num, char *str, int base, int i)
 {
-	int64_t rem;
-	int sign;
-	int64_t temp;
-	int length;
+	int64_t		rem;
+	int			sign;
+	int64_t		temp;
+	int			length;
 
 	if (num < 0)
 		num = num * -1;
