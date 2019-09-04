@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:57:50 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 13:37:13 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 14:31:53 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 char		*o_pbuild(char *temp, char *origstr)
 {
 	int i;
-	//int length;
 
 	i = 0;
-	//length = arg.precision - (int)ft_strlen(origstr);
 	if (arg.precision >= (int)ft_strlen(origstr))
 	{
 		temp = ft_strnew(arg.precision - (int)ft_strlen(origstr));
@@ -26,7 +24,6 @@ char		*o_pbuild(char *temp, char *origstr)
 			temp[i++] = '0';
 		temp = ft_strjoin(temp, origstr);
 	}
-	//if (PREC = 0
 	else
 		temp = ft_strcpy(temp, origstr);
 	return (temp);
@@ -66,24 +63,16 @@ char		*o_wbuild(char *temp)
 	return (temp);
 }
 
-//char		*o_zeroch(char *temp, char *origstr)
-//{
-//	if (PREC == 0)
-//		PREC = -1;
-//	temp = ft_strcpy(temp, origstr);
-//	if (SHARP_FLAG)
-//	{
-//		if (LONEDEC_F)
-//			temp = ft_strcpy(temp, origstr);
-//		else if (PREC == 0)
-//			temp = ft_strcpy(temp, origstr);
-//	}
-//	else if (LONEDEC_F)
-//		temp[0] = '\0';
-//	else
-//		temp = ft_strcpy(temp, origstr);
-//	return (temp);
-//}
+char		*o_sharpf(char *temp, char *origstr)
+{
+	if (ft_strcmp(origstr, "0") == 0)
+		temp = ft_strcpy(temp, origstr);
+	else if ((ft_strcmp(origstr, "0") == 0) && LONEDEC_F)
+		temp = ft_strcpy(temp, origstr);
+	else
+		PREC += ((int)ft_strlen(origstr) + 1);
+	return (temp);
+}
 
 void		o_form(char *origstr)
 {
@@ -91,30 +80,13 @@ void		o_form(char *origstr)
 
 	temp = ft_strnew(ft_strlen(origstr));
 	if (SHARP_FLAG)
-	{
-		if (ft_strcmp(origstr, "0") == 0)
-			temp = ft_strcpy(temp, origstr);
-		else if ((ft_strcmp(origstr, "0") == 0) && LONEDEC_F)
-			temp = ft_strcpy(temp, origstr);
-		else
-			PREC += ((int)ft_strlen(origstr) + 1);
-	}
+		temp = o_sharpf(temp, origstr);
 	if (LONEDEC_F)
-	{
-		if (ft_strcmp(origstr, "0") == 0)
-			temp[0] = '\0';
-		else
-			temp = ft_strcpy(temp, origstr);
-	}
+		temp = o_lonedecf(temp, origstr);
 	if (PREC)
 		temp = o_pbuild(temp, origstr);
 	else if (EXP_0_F && !SHARP_FLAG)
-	{
-		if (ft_strcmp(origstr, "0") == 0)
-			temp[0] = '\0';
-		else
-			temp = ft_strcpy(temp, origstr);
-	}
+		temp = o_explicitzero(temp, origstr);
 	else
 	{
 		if (!SHARP_FLAG && LONEDEC_F && (ft_strcmp(origstr, "0") == 0))

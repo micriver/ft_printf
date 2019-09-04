@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:50:37 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:07:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ const		t_dt	g_dt[] =
 	{'o', o_conv},
 	{'p', p_conv},
 	{'x', xbx_conv},
-	{'X', xbx_conv}
+	{'X', xbx_conv},
+	{'%', specconversion}
 };
 
 void	conversion(int *i, char *str, va_list args)

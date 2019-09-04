@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:39:56 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:07:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		flag_parse(char *str, int *i)
 {
-	if (str[*i] == '.')
+	if (str[*i] == '.' || str[*i] == '%')
 		return (0);
 	while (!ft_isalnum(str[*i]) || str[*i] == '0')
 	{
@@ -36,7 +36,7 @@ int		width_parser(char *str, int *i)
 	int		j;
 	char	*result;
 
-	if (str[*i] == '.')
+	if (str[*i] == '.' || str[*i] == '%')
 		return (0);
 	j = (*i);
 	y = 0;
@@ -60,6 +60,8 @@ int		width_parser(char *str, int *i)
 
 int		precision_parser(char *str, int *i)
 {
+	if (str[*i] == '%')
+		return (0);
 	if (str[*i] == 'f')
 	{
 		arg.precision = 6;

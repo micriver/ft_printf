@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 13:49:13 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 13:54:31 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 14:13:27 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char		*ft_uitoa_base(uint64_t num, char *str, int base, int i)
 {
-	uint64_t		rem;
+	uint64_t	rem;
 	int			sign;
-	uint64_t		temp;
+	uint64_t	temp;
 	int			length;
 
 	temp = num;

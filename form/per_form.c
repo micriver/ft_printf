@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_conv.c                                           :+:      :+:    :+:   */
+/*   per_form.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/17 19:52:23 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 15:17:40 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/04 15:15:42 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/04 15:23:38 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-void	c_conv(va_list args)
+char	*per_form(char orig)
 {
-	char res;
-	char *widthres;
+	char	*formstr;
+	int		i;
 
-	res = (signed char)va_arg(args, int);
-	if (arg.width)
+	i = 0;
+	if (CHECK_BIT(arg.flgmods, MINUS_F))
 	{
-		widthres = c_form(res);
-		arg.char_count += ft_intputstr(widthres);
-		reset_struct();
+		formstr = ft_strnew(arg.width);
+		formstr[i] = orig;
+		while (++i < arg.width)
+			formstr[i] = ' ';
+		formstr[i] = '\0';
 	}
 	else
 	{
-		arg.char_count += ft_intputchar(res);
-		reset_struct();
+		formstr = ft_strnew(arg.width);
+		while (i < arg.width)
+			formstr[i++] = ' ';
+		formstr[i - 1] = orig;
+		formstr[i] = '\0';
 	}
+	return (formstr);
+	free(formstr);
 }

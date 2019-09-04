@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/24 19:24:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:07:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ int		ft_printf(char *fmt, ...)
 	i = 0;
 	while (fmt[i])
 	{
-		if (fmt[i] == '%' && fmt[i + 1] == '%')
-		{
-			i += 2;
-			arg.char_count += ft_intputchar('%');
-		}
-		else if (fmt[i] == '%')
+		if (fmt[i] == '%')
 			conversion(&i, fmt, args);
 		else if (fmt[i] == '\0')
 			break ;

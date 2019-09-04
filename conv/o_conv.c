@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:48:31 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 13:57:29 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 14:34:32 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@ uint64_t		o_cast(va_list args, uint64_t n)
 {
 	if (CHECK_BIT(arg.flgmods, LNGLNG) || CHECK_BIT(arg.flgmods, LONGINT))
 		n = va_arg(args, unsigned long long int);
-	//else if (arg.conv == 'o' && n == -1)
-	//	n = va_arg(args, unsigned long long int);
 	else
 		n = va_arg(args, unsigned int);
 	return (n);
 }
 
-void	o_conv(va_list args)
+void			o_conv(va_list args)
 {
-	char	*res;
+	char		*res;
 	uint64_t	n;
-	char	*temp;
+	char		*temp;
 
 	n = o_cast(args, 0);
 	res = NULL;

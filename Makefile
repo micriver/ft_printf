@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/04 13:55:48 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/04 15:18:29 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = ft_printf.c \
 	cssupport2.c \
 
 CONV = conversion.c \
+	specconversion.c \
 	c_conv.c \
 	s_conv.c \
 	dui_conv.c \
@@ -41,6 +42,7 @@ FORM = c_form.c \
 	dui_form.c \
 	xbx_form.c \
 	o_form.c \
+	per_form.c \
 	#f_form.c \
 
 CKSIGN = dui_sign.c \
@@ -123,6 +125,7 @@ LIBFT_SRCS = ft_atoi.c \
 	ft_llitoa_base.c \
 	ft_itoa_base.c \
 	ft_itoa_base_up.c \
+	ft_numlen.c \
 
 OBJECTS = $(patsubst %.c,%.o,$(SRCS))
 OBJECTS += $(patsubst %.c,%.o,$(LIBFT_SRCS))

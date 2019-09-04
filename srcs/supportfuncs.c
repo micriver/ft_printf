@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:41:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 14:34:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,28 @@ long double		decconv(long double dec)
 			dec = dec * 10;
 	}
 	return (dec);
+}
+
+/*
+** The following functions are 'o' flag checks being called
+** in the formatting function for 'o'. They handle various
+** flag edge cases.
+*/
+
+char			*o_explicitzero(char *temp, char *origstr)
+{
+	if (ft_strcmp(origstr, "0") == 0)
+		temp[0] = '\0';
+	else
+		temp = ft_strcpy(temp, origstr);
+	return (temp);
+}
+
+char			*o_lonedecf(char *temp, char *origstr)
+{
+	if (ft_strcmp(origstr, "0") == 0)
+		temp[0] = '\0';
+	else
+		temp = ft_strcpy(temp, origstr);
+	return (temp);
 }

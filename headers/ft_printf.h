@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 13:32:38 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:26:52 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 
-# define CONV_SPECS "scdiuoxXpf"
+# define CONV_SPECS "scdiuoxXpf$%*"
 # define SPECIAL_SPECS "$%*"
 # define WIDTH arg.width
 # define PREC arg.precision
@@ -58,6 +58,7 @@ int					ft_printf(char *fmt, ...);
 */
 
 void				conversion(int *i, char *str, va_list args);
+void				specconversion(va_list args);
 void				s_conv(va_list args);
 void				c_conv(va_list args);
 void				dui_conv(va_list args);
@@ -118,6 +119,7 @@ void				predec(char *str, int *i);
 */
 
 char				*c_form(char orig);
+char				*per_form(char orig);
 void				s_form(char *orig);
 void				p_form(char *orig);
 void				o_form(char *orig);
@@ -146,6 +148,7 @@ char				*invpf_check(char *formstr, char *origstr);
 */
 
 /*
+** functions checking flags for 'dui' conversion
 ** functions checking plus flag
 */
 
@@ -162,6 +165,13 @@ char				*ippr_widch(char *formstr, char *origstr);
 char				*ipunder_pr(char *formstr);
 char				*ipweird1ch(char *formstr);
 char				*ipweird2ch(char *formstr);
+
+/*
+** functions checking flags for 'o' conversion
+*/
+
+char				*o_lonedecf(char *temp, char *origstr);
+char				*o_explicitzero(char *temp, char *origstr);
 
 /*
 ** Print functions
