@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:57:50 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 11:53:40 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 13:37:13 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char		*o_pbuild(char *temp, char *origstr)
 			temp[i++] = '0';
 		temp = ft_strjoin(temp, origstr);
 	}
+	//if (PREC = 0
 	else
 		temp = ft_strcpy(temp, origstr);
 	return (temp);
@@ -105,10 +106,15 @@ void		o_form(char *origstr)
 		else
 			temp = ft_strcpy(temp, origstr);
 	}
-	//if (ft_strcmp(origstr, "0") == 0)
-	//	temp = o_zeroch(temp, origstr);
 	if (PREC)
 		temp = o_pbuild(temp, origstr);
+	else if (EXP_0_F && !SHARP_FLAG)
+	{
+		if (ft_strcmp(origstr, "0") == 0)
+			temp[0] = '\0';
+		else
+			temp = ft_strcpy(temp, origstr);
+	}
 	else
 	{
 		if (!SHARP_FLAG && LONEDEC_F && (ft_strcmp(origstr, "0") == 0))

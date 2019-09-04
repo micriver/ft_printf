@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:38:09 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:40:10 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 13:35:32 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	predec(char *str, int *i)
 		SET_BIT(arg.flgmods, LONEDEC);
 		(*i)++;
 	}
+	if (str[*i] == '.' && str[*i + 1] == '0' && str[*i + 2] == 'o')
+		SET_BIT(arg.flgmods, EXP_0);
 }
 
 int		conv_pars(char *str, int *i)

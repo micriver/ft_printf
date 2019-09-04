@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:56:08 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 13:32:38 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define LNGLNG (8)
 # define LNG_D (9)
 # define LONEDEC (10)
+# define EXP_0 (11)
 
 # define ZERO_FLAG CHECK_BIT(arg.flgmods, ZERO_F)
 # define MINUS_FLAG CHECK_BIT(arg.flgmods, MINUS_F)
@@ -48,6 +49,7 @@
 # define SHARP_FLAG CHECK_BIT(arg.flgmods, SHARP_F)
 # define INVP_FLAG CHECK_BIT(arg.flgmods, INVP_F)
 # define LONEDEC_F CHECK_BIT(arg.flgmods, LONEDEC)
+# define EXP_0_F CHECK_BIT(arg.flgmods, EXP_0)
 
 int					ft_printf(char *fmt, ...);
 
