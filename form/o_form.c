@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:57:50 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:39:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 11:53:40 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 char		*o_pbuild(char *temp, char *origstr)
 {
 	int i;
-	int length;
+	//int length;
 
 	i = 0;
-	length = arg.precision - (int)ft_strlen(origstr);
+	//length = arg.precision - (int)ft_strlen(origstr);
 	if (arg.precision >= (int)ft_strlen(origstr))
 	{
-		temp = ft_strnew(length);
-		while (i < (length))
+		temp = ft_strnew(arg.precision - (int)ft_strlen(origstr));
+		while (i < (arg.precision - (int)ft_strlen(origstr)))
 			temp[i++] = '0';
 		temp = ft_strjoin(temp, origstr);
 	}
@@ -65,38 +65,54 @@ char		*o_wbuild(char *temp)
 	return (temp);
 }
 
-char		*o_zeroch(char *temp, char *origstr)
-{
-	if (PREC == 0)
-		PREC = -1;
-	temp = ft_strcpy(temp, origstr);
-	if (SHARP_FLAG)
-	{
-		if (LONEDEC_F)
-			temp = ft_strcpy(temp, origstr);
-		else if (PREC == 0)
-			temp = ft_strcpy(temp, origstr);
-	}
-	else if (LONEDEC_F)
-		temp[0] = '\0';
-	else
-		temp = ft_strcpy(temp, origstr);
-	return (temp);
-}
+//char		*o_zeroch(char *temp, char *origstr)
+//{
+//	if (PREC == 0)
+//		PREC = -1;
+//	temp = ft_strcpy(temp, origstr);
+//	if (SHARP_FLAG)
+//	{
+//		if (LONEDEC_F)
+//			temp = ft_strcpy(temp, origstr);
+//		else if (PREC == 0)
+//			temp = ft_strcpy(temp, origstr);
+//	}
+//	else if (LONEDEC_F)
+//		temp[0] = '\0';
+//	else
+//		temp = ft_strcpy(temp, origstr);
+//	return (temp);
+//}
 
 void		o_form(char *origstr)
 {
 	char		*temp;
 
 	temp = ft_strnew(ft_strlen(origstr));
-	if (SHARP_FLAG && (ft_strcmp(origstr, "0") != 0))
-		PREC += (ft_strlen(origstr) + 1);
-	if (ft_strcmp(origstr, "0") == 0)
-		temp = o_zeroch(temp, origstr);
+	if (SHARP_FLAG)
+	{
+		if (ft_strcmp(origstr, "0") == 0)
+			temp = ft_strcpy(temp, origstr);
+		else if ((ft_strcmp(origstr, "0") == 0) && LONEDEC_F)
+			temp = ft_strcpy(temp, origstr);
+		else
+			PREC += ((int)ft_strlen(origstr) + 1);
+	}
+	if (LONEDEC_F)
+	{
+		if (ft_strcmp(origstr, "0") == 0)
+			temp[0] = '\0';
+		else
+			temp = ft_strcpy(temp, origstr);
+	}
+	//if (ft_strcmp(origstr, "0") == 0)
+	//	temp = o_zeroch(temp, origstr);
+	if (PREC)
+		temp = o_pbuild(temp, origstr);
 	else
 	{
-		if (PREC)
-			temp = o_pbuild(temp, origstr);
+		if (!SHARP_FLAG && LONEDEC_F && (ft_strcmp(origstr, "0") == 0))
+			temp[0] = '\0';
 		else
 			temp = ft_strcpy(temp, origstr);
 	}
