@@ -6,19 +6,30 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:48:31 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 21:27:51 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/04 13:57:29 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
+uint64_t		o_cast(va_list args, uint64_t n)
+{
+	if (CHECK_BIT(arg.flgmods, LNGLNG) || CHECK_BIT(arg.flgmods, LONGINT))
+		n = va_arg(args, unsigned long long int);
+	//else if (arg.conv == 'o' && n == -1)
+	//	n = va_arg(args, unsigned long long int);
+	else
+		n = va_arg(args, unsigned int);
+	return (n);
+}
+
 void	o_conv(va_list args)
 {
 	char	*res;
-	int64_t	n;
+	uint64_t	n;
 	char	*temp;
 
-	n = va_arg(args, int64_t);
+	n = o_cast(args, 0);
 	res = NULL;
 	if (n == 0)
 	{
@@ -29,7 +40,7 @@ void	o_conv(va_list args)
 	}
 	else if (arg.conv == 'o')
 	{
-		res = ft_itoa_base(n, res, 8, 0);
+		res = ft_uitoa_base(n, res, 8, 0);
 		o_form(res);
 	}
 }
