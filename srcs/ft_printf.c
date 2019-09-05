@@ -6,12 +6,11 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 15:19:49 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 15:20:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
-#include <stdio.h>
 
 int		ft_printf(char *fmt, ...)
 {
