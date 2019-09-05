@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 14:34:30 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 14:18:17 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,19 @@
 
 void			prfree(char *res)
 {
-	arg.char_count += ft_intputstr(res);
-	free(res);
-	reset_struct();
+	if (arg.fd)
+	{
+		ft_intputstr_fd(res, arg.fd);
+		arg.char_count += ft_strlen(res);
+		free(res);
+		reset_struct();
+	}
+	else
+	{
+		arg.char_count += ft_intputstr(res);
+		free(res);
+		reset_struct();
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 15:07:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 14:21:14 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,31 @@ int		ft_printf(char *fmt, ...)
 			break ;
 		else
 			arg.char_count += ft_intputchar(fmt[i++]);
+	}
+	va_end(args);
+	return (arg.char_count);
+}
+
+int		ft_printf_fd(int fd, char *fmt, ...)
+{
+	va_list		args;
+	int			i;
+
+	arg.char_count = 0;
+	arg.fd = fd;
+	va_start(args, fmt);
+	i = 0;
+	while (fmt[i])
+	{
+		if (fmt[i] == '%')
+			conversion(&i, fmt, args);
+		else if (fmt[i] == '\0')
+			break ;
+		else
+		{
+			ft_intputchar_fd(fmt[i++], fd);
+			arg.char_count += 1;
+		}
 	}
 	va_end(args);
 	return (arg.char_count);

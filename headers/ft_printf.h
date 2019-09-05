@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 15:26:52 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 14:18:27 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define EXP_0_F CHECK_BIT(arg.flgmods, EXP_0)
 
 int					ft_printf(char *fmt, ...);
+int					ft_printf_fd(int fd, char *fmt, ...);
 
 /*
 ** Conversion
@@ -90,6 +91,7 @@ struct				s_arguments
 	int				width;
 	int				precision;
 	int				char_count;
+	int				fd;
 	char			conv;
 }					arg;
 

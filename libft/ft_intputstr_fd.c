@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intputstr.c                                     :+:      :+:    :+:   */
+/*   ft_intputstr_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/16 10:54:49 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 14:21:26 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/05 13:43:14 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/05 14:21:28 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_intputstr(char *str)
+int		ft_intputstr_fd(char const *s, int fd)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
-	return (i);
+	if (s)
+		while (*s)
+			write(fd, (*&s)++, 1);
+	return (ft_strlen(s));
 }
