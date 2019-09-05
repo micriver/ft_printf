@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/05 14:22:19 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/05 14:55:01 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,6 +135,8 @@ OBJECTS += $(patsubst %.c,%.o,$(CONV))
 OBJECTS += $(patsubst %.c,%.o,$(FORM))
 OBJECTS += $(patsubst %.c,%.o,$(CKSIGN))
 
+ALLF = $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) $(addprefix libft/,$(LIBFT_SRCS))
+
 all: $(NAME)
 
 $(NAME):
@@ -162,7 +164,7 @@ re:	fclean all
 
 norme:
 	@echo 'Le Norme...'
-	@norminette -R CheckForbiddenSourceHeader $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix libft/,$(LIBFT_SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM))
+	@norminette -R CheckForbiddenSourceHeader $(ALLF)
 
 debug:
 	@echo 'Compiling your test executable...'
