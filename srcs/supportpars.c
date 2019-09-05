@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:38:09 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 13:35:32 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 13:20:31 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	precbuild(char *str, int *i)
 		j = (*i);
 		y = 0;
 		result = ft_strnew(j);
-		while (!ft_isalpha(str[*i]))
+		while (ft_isdigit(str[*i]))
 		{
 			result[y] = str[*i];
 			y++;
