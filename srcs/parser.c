@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 15:07:06 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 12:32:22 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int		flag_parse(char *str, int *i)
 {
-	if (str[*i] == '.' || str[*i] == '%')
+	if ((str[*i] == '.' || str[*i] == '%') && \
+			(str[*i] != ' ' || str[*i] != '#'))
 		return (0);
-	while (!ft_isalnum(str[*i]) || str[*i] == '0')
+	while ((!ft_isalnum(str[*i]) || str[*i] == '0') && str[*i] != '%')
 	{
 		if (str[*i] == '.')
 			return (0);
@@ -40,10 +41,10 @@ int		width_parser(char *str, int *i)
 		return (0);
 	j = (*i);
 	y = 0;
-	while (!(ft_isalpha(str[j])) && str[j + 1] != '.')
+	while (ft_isdigit(str[j]))
 		(j)++;
 	result = ft_strnew(j);
-	while (!(ft_isalpha(str[*i])) && str[*i] != '.')
+	while (ft_isdigit(str[*i]))
 	{
 		result[y] = str[*i];
 		y++;
