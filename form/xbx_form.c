@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 16:04:20 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 16:55:19 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		xbx_form(char *origstr)
 {
 	char		*temp;
 
-	temp = ft_strnew(ft_strlen(origstr));
+	//temp = ft_strnew(ft_strlen(origstr));
 	if (arg.precision)
 	{
 		temp = xbx_pbuild(temp, origstr);
