@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 14:01:55 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 18:22:59 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 18:45:42 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ void	conversion(int *i, char *str, va_list args)
 	size_t x;
 
 	x = 0;
-	//if (str[(*i)] == '%')
-	//{
-	//	(*i)++;
-	//	master_pars(str, i);
-	//	specconversion(args, i);
-	//}
-	//else
-	//{
 	(*i)++;
 	master_pars(str, i);
 	while (x < ft_strlen(CONV_SPECS))
@@ -51,5 +43,4 @@ void	conversion(int *i, char *str, va_list args)
 		}
 		x++;
 	}
-	//}
 }
