@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/05 14:55:01 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/06 11:44:10 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -168,5 +168,5 @@ norme:
 
 debug:
 	@echo 'Compiling your test executable...'
-	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf -fsanitize=address 
+	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf #-fsanitize=address 
 	@echo 'debug_ft_printf executable created'

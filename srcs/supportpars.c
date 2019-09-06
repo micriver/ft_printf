@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:38:09 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 17:44:18 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:06:33 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	precbuild(char *str, int *i)
 			(*i)++;
 		}
 		arg.precision = ft_atoi(result);
+		free(result);
 	}
 }
 

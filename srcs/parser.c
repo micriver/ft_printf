@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:21:27 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 12:34:30 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:05:30 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		width_parser(char *str, int *i)
 		(*i)++;
 	}
 	arg.width = ft_atoi(result);
+	free(result);
 	return (1);
 }
 

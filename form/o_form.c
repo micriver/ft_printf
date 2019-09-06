@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:57:50 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/04 14:31:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:31:00 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 char		*o_pbuild(char *temp, char *origstr)
 {
 	int i;
+	char *temp2;
 
 	i = 0;
 	if (arg.precision >= (int)ft_strlen(origstr))
 	{
-		temp = ft_strnew(arg.precision - (int)ft_strlen(origstr));
+		temp2 = ft_strnew(arg.precision - (int)ft_strlen(origstr));
 		while (i < (arg.precision - (int)ft_strlen(origstr)))
-			temp[i++] = '0';
-		temp = ft_strjoin(temp, origstr);
+			temp2[i++] = '0';
+		temp = ft_strjoin(temp2, origstr);
+		free(temp2);
 	}
 	else
 		temp = ft_strcpy(temp, origstr);
