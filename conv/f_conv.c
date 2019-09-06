@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:21:37 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/29 22:55:15 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 18:41:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void			f_conv(va_list args)
 	char			*decnum;
 
 	num = va_arg(args, double);
+	(void)args;
 	decnum = NULL;
 	ipart = (int)num;
 	whlnum = ft_llitoa(ipart);

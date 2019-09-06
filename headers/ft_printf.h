@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 14:18:27 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 18:01:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 
-# define CONV_SPECS "scdiuoxXpf$%*"
+# define CONV_SPECS "scdiuoxXpf%"
 # define SPECIAL_SPECS "$%*"
 # define WIDTH arg.width
 # define PREC arg.precision

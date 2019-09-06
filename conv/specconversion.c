@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 14:46:57 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 13:38:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/05 18:40:12 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	specconversion(va_list args)
 {
-	unsigned char	res;
 	char			*per_widthres;
 
 	per_widthres = NULL;
-	res = va_arg(args, int);
+	(void)args;
 	if (arg.conv == '%')
 	{
 		if (WIDTH)
