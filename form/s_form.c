@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 23:55:25 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 22:56:03 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 10:54:41 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*s_wbuild(char *temp, char *origstr)
 	else if (arg.width >= (int)ft_strlen(temp))
 		diff = arg.width - (int)ft_strlen(temp);
 	temp2 = temp;
-	if (arg.width <= (int)ft_strlen(temp))
+	if (arg.width < (int)ft_strlen(temp))
 	{
 		temp = ft_strcpy(temp2, origstr);
 		free(formstr);
@@ -83,6 +83,8 @@ void		s_form(char *origstr)
 		if ((int)ft_strlen(origstr) >= WIDTH)
 		{
 			temp3 = s_wbuild(temp2, origstr);
+			if ((PREC < (int)ft_strlen(origstr)) && (WIDTH < (int)ft_strlen(origstr)))
+				free(temp2);
 			prfree(temp3);
 		}
 		else
