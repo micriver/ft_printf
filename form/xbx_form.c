@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 17:43:45 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 21:23:43 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,16 @@ void		xbx_zero(char *temp, char *origstr)
 	{
 		temp[0] = '\0';
 		prfree(temp);
-		free(origstr);
 	}
 	else
 	{
-		prfree(temp);
-		free(origstr);
+		if (!PREC && !WIDTH)
+			prfree(origstr);
+		else
+		{
+			prfree(temp);
+			free(origstr);
+		}
 	}
 }
 
@@ -119,6 +123,13 @@ void		xbx_form(char *origstr)
 			temp = ft_strjoin("0X", origstr);
 	}
 	if (arg.width)
+	{
 		temp = xbx_wbuild(temp);
-	xbx_zero(temp, origstr);
+		xbx_zero(temp, origstr);
+	}
+	else
+	{
+		temp = origstr;
+		xbx_zero(temp, origstr);
+	}
 }

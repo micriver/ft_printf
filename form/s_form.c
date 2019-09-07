@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 23:55:25 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/01 16:48:19 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 22:56:03 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char		*s_pbuild(char *temp, char *origstr)
 char		*s_wbuild(char *temp, char *origstr)
 {
 	char	*formstr;
+	char	*temp2;
 	int		i;
 	int		diff;
 
@@ -41,18 +42,23 @@ char		*s_wbuild(char *temp, char *origstr)
 		temp = "";
 	if (origstr == NULL)
 		diff = arg.width - 6;
-	else
+	else if (arg.width >= (int)ft_strlen(temp))
 		diff = arg.width - (int)ft_strlen(temp);
-	if (arg.width < (int)ft_strlen(temp))
-		temp = ft_strcpy(temp, origstr);
+	temp2 = temp;
+	if (arg.width <= (int)ft_strlen(temp))
+	{
+		temp = ft_strcpy(temp2, origstr);
+		free(formstr);
+		return (temp);
+	}
 	else
 	{
 		while (i < diff)
 			formstr[i++] = ' ';
 		if (CHECK_BIT(arg.flgmods, MINUS_F))
-			temp = ft_strjoin(temp, formstr);
+			temp = ft_strjoin(temp2, formstr);
 		else
-			temp = ft_strjoin(formstr, temp);
+			temp = ft_strjoin(formstr, temp2);
 	}
 	free(formstr);
 	return (temp);
@@ -61,16 +67,32 @@ char		*s_wbuild(char *temp, char *origstr)
 void		s_form(char *origstr)
 {
 	char	*temp;
+	char	*temp2;
+	char	*temp3;
 
 	if (ft_strcmp(origstr, "(null)") == 0)
 		temp = ft_strnew(6);
 	else
 		temp = ft_strnew(ft_strlen(origstr));
 	if (arg.precision)
-		temp = s_pbuild(temp, origstr);
+		temp2 = s_pbuild(temp, origstr);
 	else
-		temp = ft_strcpy(temp, origstr);
+		temp2 = ft_strcpy(temp, origstr);
 	if (arg.width)
-		temp = s_wbuild(temp, origstr);
-	prfree(temp);
+	{
+		if ((int)ft_strlen(origstr) >= WIDTH)
+		{
+			temp3 = s_wbuild(temp2, origstr);
+			prfree(temp3);
+		}
+		else
+		{
+			temp3 = s_wbuild(temp2, origstr);
+			prfree(temp3);
+			if ((WIDTH) <= (int)ft_strlen(origstr))
+				free(temp);
+		}
+	}
+	else
+		prfree(temp2);
 }

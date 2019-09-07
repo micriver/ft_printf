@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 16:33:02 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 15:20:55 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 19:37:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		ft_printf(char *fmt, ...)
 	int			i;
 
 	arg.char_count = 0;
+	arg.fd = 0;
 	va_start(args, fmt);
 	i = 0;
 	while (fmt[i])

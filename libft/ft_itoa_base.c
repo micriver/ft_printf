@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 11:00:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 22:55:05 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 20:42:04 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@
 ** by dividing the digit by the given base.
 */
 
-char		*ft_itoa_base(int64_t num, char *str, int base, int i)
+char		*ft_itoa_base(int64_t num, int base, int i)
 {
 	int64_t		rem;
 	int			sign;
 	int64_t		temp;
 	int			length;
+	char		*str;
 
 	if (num < 0)
 		num = num * -1;

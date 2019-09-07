@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:17:33 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 13:47:42 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 20:42:09 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char				*ft_srch_rep(char *s, char c, char d);
 int					ft_intputchar(char c);
 int					ft_intputstr(char *str);
 char				*ft_strrev(char *str);
-char				*ft_itoa_base(int64_t num, char *str, int base, int i);
+char				*ft_itoa_base(int64_t num, int base, int i);
 char				*ft_llitoa_base(long long int num, \
 							char *str, int base, int i);
 char				*ft_itoa_base_up(int64_t num, char *str, int base, int i);
