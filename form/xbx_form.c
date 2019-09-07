@@ -6,17 +6,18 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 16:55:19 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/06 17:43:45 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-char		*xbx_pbuild(char *temp, char *origstr)
+char		*xbx_pbuild(char *origstr)
 {
 	int i;
 	int length;
 	char *temp2;
+	char *temp;
 
 	i = 0;
 	length = arg.precision - (int)ft_strlen(origstr);
@@ -29,7 +30,7 @@ char		*xbx_pbuild(char *temp, char *origstr)
 		free(temp2);
 	}
 	else
-		temp = ft_strcpy(temp, origstr);
+		temp = ft_strdup(origstr);
 	return (temp);
 }
 
@@ -60,10 +61,16 @@ char		*xbx_wstrbuild(char *temp)
 
 char		*xbx_wbuild(char *temp)
 {
+	char *temp2;
+
 	if (arg.width <= (int)ft_strlen(temp))
 		return (temp);
 	else
-		temp = xbx_wstrbuild(temp);
+	{
+		temp2 = temp;
+		temp = xbx_wstrbuild(temp2);
+		free(temp2);
+	}
 	return (temp);
 }
 
@@ -82,28 +89,34 @@ void		xbx_zero(char *temp, char *origstr)
 	}
 }
 
+int			ft_free(void *data)
+{
+	free(data);
+	return (1);
+}
+
 void		xbx_form(char *origstr)
 {
 	char		*temp;
+	char		*temp2;
 
-	//temp = ft_strnew(ft_strlen(origstr));
 	if (arg.precision)
 	{
-		temp = xbx_pbuild(temp, origstr);
+		temp = xbx_pbuild(origstr);
+		temp2 = temp;
 		if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
-			temp = ft_strjoin("0x", temp);
+			(temp = ft_strjoin("0x", temp)) && ft_free(temp2);
 		else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
 				&& arg.conv == 'X')
-			temp = ft_strjoin("0X", temp);
+			(temp = ft_strjoin("0X", temp)) && ft_free(temp2);
 	}
 	else
 	{
-		temp = ft_strcpy(temp, origstr);
 		if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
-			temp = ft_strjoin("0x", temp);
+			temp = ft_strjoin("0x", origstr);
 		else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
 				&& arg.conv == 'X')
-			temp = ft_strjoin("0X", temp);
+			temp = ft_strjoin("0X", origstr);
 	}
 	if (arg.width)
 		temp = xbx_wbuild(temp);
