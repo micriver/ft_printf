@@ -6,30 +6,32 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 21:30:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:39:53 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
+#include <stdio.h>
 
-char		*dui_pbuild(char *temp, char *origstr)
+char		*dui_pbuild(char *origstr)
 {
 	int i;
 	int length;
+	char *temp;
 	char *temp2;
 
 	i = 0;
-	length = arg.precision - (int)ft_strlen(origstr);
-	if (arg.precision >= (int)ft_strlen(origstr))
-	{
-		temp2 = ft_strnew(length);
-		while (i < (length))
-			temp2[i++] = '0';
-		temp = ft_strjoin(temp2, origstr);
-		free(temp2);
-	}
-	else
-		temp = ft_strcpy(temp, origstr);
+	length = PREC - (int)ft_strlen(origstr);
+	//if (arg.precision > (int)ft_strlen(origstr))
+	//{
+	temp2 = ft_strnew(length);
+	while (i < (length))
+		temp2[i++] = '0';
+	temp = ft_strjoin(temp2, origstr);
+	free(temp2);
+	//}
+	//else
+	//	temp = ft_strcpy(temp, origstr);
 	return (temp);
 }
 
@@ -70,13 +72,28 @@ char		*dui_wbuild(char *temp)
 void		dui_form(char *origstr)
 {
 	char	*temp;
+	char	*temp2;
 
-	temp = ft_strnew(ft_strlen(origstr));
-	if (arg.precision)
-		temp = dui_pbuild(temp, origstr);
+	if ((ft_strcmp(origstr, "0") == 0) && (LONEDEC_F))
+		temp = "";
+	else if (arg.precision)
+	{
+		if (PREC > (int)ft_strlen(origstr))
+		{
+			temp = dui_pbuild(origstr);
+			//free(temp2);
+		}
+		else
+			temp = ft_strdup(origstr);
+	}
 	else
-		temp = ft_strcpy(temp, origstr);
+		temp = ft_strdup(origstr);
 	if (arg.width)
-		temp = dui_wbuild(temp);
-	dui_sign(temp, origstr);
+	{
+		temp2 = dui_wbuild(temp);
+		dui_sign(temp2, origstr);
+		free(temp);
+	}
+	else
+		dui_sign(temp, origstr);
 }

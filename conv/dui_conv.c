@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:53:17 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 21:28:49 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:39:18 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void		dui_conv(va_list args)
 	long long int	n;
 
 	cast(args, &n);
-	if (n == 0 && (CHECK_BIT(arg.flgmods, LONEDEC)))
-	{
-		res = ft_strnew(1);
-		res = " ";
-	}
-	else if (arg.conv == 'd' || arg.conv == 'i')
+	//if (n == 0 && (CHECK_BIT(arg.flgmods, LONEDEC)))
+	//{
+	//	res = ft_strnew(1);
+	//	res = " ";
+	//}
+	if (arg.conv == 'd' || arg.conv == 'i')
 		res = ft_llitoa(n);
 	else
 		res = ft_ullitoa(n);

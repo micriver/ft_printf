@@ -5,30 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/29 23:55:25 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 16:00:12 by mirivera         ###   ########.fr       */
+/*   Created: 2019/09/07 16:21:20 by mirivera          #+#    #+#             */
+/*   Updated: 2019/09/07 16:44:49 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-char		*s_pbuild(char *temp, char *origstr)
+char		*s_pbuild(char *temp)
 {
 	int x;
 
 	x = 0;
 	if (arg.precision > arg.width)
 		arg.width = 0;
-	while (x < arg.precision)
-	{
-		temp[x] = origstr[x];
-		x++;
-	}
-	temp[x] = '\0';
-	if (!(ft_strcmp(origstr, "(null)") == 0))
-		temp[x] = '\0';
+	if (PREC < (int)ft_strlen(temp))
+		temp[PREC] = '\0';
+	if (PREC > (int)ft_strlen(temp))
+		return (temp);
 	return (temp);
-}
+}	
 
 char		*s_wbuild(char *temp, char *origstr)
 {
@@ -98,7 +94,7 @@ void		s_form(char *origstr)
 	else if ((PREC) && (!LONEDEC_F))
 	{
 		temp = ft_strdup(origstr);
-		temp = s_pbuild(temp, origstr);
+		temp = s_pbuild(temp);
 		if (!WIDTH)
 			prfree(temp);
 	}
