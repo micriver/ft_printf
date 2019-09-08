@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:30:49 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 14:50:09 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 20:15:06 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,21 @@ char	*pos_invpch(char *formstr, char *origstr)
 	}
 	else if ((INVP_FLAG) && (origstr[0] != '-') && \
 			(ZERO_FLAG))
-		formstr = ft_prefixchar(' ', formstr);
+		ft_prefixchar(' ', formstr);
 	return (formstr);
 }
 
 char	*invpf_check(char *formstr, char *origstr)
 {
 	if ((INVP_FLAG) && (origstr[0] != '-'))
-		formstr = pos_invpch(formstr, origstr);
+		pos_invpch(formstr, origstr);
 	if ((INVP_FLAG) && (origstr[0] == '-') && \
 			(!ZERO_FLAG))
 		formstr = neg_invpch(formstr, origstr);
+	//if ((INVP_FLAG) && (origstr[0] != '-'))
+	//	formstr = pos_invpch(formstr, origstr);
+	//if ((INVP_FLAG) && (origstr[0] == '-') && \
+	//		(!ZERO_FLAG))
+	//	formstr = neg_invpch(formstr, origstr);
 	return (formstr);
 }

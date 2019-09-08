@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:04:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 14:39:06 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 22:32:17 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,55 @@
 
 char	*pr_widch(char *formstr, char *origstr)
 {
+	char *result;
+
 	if (origstr[0] == '-' && PREC >= (int)ft_strlen(origstr))
-		origstr[0] = '0';
+	{
+		ft_srch_rep(formstr, '-', '0');
+		result = ft_prependchar('-', formstr);
+		return(result);
+	}
 	if (ft_strcmp(formstr, origstr) == 0)
 		;
 	else
 	{
-		formstr = ft_srch_rep(formstr, '-', '0');
-		formstr = ft_prependchar('-', formstr);
+		ft_srch_rep(formstr, '-', '0');
+		result = ft_prependchar('-', formstr);
+		return (result);
 	}
 	return (formstr);
 }
 
 char	*under_pr(char *formstr)
 {
-	int i;
+	int		i;
+	char	*result;
 
 	i = 0;
-	formstr = ft_srch_rep(formstr, '-', '0');
+	ft_srch_rep(formstr, '-', '0');
 	if (formstr[i] == '0' && (WIDTH < PREC))
-		formstr = ft_prependchar('-', formstr);
+	{
+		result = ft_prependchar('-', formstr);
+		free(formstr);
+	}
 	else if (formstr[i] == '0' && (WIDTH > PREC))
-		formstr = ft_insertchar(formstr, '-', 0);
+	{
+		result = ft_insertchar(formstr, '-', 0);
+		free(formstr);
+	}
 	else
 	{
 		while (formstr[i] == ' ')
 			i++;
 		formstr[i - 1] = '-';
+		result = formstr;
 	}
-	return (formstr);
+	return (result);
 }
 
 char	*weird1ch(char *formstr)
 {
-	formstr = ft_srch_rep(formstr, '-', '0');
+	ft_srch_rep(formstr, '-', '0');
 	formstr = ft_prependchar('-', formstr);
 	return (formstr);
 }
@@ -65,7 +80,7 @@ char	*weird2ch(char *formstr)
 	int i;
 
 	i = 0;
-	formstr = ft_srch_rep(formstr, '-', '0');
+	ft_srch_rep(formstr, '-', '0');
 	while (formstr[i] == ' ')
 		i++;
 	formstr[i - 1] = '-';

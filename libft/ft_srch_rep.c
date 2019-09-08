@@ -6,13 +6,13 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 15:48:56 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/06 15:52:47 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 19:55:46 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-char	*ft_srch_rep(char *s, char c, char d)
+void	ft_srch_rep(char *s, char c, char d)
 {
 	int i;
 
@@ -23,5 +23,4 @@ char	*ft_srch_rep(char *s, char c, char d)
 			s[i] = d;
 		i++;
 	}
-	return (s);
 }

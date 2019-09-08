@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 17:39:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 21:45:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,11 @@ char		*dui_pbuild(char *origstr)
 
 	i = 0;
 	length = PREC - (int)ft_strlen(origstr);
-	//if (arg.precision > (int)ft_strlen(origstr))
-	//{
 	temp2 = ft_strnew(length);
 	while (i < (length))
 		temp2[i++] = '0';
 	temp = ft_strjoin(temp2, origstr);
 	free(temp2);
-	//}
-	//else
-	//	temp = ft_strcpy(temp, origstr);
 	return (temp);
 }
 
@@ -40,9 +35,10 @@ char		*wbuild(char *temp)
 	int		diff;
 	int		i;
 	char	*formstr;
+	char	*result;
 
 	i = 0;
-	diff = arg.width - (int)ft_strlen(temp);
+	diff = WIDTH - (int)ft_strlen(temp);
 	formstr = ft_strnew(diff);
 	while (i < diff)
 	{
@@ -53,20 +49,34 @@ char		*wbuild(char *temp)
 	}
 	formstr[diff] = '\0';
 	if (CHECK_BIT(arg.flgmods, MINUS_F))
-		temp = ft_strjoin(temp, formstr);
+	{
+		result = ft_strjoin(temp, formstr);
+		(ft_strcmp("", temp) == 0) ? temp : free(temp);
+	}
 	else
-		temp = ft_strjoin(formstr, temp);
+	{
+		result = ft_strjoin(formstr, temp);
+		(ft_strcmp("", temp) == 0) ? temp : free(temp);
+	}
 	free(formstr);
-	return (temp);
+	return (result);
 }
 
 char		*dui_wbuild(char *temp)
 {
+	char *result;
+
 	if (arg.width <= (int)ft_strlen(temp))
-		return (temp);
+	{
+		result = temp;
+		return (result);
+	}
 	else
-		temp = wbuild(temp);
-	return (temp);
+	{
+		result = wbuild(temp);
+		//free(temp);
+	}
+	return (result);
 }
 
 void		dui_form(char *origstr)
@@ -91,8 +101,8 @@ void		dui_form(char *origstr)
 	if (arg.width)
 	{
 		temp2 = dui_wbuild(temp);
+		//free(temp);
 		dui_sign(temp2, origstr);
-		free(temp);
 	}
 	else
 		dui_sign(temp, origstr);

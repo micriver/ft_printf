@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:17:33 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 20:42:09 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 19:55:09 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char				*ft_strndup(const char *src, int n);
 int					get_next_line(const int fd, char **line);
-char				*ft_prefixchar(char prefix, char *str);
+void				ft_prefixchar(char prefix, char *str);
 char				*ft_prependchar(char c, char *str);
 char				*ft_llitoa(long long int n);
 char				*ft_ullitoa(unsigned long long int n);
 char				*ft_uitoa(unsigned long int n);
-char				*ft_srch_rep(char *s, char c, char d);
+void				ft_srch_rep(char *s, char c, char d);
 int					ft_intputchar(char c);
 int					ft_intputstr(char *str);
 char				*ft_strrev(char *str);

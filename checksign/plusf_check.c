@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:26:39 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 19:43:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 22:05:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,58 @@
 
 char	*neg_plusch(char *formstr, char *origstr)
 {
-	int i;
+	char	*result;
+	int		i;
 
 	i = 0;
 	if (PREC == WIDTH)
-		formstr = pr_widch(formstr, origstr);
+	{
+		result = pr_widch(formstr, origstr);
+		//free(formstr);
+	}
 	else if ((int)ft_strlen(origstr) < PREC)
-		formstr = under_pr(formstr);
+		result = under_pr(formstr);
 	else if (origstr[0] == '-' && (PREC > ((int)ft_strlen(origstr) - 1)) \
 			&& !(WIDTH > PREC))
-		formstr = weird1ch(formstr);
+		result = weird1ch(formstr);
 	else if (origstr[0] == '-' && (PREC > ((int)ft_strlen(origstr) - 1)) \
 			&& WIDTH > PREC)
-		formstr = weird2ch(formstr);
+		result = weird2ch(formstr);
 	else
 	{
 		while (formstr[i] == ' ' || formstr[i] == '-')
 			i++;
 		formstr[i - 1] = '-';
+		result = formstr;
 	}
-	return (formstr);
+	return (result);
 }
 
 char	*pos_plusch(char *formstr, char *origstr)
 {
-	int i;
+	char	*result;
+	int		i;
 
 	i = 0;
-	if ((PLUS_FLAG) && (origstr[0] != '-') && \
-			(!ZERO_FLAG))
+	if (PREC >= WIDTH)
 	{
-		if (PREC >= WIDTH)
-			formstr = ft_prependchar('+', formstr);
-		else if ((PLUS_FLAG) && \
-				(MINUS_FLAG) && (ft_atoi(origstr) >= 0))
-			formstr = ft_insertchar(formstr, '+', 0);
-		else
-		{
-			while (formstr[i] == ' ')
-				i++;
-			formstr[i - 1] = '+';
-		}
+		result = ft_prependchar('+', formstr);
+		free(formstr);
 	}
-	return (formstr);
+	else if ((PLUS_FLAG) && \
+			(MINUS_FLAG) && (ft_atoi(origstr) >= 0))
+	{
+		result = ft_insertchar(formstr, '+', 0);
+		free(formstr);
+	}
+	else
+	{
+		while (formstr[i] == ' ')
+			i++;
+		formstr[i - 1] = '+';
+		result = formstr;
+	}
+	return (result);
 }
 
 /*
@@ -69,14 +78,22 @@ char	*pos_plusch(char *formstr, char *origstr)
 
 char	*plusf_check(char *formstr, char *origstr)
 {
+	char *result;
+
 	if ((PLUS_FLAG) && (origstr[0] != '-') && \
 			(!ZERO_FLAG))
-		formstr = pos_plusch(formstr, origstr);
+	{
+		result = pos_plusch(formstr, origstr);
+	//	free(formstr);
+	}
 	else if ((PLUS_FLAG) && (origstr[0] != '-') && \
 			(ZERO_FLAG))
-		formstr = ft_prefixchar('+', formstr);
+	{
+		ft_prefixchar('+', formstr);
+		result = formstr;
+	}
 	if ((PLUS_FLAG) && (origstr[0] == '-') && \
 			(!ZERO_FLAG))
-		formstr = neg_plusch(formstr, origstr);
-	return (formstr);
+		result = neg_plusch(formstr, origstr);
+	return (result);
 }

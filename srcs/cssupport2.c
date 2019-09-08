@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 14:23:53 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/02 14:39:24 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/07 20:04:21 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ippr_widch(char *formstr, char *origstr)
 		;
 	else
 	{
-		formstr = ft_srch_rep(formstr, '-', '0');
+		ft_srch_rep(formstr, '-', '0');
 		formstr = ft_prependchar('-', formstr);
 	}
 	return (formstr);
@@ -39,7 +39,7 @@ char	*ipunder_pr(char *formstr)
 	int i;
 
 	i = 0;
-	formstr = ft_srch_rep(formstr, '-', '0');
+	ft_srch_rep(formstr, '-', '0');
 	if (formstr[i] == '0')
 		formstr = ft_prependchar('-', formstr);
 	else if (formstr[i] == '0' && (WIDTH > PREC))
@@ -55,7 +55,7 @@ char	*ipunder_pr(char *formstr)
 
 char	*ipweird1ch(char *formstr)
 {
-	formstr = ft_srch_rep(formstr, '-', '0');
+	ft_srch_rep(formstr, '-', '0');
 	formstr = ft_prependchar('-', formstr);
 	return (formstr);
 }
@@ -65,7 +65,7 @@ char	*ipweird2ch(char *formstr)
 	int i;
 
 	i = 0;
-	formstr = ft_srch_rep(formstr, '-', '0');
+	ft_srch_rep(formstr, '-', '0');
 	while (formstr[i] == ' ')
 		i++;
 	formstr[i - 1] = '-';
