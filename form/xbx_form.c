@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/09 11:31:28 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/09 14:40:07 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,21 @@ char		*xbx_wbuild(char *temp)
 
 void		xbx_zero(char *temp, char *origstr)
 {
-	if ((ft_strcmp(temp, "0") == 0) && (CHECK_BIT(arg.flgmods, LONEDEC)))
+	char	*temp2;
+
+	if (LONEDEC_F)
 	{
-		temp[0] = '\0';
-		prfree(temp);
+		if ((ft_strcmp(temp, "0") == 0) && (CHECK_BIT(arg.flgmods, LONEDEC)))
+		{
+			temp2 = ft_strdup("");
+			prfree(temp2);
+			free(origstr);
+		}
+		else
+		{
+			prfree(temp);
+			free(origstr);
+		}
 	}
 	else
 	{
@@ -89,7 +100,14 @@ void		xbx_zero(char *temp, char *origstr)
 		{
 			if (SHARP_FLAG)
 				free(origstr);
-			prfree(temp);
+			arg.char_count += ft_intputstr(temp);
+			if (WIDTH)
+				free(temp);
+			if (SHARP_FLAG && ft_strcmp(temp, "0") != 0)
+				free(temp);
+			if (PREC && !WIDTH)
+				free(temp);
+			reset_struct();
 		}
 	}
 }
@@ -114,6 +132,8 @@ void		xbx_form(char *origstr)
 		else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
 				&& arg.conv == 'X')
 			(temp = ft_strjoin("0X", temp)) && ft_free(temp2);
+		else if (!(ZERO_FLAG))
+			free(temp2);
 	}
 	else
 	{
@@ -125,13 +145,24 @@ void		xbx_form(char *origstr)
 	}
 	if (arg.width)
 	{
-		temp = xbx_wbuild(origstr);
-		xbx_zero(temp, origstr);
+		if (PREC)
+		{
+			temp2 = xbx_wbuild(temp);
+			xbx_zero(temp2, origstr);
+		}
+		else
+		{
+			temp = xbx_wbuild(origstr);
+			xbx_zero(temp, origstr);
+		}
 	}
 	else
 	{
-		if (!SHARP_FLAG)
+		if (!SHARP_FLAG && PREC)
+		{
 			temp = origstr;
+			//free(temp);
+		}
 		xbx_zero(temp, origstr);
 	}
 }
