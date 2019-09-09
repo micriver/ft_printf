@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:04:12 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 22:32:17 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/09 10:34:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*pr_widch(char *formstr, char *origstr)
 	{
 		ft_srch_rep(formstr, '-', '0');
 		result = ft_prependchar('-', formstr);
+		free(formstr);
 		return(result);
 	}
 	if (ft_strcmp(formstr, origstr) == 0)
@@ -70,8 +71,12 @@ char	*under_pr(char *formstr)
 
 char	*weird1ch(char *formstr)
 {
-	ft_srch_rep(formstr, '-', '0');
-	formstr = ft_prependchar('-', formstr);
+	char *temp;
+
+	temp = formstr;
+	ft_srch_rep(temp, '-', '0');
+	formstr = ft_prependchar('-', temp);
+	free(temp);
 	return (formstr);
 }
 

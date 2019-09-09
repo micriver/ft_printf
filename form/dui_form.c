@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 21:45:57 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/09 10:08:36 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ void		dui_form(char *origstr)
 	else if (arg.precision)
 	{
 		if (PREC > (int)ft_strlen(origstr))
-		{
 			temp = dui_pbuild(origstr);
-			//free(temp2);
-		}
 		else
 			temp = ft_strdup(origstr);
 	}
@@ -101,7 +98,6 @@ void		dui_form(char *origstr)
 	if (arg.width)
 	{
 		temp2 = dui_wbuild(temp);
-		//free(temp);
 		dui_sign(temp2, origstr);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:51:48 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 22:05:54 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/09 10:32:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	dui_sign(char *formstr, char *origstr)
 	{
 		result = plusf_check(formstr, origstr);
 		prfree(result);
-		//free(origstr);
+		free(origstr);
 	}
 	else if (INVP_FLAG)
 	{

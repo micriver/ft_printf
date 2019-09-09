@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/06 20:38:21 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/09 10:37:04 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,7 +166,15 @@ norme:
 	@echo 'Le Norme...'
 	@norminette -R CheckForbiddenSourceHeader $(ALLF)
 
-debug:
+sanitize:
 	@echo 'Compiling your test executable...'
-	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) ./misc_files/main.c ./libft/*.c -o debug_ft_printf #-fsanitize=address 
-	@echo 'debug_ft_printf executable created'
+	@$(CC) $(CFLAGS) -g -I $(HEADERS) $(addprefix srcs/,$(SRCS)) $(addprefix conv/,$(CONV)) $(addprefix form/,$(FORM)) $(addprefix checksign/,$(CKSIGN)) ./misc_files/main.c ./libft/*.c -o debug_sanitize -fsanitize=address
+	@echo 'debug_sanitize executable created'
+	@echo 'Running sanitized executable...'
+	@./debug_sanitize
+
+valgrind:
+	@echo 'Compiling valgrind executable...'
+	@$(CC) $(CFLAGS) -g -I $(HEADERS) srcs/*.c conv/*.c form/*.c checksign/*.c ./misc_files/main.c ./libft/*.c -o debug_valgrind
+	@echo 'Running valgrind executable...'
+	@valgrind --leak-check=full ./debug_valgrind

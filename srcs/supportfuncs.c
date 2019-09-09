@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 20:20:28 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/09 10:15:01 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 void			prfree(char *res)
 {
-	//int test = 0;
-	//arg.char_count = 0;
 	if (arg.fd)
 	{
 		ft_intputstr_fd(res, arg.fd);
