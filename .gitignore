@@ -25,7 +25,7 @@ libft/.gitignore
 /objects
 
 #Misc files
-debug_ft_printf
+debug_*
 *.pdf
 tests.c
 .DS_Store
