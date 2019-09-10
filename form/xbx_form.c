@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/10 11:51:49 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/10 11:55:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,18 +160,10 @@ void		xbx_form(char *origstr)
 	}
 	if (arg.width)
 	{
-		//if (PREC)
-		//{
-		//	temp2 = xbx_wbuild(temp);
-		//	xbx_zero(temp2, origstr);
-		//}
-		//else
-		//{
 		if (!PREC && !SHARP_FLAG)
 			temp = ft_strdup(origstr);
 		temp2 = xbx_wbuild(temp);
 		xbx_zero(temp2, origstr);
-		//}
 	}
 	else
 	{
@@ -180,7 +172,6 @@ void		xbx_form(char *origstr)
 			temp = origstr;
 			if (!WIDTH)
 				free(temp2);
-			//free(temp);
 		}
 		xbx_zero(temp, origstr);
 	}

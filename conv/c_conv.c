@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 19:52:23 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/05 18:22:53 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/10 11:58:55 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	c_conv(va_list args)
 	{
 		widthres = c_form(res);
 		arg.char_count += ft_intputstr(widthres);
+		free(widthres);
 		reset_struct();
 	}
 	else
