@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/09 13:10:43 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/10 13:24:09 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,6 @@ long double		decconv(long double dec)
 */
 
 char			*o_explicitzero(char *temp, char *origstr)
-{
-	if (ft_strcmp(origstr, "0") == 0)
-		temp[0] = '\0';
-	else
-		temp = ft_strcpy(temp, origstr);
-	return (temp);
-}
-
-char			*o_lonedecf(char *temp, char *origstr)
 {
 	if (ft_strcmp(origstr, "0") == 0)
 		temp[0] = '\0';
