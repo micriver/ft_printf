@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/09 10:08:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 12:49:32 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ char		*dui_wbuild(char *temp)
 
 	if (arg.width <= (int)ft_strlen(temp))
 	{
-		result = temp;
+		result = ft_strdup(temp);
+		free(temp);
 		return (result);
 	}
 	else

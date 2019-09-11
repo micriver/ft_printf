@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:05:31 by mirivera          #+#    #+#             */
-/*   Updated: 2019/08/31 15:13:48 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 10:36:10 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 void		p_form(char *orig)
 {
-	char	*formstr;
+	char	*temp;
 	int		i;
-	int		diff;
 
 	i = 0;
-	if (arg.width)
-		diff = arg.width - (int)ft_strlen(orig);
 	if (CHECK_BIT(arg.flgmods, MINUS_F))
 	{
-		formstr = ft_strnew(arg.width);
-		while (i < diff)
-			formstr[i++] = ' ';
-		formstr = ft_strjoin(orig, formstr);
+		temp = ft_strnew(WIDTH);
+		while (i < arg.width - (int)ft_strlen(orig))
+			temp[i++] = ' ';
+		arg.char_count += ft_intputstr(orig);
+		arg.char_count += ft_intputstr(temp);
+		free(orig);
+		free(temp);
 	}
 	else
 	{
-		formstr = ft_strnew(arg.width);
-		while (i < diff)
-			formstr[i++] = ' ';
-		formstr = ft_strjoin(formstr, orig);
+		temp = ft_strnew(WIDTH);
+		while (i < arg.width - (int)ft_strlen(orig))
+			temp[i++] = ' ';
+		arg.char_count += ft_intputstr(temp);
+		arg.char_count += ft_intputstr(orig);
+		free(orig);
+		free(temp);
 	}
-	prfree(formstr);
 }

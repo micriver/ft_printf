@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:21:20 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 16:44:49 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 11:42:25 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		s_form(char *origstr)
 	char	*temp;
 	char	*temp2;
 
-	if ((!PREC) && (!WIDTH) && (!LONEDEC_F))
+	if ((!PREC) && (!WIDTH) && (!LONEDEC_F) && (!arg.fd))
 		arg.char_count += ft_intputstr(origstr);
 	else if ((PREC) && (!LONEDEC_F))
 	{
@@ -117,4 +117,6 @@ void		s_form(char *origstr)
 		temp = s_lonedec();
 		prfree(temp);
 	}
+	else if (arg.fd)
+		prfree(origstr);
 }

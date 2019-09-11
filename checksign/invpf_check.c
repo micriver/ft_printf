@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:30:49 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 20:15:06 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 11:32:54 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,26 @@ char	*neg_invpch(char *formstr, char *origstr)
 
 char	*pos_invpch(char *formstr, char *origstr)
 {
-	int i;
+	int		i;
+	char	*result;
 
 	i = 0;
 	if ((INVP_FLAG) && (origstr[0] != '-') && \
 			(!ZERO_FLAG))
 	{
 		if (PREC >= WIDTH)
-			formstr = ft_prependchar(' ', formstr);
+		{
+			result = ft_prependchar(' ', formstr);
+			free(formstr);
+			return (result);
+		}
 		else if ((INVP_FLAG) && \
 				(MINUS_FLAG) && (ft_atoi(origstr) >= 0))
-			formstr = ft_insertchar(formstr, ' ', 0);
+		{
+			result = ft_insertchar(formstr, ' ', 0);
+			free(formstr);
+			return (result);
+		}
 		else
 		{
 			while (formstr[i] == ' ')
@@ -64,15 +73,23 @@ char	*pos_invpch(char *formstr, char *origstr)
 
 char	*invpf_check(char *formstr, char *origstr)
 {
+	char	*result;
+
 	if ((INVP_FLAG) && (origstr[0] != '-'))
-		pos_invpch(formstr, origstr);
-	if ((INVP_FLAG) && (origstr[0] == '-') && \
+	{
+		result = pos_invpch(formstr, origstr);
+		//free(formstr);
+	}
+	else if ((INVP_FLAG) && (origstr[0] == '-') && \
 			(!ZERO_FLAG))
-		formstr = neg_invpch(formstr, origstr);
-	//if ((INVP_FLAG) && (origstr[0] != '-'))
-	//	formstr = pos_invpch(formstr, origstr);
-	//if ((INVP_FLAG) && (origstr[0] == '-') && \
-	//		(!ZERO_FLAG))
-	//	formstr = neg_invpch(formstr, origstr);
-	return (formstr);
+	{
+		result = neg_invpch(formstr, origstr);
+		//free(formstr);
+	}
+	else
+	{
+		result = ft_strdup(formstr);
+		//free(formstr);
+	}
+	return (result);
 }
