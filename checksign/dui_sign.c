@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:51:48 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/11 12:49:34 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:03:44 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ void	dui_sign(char *formstr, char *origstr)
 	}
 	else
 	{
-		arg.char_count += ft_intputstr(formstr);
-		free(formstr);
+		prfree(formstr);
 		free(origstr);
-		reset_struct();
-	//	prfree(formstr);
-	//	free(origstr);
 	}
 }

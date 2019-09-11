@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/11 12:49:32 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:03:37 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ char		*dui_wbuild(char *temp)
 		return (result);
 	}
 	else
-	{
 		result = wbuild(temp);
-		//free(temp);
-	}
 	return (result);
 }
 
