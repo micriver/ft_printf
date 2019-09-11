@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 18:57:50 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/10 15:18:28 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 10:01:47 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,13 +167,8 @@ void		o_sharpf2(char *temp, char *origstr)
 
 void		o_form(char *origstr)
 {
-	//char		*temp;
 	char		temp[64];
-	//char		temp2;
 
-	//temp = ft_strnew(ft_strlen(origstr));
-	//if ((int)ft_strlen(origstr) >= 63)
-	//	temp = ft_strnew(ft_strlen(origstr));
 	if (SHARP_FLAG)
 		o_sharpf2(temp, origstr);
 	if (LONEDEC_F || EXP_0_F)
@@ -190,10 +185,10 @@ void		o_form(char *origstr)
 					o_wstrbuild2(origstr);
 			}
 		}
-		else if (!WIDTH && !PREC)
+		else if (!WIDTH && !PREC && !(ft_strcmp(origstr, "0") == 0))
 			arg.char_count += ft_intputstr(origstr);
 	}
-	else if (!MINUS_FLAG)
+	else if (!MINUS_FLAG && (WIDTH || PREC))
 	{
 		if (arg.width)
 		{
@@ -205,23 +200,16 @@ void		o_form(char *origstr)
 		}
 		else if (PREC)
 			o_pbuild2(temp, origstr);
-		else if (!WIDTH && !PREC)
+		else if ((!WIDTH && !PREC) && !(ft_strcmp(origstr, "0") == 0))
 			arg.char_count += ft_intputstr(origstr);
 	}
-	//else if (EXP_0_F && !SHARP_FLAG)
-	//	temp = o_explicitzero(temp, origstr);
-	//else
-	//{
-	//	if (!SHARP_FLAG && LONEDEC_F && (ft_strcmp(origstr, "0") == 0))
-	//		temp[0] = '\0';
-	//	else
-	//		temp = ft_strcpy(temp, origstr);
-	//}
-	//if (arg.width)
-	//	o_wbuild2(temp);
-	//prfree(temp);
-	else if (!LONEDEC_F)
-		ft_strcpy(temp, origstr);
+	else
+	{
+		if(!LONEDEC_F && !EXP_0_F)
+			arg.char_count += ft_intputstr(origstr);
+		else
+			arg.char_count += ft_intputstr(temp);
+	}
 	free(origstr);
 	reset_struct();
 }
