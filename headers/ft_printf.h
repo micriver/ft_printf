@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/09 11:24:42 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:34:16 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,13 @@ char				*ipweird2ch(char *formstr);
 
 char				*o_lonedecf(char *temp, char *origstr);
 char				*o_explicitzero(char *temp, char *origstr);
+
+/*
+** functions for 's' conversion
+*/
+
+char				*s_wbuild(char *temp, char *origstr);
+void				s_widthhandle(char *temp, char *origstr);
 
 /*
 ** Print functions

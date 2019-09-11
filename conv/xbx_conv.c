@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:43:24 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/09 13:12:26 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:09:59 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	xbx_conv(va_list args)
 		temp = "0";
 		res = ft_strnew(1);
 		res = ft_strcpy(res, temp);
-		//free(temp);
 		xbx_form(res);
 	}
 	else if (arg.conv == 'X')

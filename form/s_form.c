@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:21:20 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/11 11:42:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:33:19 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,50 @@ char		*s_pbuild(char *temp)
 	if (PREC > (int)ft_strlen(temp))
 		return (temp);
 	return (temp);
-}	
+}
 
-char		*s_wbuild(char *temp, char *origstr)
+char		*s_greaterthanbuild(char *temp, int diff)
 {
-	char	*formstr;
 	char	*temp2;
+	char	*formstr;
 	int		i;
-	int		diff;
 
 	i = 0;
-	formstr = ft_strnew(arg.width);
-	if (ft_strcmp(origstr, "(null)") == 0)
-		diff = arg.width - (int)ft_strlen(temp);
-	else if ((arg.width >= (int)ft_strlen(temp)) || (ft_strcmp(origstr, "(null)") == 0))
-		diff = arg.width - (int)ft_strlen(temp);
 	temp2 = NULL;
-	if (arg.width < (int)ft_strlen(temp))
+	temp2 = temp;
+	formstr = ft_strnew(arg.width);
+	while (i < diff)
+		formstr[i++] = ' ';
+	if (CHECK_BIT(arg.flgmods, MINUS_F))
 	{
-		temp = ft_strcpy(temp, origstr);
-		free(formstr);
-		return (temp);
+		temp = ft_strjoin(temp2, formstr);
+		free(temp2);
 	}
 	else
 	{
-		temp2 = temp;
-		while (i < diff)
-			formstr[i++] = ' ';
-		if (CHECK_BIT(arg.flgmods, MINUS_F))
-		{
-			temp = ft_strjoin(temp2, formstr);
-			free(temp2);
-		}
-		else
-		{
-			temp = ft_strjoin(formstr, temp2);
-			free(temp2);
-		}
+		temp = ft_strjoin(formstr, temp2);
+		free(temp2);
 	}
 	free(formstr);
+	return (temp);
+}
+
+char		*s_wbuild(char *temp, char *origstr)
+{
+	int		diff;
+
+	if (ft_strcmp(origstr, "(null)") == 0)
+		diff = arg.width - (int)ft_strlen(temp);
+	else if ((arg.width >= (int)ft_strlen(temp)) || \
+			(ft_strcmp(origstr, "(null)") == 0))
+		diff = arg.width - (int)ft_strlen(temp);
+	if (arg.width < (int)ft_strlen(temp))
+	{
+		temp = ft_strcpy(temp, origstr);
+		return (temp);
+	}
+	else
+		temp = s_greaterthanbuild(temp, diff);
 	return (temp);
 }
 
@@ -87,7 +92,6 @@ char		*s_lonedec(void)
 void		s_form(char *origstr)
 {
 	char	*temp;
-	char	*temp2;
 
 	if ((!PREC) && (!WIDTH) && (!LONEDEC_F) && (!arg.fd))
 		arg.char_count += ft_intputstr(origstr);
@@ -99,19 +103,7 @@ void		s_form(char *origstr)
 			prfree(temp);
 	}
 	if ((WIDTH) && (!LONEDEC_F))
-	{
-		if (PREC)
-		{
-			temp2 = s_wbuild(temp, origstr);
-			prfree(temp2);
-		}
-		else
-		{
-			temp = ft_strdup(origstr);
-			temp2 = s_wbuild(temp, origstr);
-			prfree(temp2);
-		}
-	}
+		s_widthhandle(temp, origstr);
 	else if ((LONEDEC_F) && (PREC == 0))
 	{
 		temp = s_lonedec();

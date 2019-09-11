@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/10 11:55:25 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 14:47:03 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char		*xbx_pbuild(char *origstr)
 {
-	int i;
-	int length;
-	char *temp2;
-	char *temp;
+	int		i;
+	int		length;
+	char	*temp2;
+	char	*temp;
 
 	i = 0;
 	length = arg.precision - (int)ft_strlen(origstr);
@@ -74,56 +74,68 @@ char		*xbx_wbuild(char *temp)
 	return (temp);
 }
 
-void		xbx_zero(char *temp, char *origstr)
+void		xbx_zeroch2(char *temp, char *origstr)
+{
+	if (SHARP_FLAG)
+		free(origstr);
+	arg.char_count += ft_intputstr(temp);
+	if ((SHARP_FLAG && ft_strcmp(temp, "0") != 0) && !WIDTH)
+		free(temp);
+	if (WIDTH)
+	{
+		if (ZERO_FLAG && !SHARP_FLAG && (WIDTH > PREC))
+		{
+			free(origstr);
+			free(temp);
+		}
+		if (!ZERO_FLAG && !SHARP_FLAG && (WIDTH > PREC))
+		{
+			free(temp);
+			free(origstr);
+		}
+		if (ZERO_FLAG && SHARP_FLAG && (WIDTH > PREC))
+			free(temp);
+		if (!ZERO_FLAG && SHARP_FLAG && (WIDTH > PREC))
+			free(temp);
+	}
+	if (PREC && !WIDTH && !SHARP_FLAG)
+		free(temp);
+	reset_struct();
+}
+
+void		xbx_zeroch3(char *temp, char *origstr)
 {
 	char	*temp2;
 
-	if (LONEDEC_F)
+	temp2 = NULL;
+	if ((ft_strcmp(origstr, "0") == 0) && (CHECK_BIT(arg.flgmods, LONEDEC)))
 	{
-		if ((ft_strcmp(temp, "0") == 0) && (CHECK_BIT(arg.flgmods, LONEDEC)))
-		{
-			temp2 = ft_strdup("");
-			prfree(temp2);
-			free(origstr);
-		}
-		else
-		{
-			prfree(temp);
-			free(origstr);
-		}
+		temp2 = ft_strdup("");
+		prfree(temp2);
+		free(origstr);
 	}
+	else
+	{
+		prfree(temp);
+		free(origstr);
+	}
+}
+
+void		xbx_zero(char *temp, char *origstr)
+{
+	if (LONEDEC_F)
+		xbx_zeroch3(temp, origstr);
 	else
 	{
 		if (!PREC && !WIDTH && !SHARP_FLAG)
 			prfree(origstr);
-		else
+		else if ((ft_strcmp(origstr, "0") == 0) && SHARP_FLAG)
 		{
-			if (SHARP_FLAG)
-				free(origstr);
-			arg.char_count += ft_intputstr(temp);
-			if ((SHARP_FLAG && ft_strcmp(temp, "0") != 0) && !WIDTH)
-				free(temp);
-			if (WIDTH)
-			{
-				if (ZERO_FLAG && !SHARP_FLAG && (WIDTH > PREC))
-				{
-					free(origstr);
-					free(temp);
-				}
-				if (!ZERO_FLAG && !SHARP_FLAG && (WIDTH > PREC))
-				{
-					free(temp);
-					free(origstr);
-				}
-				if (ZERO_FLAG && SHARP_FLAG && (WIDTH > PREC))
-						free(temp);
-				if (!ZERO_FLAG && SHARP_FLAG && (WIDTH > PREC))
-						free(temp);
-			}
-			if (PREC && !WIDTH && !SHARP_FLAG)
-				free(temp);
-			reset_struct();
+			prfree(origstr);
+			free(temp);
 		}
+		else
+			xbx_zeroch2(temp, origstr);
 	}
 }
 
@@ -133,11 +145,24 @@ int			ft_free(void *data)
 	return (1);
 }
 
+//char		*bx_zeroch(char *temp, char *origstr)
+//{
+//	if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
+//		temp = ft_strjoin("0x", origstr);
+//	else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
+//			&& arg.conv == 'X')
+//		temp = ft_strjoin("0X", origstr);
+//	//else
+//	//	temp = NULL;
+//	return (temp);
+//}
+
 void		xbx_form(char *origstr)
 {
 	char		*temp;
 	char		*temp2;
 
+	temp = NULL;
 	if (arg.precision)
 	{
 		temp = xbx_pbuild(origstr);
@@ -151,6 +176,7 @@ void		xbx_form(char *origstr)
 			free(temp2);
 	}
 	else
+	//	bx_zeroch(temp, origstr);
 	{
 		if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
 			temp = ft_strjoin("0x", origstr);
