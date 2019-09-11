@@ -6,7 +6,7 @@
 #    By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:42:05 by mirivera          #+#    #+#              #
-#    Updated: 2019/09/10 13:53:13 by mirivera         ###   ########.fr        #
+#    Updated: 2019/09/11 16:21:32 by mirivera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,11 @@ FORM = c_form.c \
 	p_form.c \
 	dui_form.c \
 	xbx_form.c \
+	xbx_form2.c \
+	xbx_form3.c \
 	o_form.c \
+	o_form2.c \
 	per_form.c \
-	#f_form.c \
 
 CKSIGN = dui_sign.c \
 	invpf_check.c \

@@ -6,7 +6,7 @@
 /*   By: mirivera <mirivera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:11:59 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/11 13:34:16 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 16:22:43 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,11 +169,20 @@ char				*ipweird1ch(char *formstr);
 char				*ipweird2ch(char *formstr);
 
 /*
+** functions supporting 'o' conversion
+*/
+
+void				o_pbuild(char *temp, char *origstr);
+void				o_wstrbuild(char *origstr);
+
+/*
 ** functions checking flags for 'o' conversion
 */
 
-char				*o_lonedecf(char *temp, char *origstr);
+void				o_lonedecf(char *temp, char *origstr);
 char				*o_explicitzero(char *temp, char *origstr);
+void				o_ifminus(char *temp, char *origstr);
+void				o_nominus(char *temp, char *origstr);
 
 /*
 ** functions for 's' conversion
@@ -181,6 +190,19 @@ char				*o_explicitzero(char *temp, char *origstr);
 
 char				*s_wbuild(char *temp, char *origstr);
 void				s_widthhandle(char *temp, char *origstr);
+
+/*
+** functions for 'x' formatting
+*/
+
+char				*xbx_pbuild(char *origstr);
+void				xbx_zero(char *temp, char *origstr);
+char				*xbx_wstrbuild(char *temp);
+void				xbx_zeroch2(char *temp, char *origstr);
+void				xbx_zeroch3(char *temp, char *origstr);
+void				xbx_nowid(char *temp, char *origstr, char *temp2);
+char				*bx_zeroch(char *temp, char *origstr);
+char				*xbx_prch(char *origstr, char *temp, char *temp2);
 
 /*
 ** Print functions

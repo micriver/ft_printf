@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 22:44:06 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/11 15:18:42 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 15:48:12 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,6 @@ char		*xbx_pbuild(char *origstr)
 	return (temp);
 }
 
-char		*xbx_wstrbuild(char *temp)
-{
-	int		diff;
-	int		i;
-	char	*formstr;
-
-	i = 0;
-	diff = arg.width - (int)ft_strlen(temp);
-	formstr = ft_strnew(diff);
-	while (i < diff)
-	{
-		formstr[i] = ' ';
-		(CHECK_BIT(arg.flgmods, ZERO_F) && !arg.precision) ? \
-			formstr[i] = '0' : formstr[i];
-		i++;
-	}
-	formstr[diff] = '\0';
-	if (CHECK_BIT(arg.flgmods, MINUS_F))
-		temp = ft_strjoin(temp, formstr);
-	else
-		temp = ft_strjoin(formstr, temp);
-	free(formstr);
-	return (temp);
-}
-
 char		*xbx_wbuild(char *temp)
 {
 	char *temp2;
@@ -72,53 +47,6 @@ char		*xbx_wbuild(char *temp)
 		free(temp2);
 	}
 	return (temp);
-}
-
-void		xbx_zeroch2(char *temp, char *origstr)
-{
-	if (SHARP_FLAG)
-		free(origstr);
-	arg.char_count += ft_intputstr(temp);
-	if ((SHARP_FLAG && ft_strcmp(temp, "0") != 0) && !WIDTH)
-		free(temp);
-	if (WIDTH)
-	{
-		if (ZERO_FLAG && !SHARP_FLAG && (WIDTH > PREC))
-		{
-			free(origstr);
-			free(temp);
-		}
-		if (!ZERO_FLAG && !SHARP_FLAG && (WIDTH > PREC))
-		{
-			free(temp);
-			free(origstr);
-		}
-		if (ZERO_FLAG && SHARP_FLAG && (WIDTH > PREC))
-			free(temp);
-		if (!ZERO_FLAG && SHARP_FLAG && (WIDTH > PREC))
-			free(temp);
-	}
-	if (PREC && !WIDTH && !SHARP_FLAG)
-		free(temp);
-	reset_struct();
-}
-
-void		xbx_zeroch3(char *temp, char *origstr)
-{
-	char	*temp2;
-
-	temp2 = NULL;
-	if ((ft_strcmp(origstr, "0") == 0) && (CHECK_BIT(arg.flgmods, LONEDEC)))
-	{
-		temp2 = ft_strdup("");
-		prfree(temp2);
-		free(origstr);
-	}
-	else
-	{
-		prfree(temp);
-		free(origstr);
-	}
 }
 
 void		xbx_zero(char *temp, char *origstr)
@@ -139,51 +67,17 @@ void		xbx_zero(char *temp, char *origstr)
 	}
 }
 
-int			ft_free(void *data)
-{
-	free(data);
-	return (1);
-}
-
-//char		*bx_zeroch(char *temp, char *origstr)
-//{
-//	if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
-//		temp = ft_strjoin("0x", origstr);
-//	else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
-//			&& arg.conv == 'X')
-//		temp = ft_strjoin("0X", origstr);
-//	//else
-//	//	temp = NULL;
-//	return (temp);
-//}
-
 void		xbx_form(char *origstr)
 {
 	char		*temp;
 	char		*temp2;
 
 	temp = NULL;
+	temp2 = NULL;
 	if (arg.precision)
-	{
-		temp = xbx_pbuild(origstr);
-		temp2 = temp;
-		if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
-			(temp = ft_strjoin("0x", temp)) && ft_free(temp2);
-		else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
-				&& arg.conv == 'X')
-			(temp = ft_strjoin("0X", temp)) && ft_free(temp2);
-		else if (!(ZERO_FLAG) && (int)ft_strlen(origstr) <= PREC)
-			free(temp2);
-	}
+		temp = xbx_prch(origstr, temp, temp2);
 	else
-	//	bx_zeroch(temp, origstr);
-	{
-		if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) && arg.conv != 'X')
-			temp = ft_strjoin("0x", origstr);
-		else if ((SHARP_FLAG) && (ft_strcmp(origstr, "0") != 0) \
-				&& arg.conv == 'X')
-			temp = ft_strjoin("0X", origstr);
-	}
+		temp = bx_zeroch(temp, origstr);
 	if (arg.width)
 	{
 		if (!PREC && !SHARP_FLAG)
@@ -192,13 +86,5 @@ void		xbx_form(char *origstr)
 		xbx_zero(temp2, origstr);
 	}
 	else
-	{
-		if (!SHARP_FLAG && PREC)
-		{
-			temp = origstr;
-			if (!WIDTH)
-				free(temp2);
-		}
-		xbx_zero(temp, origstr);
-	}
+		xbx_nowid(temp, origstr, temp2);
 }
