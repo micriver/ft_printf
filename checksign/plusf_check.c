@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:26:39 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/07 22:05:44 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 16:26:49 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ char	*neg_plusch(char *formstr, char *origstr)
 
 	i = 0;
 	if (PREC == WIDTH)
-	{
 		result = pr_widch(formstr, origstr);
-		//free(formstr);
-	}
 	else if ((int)ft_strlen(origstr) < PREC)
 		result = under_pr(formstr);
 	else if (origstr[0] == '-' && (PREC > ((int)ft_strlen(origstr) - 1)) \
@@ -82,10 +79,7 @@ char	*plusf_check(char *formstr, char *origstr)
 
 	if ((PLUS_FLAG) && (origstr[0] != '-') && \
 			(!ZERO_FLAG))
-	{
 		result = pos_plusch(formstr, origstr);
-	//	free(formstr);
-	}
 	else if ((PLUS_FLAG) && (origstr[0] != '-') && \
 			(ZERO_FLAG))
 	{

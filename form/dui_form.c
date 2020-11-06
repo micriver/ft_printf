@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:40:14 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/09 10:08:36 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:53:57 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 char		*dui_pbuild(char *origstr)
 {
-	int i;
-	int length;
-	char *temp;
-	char *temp2;
+	int		i;
+	int		length;
+	char	*temp;
+	char	*temp2;
 
 	i = 0;
 	length = PREC - (int)ft_strlen(origstr);
@@ -30,15 +30,11 @@ char		*dui_pbuild(char *origstr)
 	return (temp);
 }
 
-char		*wbuild(char *temp)
+char		*wfill(char *formstr, int diff)
 {
-	int		diff;
 	int		i;
-	char	*formstr;
-	char	*result;
 
 	i = 0;
-	diff = WIDTH - (int)ft_strlen(temp);
 	formstr = ft_strnew(diff);
 	while (i < diff)
 	{
@@ -48,6 +44,19 @@ char		*wbuild(char *temp)
 		i++;
 	}
 	formstr[diff] = '\0';
+	return (formstr);
+}
+
+char		*wbuild(char *temp)
+{
+	int		diff;
+	char	*formstr;
+	char	*result;
+
+	result = NULL;
+	formstr = NULL;
+	diff = WIDTH - (int)ft_strlen(temp);
+	formstr = wfill(formstr, diff);
 	if (CHECK_BIT(arg.flgmods, MINUS_F))
 	{
 		result = ft_strjoin(temp, formstr);
@@ -68,14 +77,12 @@ char		*dui_wbuild(char *temp)
 
 	if (arg.width <= (int)ft_strlen(temp))
 	{
-		result = temp;
+		result = ft_strdup(temp);
+		free(temp);
 		return (result);
 	}
 	else
-	{
 		result = wbuild(temp);
-		//free(temp);
-	}
 	return (result);
 }
 

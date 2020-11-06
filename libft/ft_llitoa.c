@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:57:53 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/06 15:36:01 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 13:03:27 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ char	*ft_llitoa(long long int n)
 	str = ft_strnew(length);
 	if (!str)
 		return (NULL);
-	if (n == -2147483648)
-		return (str = ft_strdup("-2147483648"));
 	if (sign)
 		str[0] = '-';
 	n = n < 0 ? n *= -1 : n;

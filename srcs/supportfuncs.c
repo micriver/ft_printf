@@ -6,7 +6,7 @@
 /*   By: mirivera <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 10:50:30 by mirivera          #+#    #+#             */
-/*   Updated: 2019/09/10 13:24:09 by mirivera         ###   ########.fr       */
+/*   Updated: 2019/09/11 16:22:11 by mirivera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,26 @@ char			*o_explicitzero(char *temp, char *origstr)
 	else
 		temp = ft_strcpy(temp, origstr);
 	return (temp);
+}
+
+/*
+** The function below supports the width building functions
+** in the 's' formatting file
+*/
+
+void			s_widthhandle(char *temp, char *origstr)
+{
+	char *temp2;
+
+	if (PREC)
+	{
+		temp2 = s_wbuild(temp, origstr);
+		prfree(temp2);
+	}
+	else
+	{
+		temp = ft_strdup(origstr);
+		temp2 = s_wbuild(temp, origstr);
+		prfree(temp2);
+	}
 }
